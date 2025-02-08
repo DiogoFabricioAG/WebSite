@@ -1,11 +1,23 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import "../styles/global.css";
+import Tags from '../components/Tags.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+	<div class="grid grid-cols-2 gap-4 items-center">
+		<div>
+			<p class="text-5xl text-white mb-2">Diogo Abregu</p>
+			<Tags>Fullstack Developer</Tags>
+		</div>
+		<div>
+			<img src="https://cdn.sanity.io/images/5vm5yn1d/pro/5cb1f9400891d9da5a4926d7814bd1b89127ecba-1300x867.jpg?fm=webp&q=80" alt="Diogo Abregu" class="" />
+		</div>
+	</div>
+	
 </Layout>
