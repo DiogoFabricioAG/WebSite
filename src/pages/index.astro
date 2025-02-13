@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import "../styles/global.css";
 import Tags from '../components/Tags.astro';
+import RolePill from '../components/RolePill.astro';
+import Briefcase from '../components/icons/Briefcase.astro';
+import Home from '../components/icons/Home.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -10,14 +13,40 @@ import Tags from '../components/Tags.astro';
 
 <Layout>
 	<Header />
-	<div class="grid grid-cols-2 gap-4 items-center">
-		<div>
-			<p class="text-5xl text-white mb-2">Diogo Abregu</p>
-			<Tags>Fullstack Developer</Tags>
+	<section>
+		
+		<div class="text-center space-y-5 h-[93vh] flex flex-col justify-center">
+			<div class="mx-auto text-blue-500">
+				<Home/>
+			</div>
+			<div class="flex flex-col items-center gap-4">
+				<h1 class="text-6xl">Diogo Abregu</h1>
+				<RolePill>
+					Fullstack Developer
+				</RolePill>
+			</div>
+			
+			<div class="grid grid-cols-2 gap-2 text-gray-500 font-semibold">
+				<div class="text-start text-xl">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi laboriosam iste quia impedit porro similique. Sapiente, nisi veritatis itaque iste odio, eius necessitatibus eum, quibusdam dicta quam quidem odit id!
+				</div>
+				<div>
+					<img class="h-full" src="https://cdn.sanity.io/images/5vm5yn1d/pro/5cb1f9400891d9da5a4926d7814bd1b89127ecba-1300x867.jpg?fm=webp&q=80" alt="Diogo Abregu" />
+				</div>
+			</div>
+			
 		</div>
-		<div>
-			<img src="https://cdn.sanity.io/images/5vm5yn1d/pro/5cb1f9400891d9da5a4926d7814bd1b89127ecba-1300x867.jpg?fm=webp&q=80" alt="Diogo Abregu" class="" />
+		
+	</section>
+	<section>
+		<div class="text-center space-y-5 h-[93vh] flex flex-col justify-center">
+			<div class="mx-auto text-blue-500">
+				<Briefcase/>
+			</div>
+			<h2 class="text-3xl">Informacion</h2>
 		</div>
-	</div>
+	</section>
+	
+	
 	
 </Layout>
