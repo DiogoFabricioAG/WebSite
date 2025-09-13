@@ -1,31 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import HeroSection from '../components/HeroSection.astro';
-import ProjectsSection from '../components/ProjectsSection.astro';
-import ProjectsDialog from '../components/ProjectsDialog.astro';
-import AboutSection from '../components/AboutSection.astro';
-import TechStackSection from '../components/TechStackSection.astro';
-import ExperienceSection from '../components/ExperienceSection.astro';
-import ContactSection from '../components/ContactSection.astro';
-import Footer from '../components/Footer.astro';
 import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import SliderIcon from "../components/SliderIcon";
 ---
 
-<Layout>
-	<Navbar/>
+<BaseLayout>
+	<Navbar />
+	<div class="my-8 text-center w-48 mx-auto opacity-75 hover:opacity-100 duration-300  shadow-xl/30
+	 shadow-white">
+		<img src="/avatar.png" alt="" class="mx-auto h-48 w-48"/>
+		<div class="bg-white text-black w-48 mx-auto">
+			<span class="text-lg">System Engineer</span>
+		</div>
+	</div>
+	<div class="space-y-3 mx-auto">
+		<h2 class="text-4xl text-center font-Jost font-extrabold">Desarrollo Soluciones Tecnologicas</h2>
+		<p class="text-center font-light">Soy un ingeniero de sistemas con experiencia en el desarrollo de soluciones tecnológicas innovadoras y eficientes.</p>
+		<div class="flex justify-center flex-wrap space-x-2">
+			<button class="button-clean">Contactar</button>
+			<button class="button-clean">Descargar CV</button>
+		</div>
+		<SliderIcon client:load />
+	</div>
+
 	
-	<main class="font-primary">
-		<HeroSection />
-		<ProjectsSection />
-		<AboutSection />
-		<TechStackSection />
-		<ExperienceSection />
-		<ContactSection />
-	</main>
-	
-	<Footer />
-	
-	<!-- Projects Dialog -->
-	<ProjectsDialog />
-</Layout>
+</BaseLayout>
