@@ -1,0 +1,32 @@
+---
+const { title, description, icon } = Astro.props;
+---
+
+<div>
+  <div class="border border-white font-medium px-3 py-2">
+    <h3 class="text-2xl font-bold">{title}</h3>
+    <p class="text-xs font-light">
+      {description}
+    </p>
+    <p class="font-Jost text-sm">Tecnologias Utilizadas</p>
+    <div class="flex justify-center my-2 gap-3">
+      <img src="icons/astro.svg" alt={title + " icon"} class="h-6 w-6" />
+      <img src="icons/aws_light.svg" alt={title + " icon"} class="h-6 w-6" />
+      <img src="icons/csharp.svg" alt={title + " icon"} class="h-6 w-6" />
+      <img src="icons/github_light.svg" alt={title + " icon"} class="h-6 w-6" />
+      <img src="icons/postgresql.svg" alt={title + " icon"} class="h-6 w-6" />
+      <img src={icon} alt={title + " icon"} class="h-6 w-6" />
+    </div>
+  </div>
+
+  <div class="px-1.5 py-1.5 bg-white w-full flex justify-end gap-2 text-xs">
+    <div class="relative inline-block group">
+      <button class="button-clean-dark">Ver Imagenes</button>
+      <span class="shadow-box"></span>
+    </div>
+    <div class="relative inline-block group">
+      <button class="button-clean-dark">Ver en Vivo</button>
+      <span class="shadow-box"></span>
+    </div>
+  </div>
+</div>

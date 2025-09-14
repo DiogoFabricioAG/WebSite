@@ -3,47 +3,158 @@ import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import SliderIcon from "../components/SliderIcon";
-
+import Experiencebox from "../components/Experiencebox.astro";
+import Projectsbox from "../components/Projectsbox.astro";
 ---
- 
-<BaseLayout>
-	<Navbar />
-	<div class="my-8 text-center w-48 mx-auto opacity-75 hover:opacity-100 duration-300  shadow-xl/30
-	 shadow-white"> 
-		<img src="/avatar.png" id="avatar" alt="" class="mx-auto h-48 w-48"/>
-		<div class="bg-white text-black w-48 mx-auto">
-			<span class="text-lg">System Engineer</span>
-		</div>
-	</div>
-	<div class="space-y-3 mx-auto">
-		<h2 class="text-4xl text-center font-Jost font-extrabold">Desarrollo Soluciones Tecnologicas</h2>
-		<p class="text-center font-light">Soy un ingeniero de sistemas con experiencia en el desarrollo de soluciones tecnológicas innovadoras y eficientes.</p>
-		<div class="flex justify-center flex-wrap space-x-2">
-			<div class="relative inline-block group">
-				<button class="button-clean">Contactar</button>
-				<span class="absolute inset-0 duration-100 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20  justify-center text-white  pointer-events-none"></span>
-			</div>
-			<div class="relative inline-block group">
-				<button class="button-clean">Descargar CV</button>
-				<span class="absolute inset-0 duration-100 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20  justify-center text-white  pointer-events-none"></span>
-			</div>
-		</div>
-		
-	</div>
-	<section>
 
-	</section>
-	
+<BaseLayout>
+  <Navbar />
+  <div class="my-8 text-center w-48 mx-auto shadow-xl/30
+	 shadow-white">
+    <img src="/avatar.png" id="avatar" alt="" class="mx-auto h-48 w-48" />
+    <div class="bg-white text-black w-48 mx-auto">
+      <span class="text-lg">System Engineer</span>
+    </div>
+  </div>
+  <div class="space-y-3 mx-auto">
+    <h2 class="text-4xl text-center font-Jost font-extrabold">
+      Desarrollo Soluciones Tecnologicas
+    </h2>
+    <p class="text-center font-light">
+      Soy un ingeniero de sistemas con experiencia en el desarrollo de
+      soluciones tecnológicas innovadoras y eficientes.
+    </p>
+    <div class="flex justify-center flex-wrap space-x-2">
+      <div class="relative inline-block group">
+        <button class="button-clean">Contactar</button>
+        <span
+          class="shadow-box"
+        ></span>
+      </div>
+      <div class="relative inline-block group">
+        <button class="button-clean">Descargar CV</button>
+        <span
+          class="shadow-box"
+        ></span>
+      </div>
+    </div>
+  </div>
+  <section id="experiencia">
+    <h2 class="text-5xl font-Jost font-extrabold mt-24 mb-10">Experiencia</h2>
+    <div class="w-4/5 grid grid-cols-2 justify-center gap-5 mx-auto">
+      <Experiencebox
+        title="Desarrollador Web"
+        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+        icon="/icons/react_light.svg"
+      />
+      <Experiencebox
+        title="Desarrollador Web"
+        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+        icon="/icons/react_light.svg"
+      />
+      <Experiencebox
+        title="Desarrollador Web"
+        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+        icon="/icons/react_light.svg"
+      />
+    </div>
+  </section>
+  <section id="proyectos">
+	<h2 class="text-5xl font-Jost font-extrabold mt-24 mb-10">Proyectos</h2>
+    <div class="w-4/5 grid grid-cols-3 justify-center gap-5 mx-auto">
+      <Projectsbox
+        title="Pagina Web LEAD UNI"
+        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+        icon="/icons/react_light.svg"
+      />
+      <Projectsbox
+        title="Ensigna"
+        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+        icon="/icons/react_light.svg"
+      />
+      <Projectsbox
+        title="GreedisGood"
+        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+        icon="/icons/react_light.svg"
+      />
+      <Projectsbox
+        title="UNIVirtual"
+        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+        icon="/icons/react_light.svg"
+      />
+    </div>
+  </section>
 </BaseLayout>
 <script>
-	import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-		gsap.registerPlugin(ScrollTrigger);
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                scrub: 1,
-            }
-        });
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-        tl.to("#avatar", { scale: 0 });
-	</script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animación para el avatar
+  gsap.from("#avatar", {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#avatar",
+      start: "top 80%",
+      toggleActions: "play none none none"
+    }
+  });
+
+  // Animación para la sección de experiencia
+  gsap.from("#experiencia", {
+    opacity: 0,
+    y: 80,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#experiencia",
+      start: "top 80%",
+      toggleActions: "play none none none"
+    }
+  });
+
+  // Animación para cada cajita de experiencia
+  gsap.from("#experiencia .Experiencebox", {
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#experiencia",
+      start: "top 80%",
+      toggleActions: "play none none none"
+    }
+  });
+
+  // Animación para la sección de proyectos
+  gsap.from("#proyectos", {
+    opacity: 0,
+    y: 80,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#proyectos",
+      start: "top 80%",
+      toggleActions: "play none none none"
+    }
+  });
+
+  // Animación para cada cajita de proyecto
+  gsap.from("#proyectos .Projectsbox", {
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#proyectos",
+      start: "top 80%",
+      toggleActions: "play none none none"
+    }
+  });
+</script>
