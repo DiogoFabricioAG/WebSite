@@ -20,6 +20,6 @@
 }
 
 .button-clean {
-    @apply bg-white/80 font-light hover:bg-white duration-300   cursor-pointer px-2 py-1 text-black hover:shadow-xl/10
+    @apply bg-white/80  hover:bg-white duration-300   cursor-pointer px-2 py-1 text-black hover:shadow-xl/10
 	 shadow-white
 }

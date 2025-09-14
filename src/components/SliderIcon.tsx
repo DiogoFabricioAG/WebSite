@@ -1,8 +1,8 @@
 
 
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
-// Lista de nombres de iconos en /public/icons (ajusta según tus archivos)
+
 const icons = [
     "astro.svg",
     "react_light.svg",
@@ -15,16 +15,21 @@ const icons = [
 const SliderIcon = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
     let pos = 0;
-    const speed = 2;
+    const speed = 0.7;
 
     useEffect(() => {
+        
         const slider = sliderRef.current;
         if (!slider) return;
+
+        let pos = 0;
+        const speed = 0.7;
         let running = true;
+
         function animate() {
             if (!running) return;
             pos -= speed;
-            const totalWidth = slider.scrollWidth ;
+            const totalWidth = slider.scrollWidth / 2;
             if (-pos >= totalWidth) {
                 pos = 0;
             }
@@ -32,12 +37,25 @@ const SliderIcon = () => {
             requestAnimationFrame(animate);
         }
         requestAnimationFrame(animate);
+
+        // Ejemplo de uso de ScrollTrigger (puedes ajustar según tu necesidad)
+        gsap.to(slider, {
+            x: 0,
+            scrollTrigger: {
+                trigger: slider,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+        
+
         return () => { running = false; };
     }, []);
 
     return (
-        <div className="w-full flex justify-center mt-8 ">
-            <div className="overflow-hidden  h-16 relative">
+        <div className="w-full flex justify-center mt-8">
+            <div className="overflow-hidden w-[350px] h-16 relative">
                 <div
                     ref={sliderRef}
                     className="flex items-center gap-6 h-16"

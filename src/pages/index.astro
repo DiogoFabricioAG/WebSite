@@ -3,13 +3,14 @@ import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import SliderIcon from "../components/SliderIcon";
----
 
+---
+ 
 <BaseLayout>
 	<Navbar />
 	<div class="my-8 text-center w-48 mx-auto opacity-75 hover:opacity-100 duration-300  shadow-xl/30
-	 shadow-white">
-		<img src="/avatar.png" alt="" class="mx-auto h-48 w-48"/>
+	 shadow-white"> 
+		<img src="/avatar.png" id="avatar" alt="" class="mx-auto h-48 w-48"/>
 		<div class="bg-white text-black w-48 mx-auto">
 			<span class="text-lg">System Engineer</span>
 		</div>
@@ -18,11 +19,31 @@ import SliderIcon from "../components/SliderIcon";
 		<h2 class="text-4xl text-center font-Jost font-extrabold">Desarrollo Soluciones Tecnologicas</h2>
 		<p class="text-center font-light">Soy un ingeniero de sistemas con experiencia en el desarrollo de soluciones tecnológicas innovadoras y eficientes.</p>
 		<div class="flex justify-center flex-wrap space-x-2">
-			<button class="button-clean">Contactar</button>
-			<button class="button-clean">Descargar CV</button>
+			<div class="relative inline-block group">
+				<button class="button-clean">Contactar</button>
+				<span class="absolute inset-0 duration-100 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20  justify-center text-white  pointer-events-none"></span>
+			</div>
+			<div class="relative inline-block group">
+				<button class="button-clean">Descargar CV</button>
+				<span class="absolute inset-0 duration-100 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20  justify-center text-white  pointer-events-none"></span>
+			</div>
 		</div>
-		<SliderIcon client:load />
+		
 	</div>
+	<section>
 
+	</section>
 	
 </BaseLayout>
+<script>
+	import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+		gsap.registerPlugin(ScrollTrigger);
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                scrub: 1,
+            }
+        });
+
+        tl.to("#avatar", { scale: 0 });
+	</script>
