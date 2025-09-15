@@ -7,7 +7,7 @@ const icons = [
     "astro.svg",
     "react_light.svg",
     "typescript.svg",
-    "github_light.svg",
+    "github.svg",
     "docker.svg",
     "csharp.svg"
 ];

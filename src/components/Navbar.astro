@@ -2,19 +2,177 @@
 
 ---
 
-<nav class="grid grid-cols-3 items-center">
-    <div class="hover:scale-105 transition-all cursor-pointer duration-300 ">
-        <img src="./logo-portfolio.png" alt="nose ve" class="mx-auto my-10 h-24"/>
-    </div>
-    <ul class="flex justify-center space-x-4">
-        <li><button class="nav-li">Tecnologias</button></li>
-        <li><button class="nav-li">Proyectos</button></li>
-        <li><button class="nav-li">Experiencia</button></li>
-    </ul>
-    <div class="relative inline-block group mx-auto">
-        <button class="button-clean">Activar Bot</button>
-        <span class="absolute inset-0 duration-100 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20  justify-center text-white  pointer-events-none"></span>
-    </div>
-            
+<nav id="site-nav" class="sticky top-0 z-50 transition-all duration-300">
+  <div class="grid grid-cols-4 items-center px-4 md:px-8">
+    <a
+      href="#inicio"
+      class="justify-self-start col-span-1 hover:scale-105 transition-transform duration-300"
+    >
+      <img
+        src="/logo-portfolio.png"
+        alt="Logo"
+        class="logo-img my-4 h-24 logo-icon nav:transition-all"
+      />
+    </a>
 
+    <ul
+      class="nav-center flex col-span-2 items-center justify-center gap-2 md:gap-6 py-2"
+    >
+      <li>
+        <a href="#inicio" class="nav-link flex items-center gap-2">
+          <span
+            class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <img src="/icons/home.svg" alt="Inicio" class="w-5 h-5" />
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#sobre-mi" class="nav-link flex items-center gap-2">
+          <span
+            class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <img src="/icons/me.svg" alt="Sobre mí" class="w-5 h-5" />
+          </span>
+          <span class="nav-text nav-li">Sobre mí</span>
+        </a>
+      </li>
+      <li>
+        <a href="#proyectos" class="nav-link flex items-center gap-2">
+          <span
+            class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <img src="/icons/briefcase.svg" alt="Proyectos" class="w-5 h-5" />
+          </span>
+          <span class="nav-text nav-li">Proyectos</span>
+        </a>
+      </li>
+      <li>
+        <a href="#experiencia" class="nav-link flex items-center gap-2">
+          <span
+            class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <img src="/icons/tie.svg" alt="Experiencia" class="w-5 h-5" />
+          </span>
+          <span class="nav-text nav-li">Experiencia</span>
+        </a>
+      </li>
+      <li>
+        <a href="#bot" class="nav-link flex items-center gap-2">
+          <span
+            class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <img src="/icons/bot.svg" alt="Sobre mí" class="w-5 h-5 " />
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right: Action button (hidden in compact) -->
+    <div class="nav-actions justify-self-end col-span-1">
+      <div class="relative inline-block group">
+        <button class=" button-clean">Activar Bot</button>
+        <span
+          class="absolute inset-0 duration-100 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20 justify-center text-white pointer-events-none"
+        ></span>
+      </div>
+    </div>
+  </div>
 </nav>
+
+<script>
+  // Shrink navbar on scroll and switch to icon-only links
+  const nav = document.getElementById("site-nav");
+  function onScroll() {
+    if (!nav) return;
+    if (window.scrollY > 100) nav.classList.add("nav--compact");
+    else nav.classList.remove("nav--compact");
+  }
+  onScroll();
+  window.addEventListener("scroll", onScroll);
+</script>
+
+<style>
+  /* Logo size transitions */
+  #site-nav .logo-img {
+    transition:
+      height 0.25s ease,
+      margin 0.25s ease;
+  }
+
+  #site-nav.nav--compact .logo-icon {
+    display: none;
+  }
+
+  #site-nav.nav--compact .logo-img {
+    height: 2.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Smooth switch: text fades out, icons fade in */
+  #site-nav .nav-text {
+    display: inline-block;
+    white-space: nowrap;
+    opacity: 1;
+    max-width: 200px;
+    margin-left: 0.25rem;
+    transition:
+      opacity 0.25s ease,
+      max-width 0.25s ease,
+      margin 0.25s ease;
+  }
+  #site-nav.nav--compact .nav-text {
+    display: none;
+    max-width: 0;
+    margin: 0;
+    pointer-events: none;
+  }
+  /* Icon button reveal (no display toggles to allow transition) */
+  #site-nav .icon-btn {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    display: flex;
+    transform: scale(0.9);
+    transition:
+      opacity 0.25s ease,
+      width 0.25s ease,
+      transform 0.25s ease,
+      background-color 0.25s ease,
+      border-color 0.25s ease;
+  }
+  #site-nav.nav--compact .icon-btn {
+    opacity: 1;
+    width: 2.5rem; /* 40px */
+    transform: scale(1);
+  }
+
+  /* Background opacity only on center icons area in compact */
+  #site-nav .nav-center {
+    transition:
+      background-color 0.25s ease,
+      padding 0.25s ease,
+      border-color 0.25s ease;
+  }
+  #site-nav.nav--compact .nav-center {
+    margin-top: 20px;
+    margin-inline: auto;
+    width: 75%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding-block: 1rem;
+    padding-inline: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  /* Actions fade out smoothly */
+  #site-nav .nav-actions {
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+  #site-nav.nav--compact .nav-actions {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+  }
+</style>

@@ -5,10 +5,12 @@ import Navbar from "../components/Navbar.astro";
 import SliderIcon from "../components/SliderIcon";
 import Experiencebox from "../components/Experiencebox.astro";
 import Projectsbox from "../components/Projectsbox.astro";
+import BoxLayout from "../layouts/BoxLayout.astro";
 ---
 
 <BaseLayout>
   <Navbar />
+  <section id="inicio">
   <div class="my-8 text-center w-48 mx-auto shadow-xl/30
 	 shadow-white">
     <img src="/avatar.png" id="avatar" alt="" class="mx-auto h-48 w-48" />
@@ -18,78 +20,203 @@ import Projectsbox from "../components/Projectsbox.astro";
   </div>
   <div class="space-y-3 mx-auto">
     <h2 class="text-4xl text-center font-Jost font-extrabold">
-      Desarrollo Soluciones Tecnologicas
+      Desarrollo Soluciones Tecnológicas
     </h2>
     <p class="text-center font-light">
       Soy un ingeniero de sistemas con experiencia en el desarrollo de
       soluciones tecnológicas innovadoras y eficientes.
     </p>
     <div class="flex justify-center flex-wrap space-x-2">
-      <div class="relative inline-block group">
+      <a href="#contacto" class="relative inline-block group">
         <button class="button-clean">Contactar</button>
-        <span
-          class="shadow-box"
-        ></span>
-      </div>
+        <span class="shadow-box"></span>
+      </a>
       <div class="relative inline-block group">
         <button class="button-clean">Descargar CV</button>
-        <span
-          class="shadow-box"
-        ></span>
+        <span class="shadow-box"></span>
       </div>
     </div>
   </div>
+  </section>
+  <section id="sobre-mi">
+    <BoxLayout>
+      <h2 class="text-5xl font-Jost font-extrabold mb-10">Sobre mí</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
+        <div class="space-y-3">
+          <p class="text-lg leading-relaxed">
+            Soy un ingeniero de sistemas enfocado en crear soluciones web rápidas, accesibles y mantenibles. Me gusta trabajar cerca del negocio para alinear la tecnología con objetivos reales.
+          </p>
+          <p class="text-white/80">
+            Me especializo en el ecosistema JavaScript/TypeScript, integrando frontends ligeros con backends robustos y una base sólida en despliegue y automatización.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">Frontend</h3>
+            <p class="text-sm text-white/80">Astro, React, TypeScript</p>
+          </div>
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">Backend</h3>
+            <p class="text-sm text-white/80">Node.js, Express, Python</p>
+          </div>
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">Bases de datos</h3>
+            <p class="text-sm text-white/80">PostgreSQL, MongoDB</p>
+          </div>
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">DevOps</h3>
+            <p class="text-sm text-white/80">Docker, CI/CD, AWS</p>
+          </div>
+        </div>
+      </div>
+    </BoxLayout>
+  </section>
   <section id="experiencia">
-    <h2 class="text-5xl font-Jost font-extrabold mt-24 mb-10">Experiencia</h2>
-    <div class="w-4/5 grid grid-cols-2 justify-center gap-5 mx-auto">
-      <Experiencebox
-        title="Desarrollador Web"
-        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-        icon="/icons/react_light.svg"
-      />
-      <Experiencebox
-        title="Desarrollador Web"
-        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-        icon="/icons/react_light.svg"
-      />
-      <Experiencebox
-        title="Desarrollador Web"
-        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-        icon="/icons/react_light.svg"
-      />
-    </div>
+    <BoxLayout>
+      <h2 class="text-5xl font-Jost font-extrabold mb-10">Experiencia</h2>
+      <div class="grid grid-cols-2 justify-center gap-5 mx-auto">
+        <Experiencebox
+          title="Desarrollador Web"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          icon="/icons/react_light.svg"
+          durationDate="12/04 - 15/08"
+        />
+        <Experiencebox
+          title="Desarrollador Web"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          icon="/icons/react_light.svg"
+          durationDate="12/04 - 15/08"
+        />
+        <Experiencebox
+          title="Desarrollador Web"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          icon="/icons/react_light.svg"
+          durationDate="12/04 - ACT"
+        />
+      </div>
+    </BoxLayout>
   </section>
   <section id="proyectos">
-	<h2 class="text-5xl font-Jost font-extrabold mt-24 mb-10">Proyectos</h2>
-    <div class="w-4/5 grid grid-cols-3 justify-center gap-5 mx-auto">
+    <BoxLayout>
+      <h2 class="text-5xl font-Jost font-extrabold mb-10">Proyectos</h2>
+    <div class="grid grid-cols-3 justify-center gap-5 mx-auto">
       <Projectsbox
         title="Pagina Web LEAD UNI"
         description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
         icon="/icons/react_light.svg"
+        finishDate="04/25"
       />
       <Projectsbox
         title="Ensigna"
         description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
         icon="/icons/react_light.svg"
+        finishDate="03/25"
       />
       <Projectsbox
         title="GreedisGood"
         description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
         icon="/icons/react_light.svg"
+        finishDate="02/25"
       />
       <Projectsbox
         title="UNIVirtual"
         description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
         icon="/icons/react_light.svg"
+        finishDate="01/25"
       />
+    </div>
+    </BoxLayout>
+    
+  </section>
+  <section id="contacto">
+    <BoxLayout>
+      <h2 class="text-5xl font-Jost font-extrabold  mb-10">Contacto</h2>
+    <div class="w-2/5 mx-auto border space-y-2 border-white p-4 text-sm">
+      <div class="flex flex-col">
+        <label
+          class="bg-white border-2 px-2 border-white w-1/5 text-black"
+          for="email">Email</label
+        >
+        <input
+          type="text"
+          class="border outline-none border-white px-1 py-2"
+          placeholder="Correo Electronico"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label
+          class="bg-white border-2 px-2 border-white w-1/5 text-black"
+          for="email">Asunto</label
+        >
+        <select class="border outline-none text-white border-white px-1 py-2">
+          <option class="text-black" selected value="consulta">Consulta</option>
+          <option class="text-black" value="soporte">Soporte</option>
+          <option class="text-black" value="otro">Otro</option>
+        </select>
+      </div>
+      <div class="flex flex-col">
+        <label
+          class="bg-white border-2 px-2 border-white w-1/5 text-black"
+          for="email">Mensaje</label
+        >
+        <textarea
+          name="mensaje"
+          placeholder="Escribe tu mensaje aquí..."
+          id=""
+          class="border outline-none border-white px-1 py-2"></textarea>
+      </div>
+    </div>
+    <div
+      class="bg-white w-2/5 mx-auto px-1.5 py-1.5 flex justify-end gap-2 text-xs"
+    >
+      <div class="relative inline-block group">
+        <button class="button-clean-dark">Enviar Mensaje</button>
+        <span class="shadow-box-dark"></span>
+      </div>
+    </div>
+    </BoxLayout> 
+    
+  </section>
+
+  <section id="redes-sociales">
+    <div class="flex justify-between mt-24 w-4/5 mx-auto text-sm items-center">
+      <p>@ Diogo Abregu 2025</p>
+      <div class="flex gap-4">
+        <img
+          src="/icons/github.svg"
+          alt="GitHub"
+          class="h-6 w-6 hover:scale-110 transition-transform duration-300"
+        />
+        <img
+          src="/icons/linkedin.svg"
+          alt="LinkedIn"
+          class="h-6 w-6 hover:scale-110 transition-transform duration-300"
+        />
+        <img
+          src="/icons/instagram.svg"
+          alt="Instagram"
+          class="h-6 w-6 hover:scale-110 transition-transform duration-300"
+        />
+      </div>
     </div>
   </section>
 </BaseLayout>
+
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      scrub: true,
+    },
+  });
+
+  // tl.to("#navbar", {
+  // 	scale: 0
+  // });
 
   // Animación para el avatar
   gsap.from("#avatar", {
@@ -100,8 +227,8 @@ import Projectsbox from "../components/Projectsbox.astro";
     scrollTrigger: {
       trigger: "#avatar",
       start: "top 80%",
-      toggleActions: "play none none none"
-    }
+      toggleActions: "play none none none",
+    },
   });
 
   // Animación para la sección de experiencia
@@ -113,8 +240,21 @@ import Projectsbox from "../components/Projectsbox.astro";
     scrollTrigger: {
       trigger: "#experiencia",
       start: "top 80%",
-      toggleActions: "play none none none"
-    }
+      toggleActions: "play none none none",
+    },
+  });
+
+  // Animación para la sección Sobre mí
+  gsap.from("#sobre-mi", {
+    opacity: 0,
+    y: 80,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#sobre-mi",
+      start: "top 80%",
+      toggleActions: "play none none none",
+    },
   });
 
   // Animación para cada cajita de experiencia
@@ -127,8 +267,8 @@ import Projectsbox from "../components/Projectsbox.astro";
     scrollTrigger: {
       trigger: "#experiencia",
       start: "top 80%",
-      toggleActions: "play none none none"
-    }
+      toggleActions: "play none none none",
+    },
   });
 
   // Animación para la sección de proyectos
@@ -140,8 +280,8 @@ import Projectsbox from "../components/Projectsbox.astro";
     scrollTrigger: {
       trigger: "#proyectos",
       start: "top 80%",
-      toggleActions: "play none none none"
-    }
+      toggleActions: "play none none none",
+    },
   });
 
   // Animación para cada cajita de proyecto
@@ -154,7 +294,7 @@ import Projectsbox from "../components/Projectsbox.astro";
     scrollTrigger: {
       trigger: "#proyectos",
       start: "top 80%",
-      toggleActions: "play none none none"
-    }
+      toggleActions: "play none none none",
+    },
   });
 </script>
