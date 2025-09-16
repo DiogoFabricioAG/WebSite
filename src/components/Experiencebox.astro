@@ -1,23 +1,66 @@
 ---
-const { title, description, icon, durationDate } = Astro.props;
+interface TechItem { src: string; alt?: string }
+interface Props {
+  title: string;
+  description?: string; // texto libre opcional (legacy)
+  icon?: string;
+  durationDate: string;
+  company?: string;
+  location?: string;
+  companyUrl?: string;
+  techs?: Array<string | TechItem>;
+  points?: string[]; // bullet points cortos (máx 3 recomendados)
+}
+
+const {
+  title,
+  description,
+  icon,
+  durationDate,
+  company,
+  location,
+  companyUrl,
+  techs = [],
+  points = [],
+} = Astro.props as Props;
+
+const resolvedTechs: TechItem[] = techs.map(t => typeof t === 'string' ? ({ src: t, alt: `${title} tech` }) : ({ src: t.src, alt: t.alt ?? `${title} tech` }));
 ---
 
-<div class="flex flex-col ">
-  <div class="bg-white border-2 px-2 border-white w-1/5 text-[10px] text-black">{durationDate}</div>
-  <div class="border border-white font-medium px-3 py-2">
-      <h3 class="text-2xl font-bold">{title}</h3>
-    <p class="text-xs font-light">
-      {description}
-    </p>
+<div class="Experiencebox flex flex-col">
+  <div class="bg-white border-2 px-2 border-white w-fit text-[10px] text-black ">{durationDate}</div>
+  <div class="border border-white font-medium px-3 py-2 space-y-2">
+    <div class="flex justify-between w-full gap-4">
+      <div class="space-y-0.5">
+        <h3 class="text-xl font-bold leading-tight">{title}</h3>
+        {(company || location) && (
+          <p class="text-[10px] uppercase tracking-wide text-white/70">
+            {companyUrl ? <a href={companyUrl} target="_blank" rel="noopener" class="underline hover:text-white">{company}</a> : company}{company && location ? ' · ' : ''}{location}
+          </p>
+        )}
+      </div>
+      {icon && <img src={icon} alt={`${title} icon`} class="h-10 w-10 self-start" />}
+    </div>
+    {points.length > 0 ? (
+      <ul class="list-disc pl-4 space-y-1 marker:text-white/60 text-[11px] leading-snug">
+        {points.slice(0,3).map(p => <li>{p}</li>)}
+      </ul>
+    ) : description && (
+      <p class="text-[11px] font-light leading-snug">{description}</p>
+    )}
+    <p class="text-[11px]  font-[400px] leading-snug">Tecnologías</p>
+    {resolvedTechs.length > 0 && (
+      <div class="flex flex-wrap gap-2 pt-1">
+        
+        {resolvedTechs.map(t => <img src={t.src} alt={t.alt} class="h-7 w-7 hover:scale-105 duration-150" />)}
+      </div>
+    )}
   </div>
-  <div class="px-1.5 py-1.5  bg-white w-full flex justify-end gap-2 text-xs">
+  <div class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]">
     <div class="relative inline-block group">
-      <button class="button-clean-dark">Ver Proyectos</button>
+      <button class="button-clean-dark">Ver Detalles</button>
       <span class="shadow-box-dark"></span>
     </div>
-    <div class="relative inline-block group">
-      <button class="button-clean-dark">Ver Estadisticas</button>
-      <span class="shadow-box-dark"></span>
-    </div>
+
   </div>
 </div>

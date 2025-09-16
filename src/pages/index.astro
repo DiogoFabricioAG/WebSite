@@ -2,52 +2,59 @@
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
-import SliderIcon from "../components/SliderIcon";
 import Experiencebox from "../components/Experiencebox.astro";
 import Projectsbox from "../components/Projectsbox.astro";
 import BoxLayout from "../layouts/BoxLayout.astro";
+import ContactBox from "../components/ContactBox.astro";
 ---
 
 <BaseLayout>
   <Navbar />
-  <section id="inicio">
-  <div class="my-8 text-center w-48 mx-auto shadow-xl/30
+  <section id="inicio" class="h-[100vh]">
+    <div class="my-8 text-center w-48 mx-auto shadow-xl/30
 	 shadow-white">
-    <img src="/avatar.png" id="avatar" alt="" class="mx-auto h-48 w-48" />
-    <div class="bg-white text-black w-48 mx-auto">
-      <span class="text-lg">System Engineer</span>
-    </div>
-  </div>
-  <div class="space-y-3 mx-auto">
-    <h2 class="text-4xl text-center font-Jost font-extrabold">
-      Desarrollo Soluciones Tecnológicas
-    </h2>
-    <p class="text-center font-light">
-      Soy un ingeniero de sistemas con experiencia en el desarrollo de
-      soluciones tecnológicas innovadoras y eficientes.
-    </p>
-    <div class="flex justify-center flex-wrap space-x-2">
-      <a href="#contacto" class="relative inline-block group">
-        <button class="button-clean">Contactar</button>
-        <span class="shadow-box"></span>
-      </a>
-      <div class="relative inline-block group">
-        <button class="button-clean">Descargar CV</button>
-        <span class="shadow-box"></span>
+      <img src="/avatar.png" id="avatar" alt="" class="mx-auto h-48 w-48" />
+      <div class="bg-white text-black w-48 mx-auto">
+        <span class="text-lg">System Engineer</span>
       </div>
     </div>
-  </div>
+    <div class="space-y-3 mx-auto">
+      <h2 class="text-4xl text-center font-Jost font-extrabold">
+        Diogo Abregu Gonzales
+      </h2>
+      <p class="text-center font-light">
+        Especializado en el desarrollo de soluciones tecnológicas en cualquier
+        aspecto del negocio
+      </p>
+      <div class="flex justify-center flex-wrap space-x-2">
+        <a href="#contacto" class="relative inline-block group">
+          <button class="button-clean">Contactar</button>
+          <span class="shadow-box"></span>
+        </a>
+        <div class="relative inline-block group">
+          <button class="button-clean">Descargar CV</button>
+          <span class="shadow-box"></span>
+        </div>
+      </div>
+    </div>
   </section>
-  <section id="sobre-mi">
+  <section id="sobre-mi" class="h-[100vh]">
     <BoxLayout>
       <h2 class="text-5xl font-Jost font-extrabold mb-10">Sobre mí</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
         <div class="space-y-3">
           <p class="text-lg leading-relaxed">
-            Soy un ingeniero de sistemas enfocado en crear soluciones web rápidas, accesibles y mantenibles. Me gusta trabajar cerca del negocio para alinear la tecnología con objetivos reales.
+            Enfocado en crear soluciones web rápidas, accesibles y mantenibles.
+            Me gusta trabajar cerca del negocio para alinear la tecnología con
+            objetivos reales.
           </p>
-          <p class="text-white/80">
-            Me especializo en el ecosistema JavaScript/TypeScript, integrando frontends ligeros con backends robustos y una base sólida en despliegue y automatización.
+          <p class="text-white/80 text-sm">
+            Implemento la tecnología adecuada para resolver problemas,
+            priorizando la arquitectura y la calidad de la solución, entre ellas
+            destaco: <br />
+            <b>Web Development</b>, <b>Cloud Computing</b> y <b
+              >AI Integration</b
+            >.
           </p>
         </div>
         <div class="grid grid-cols-2 gap-4">
@@ -57,7 +64,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
           </div>
           <div class="about-card border border-white/60 p-4">
             <h3 class="font-semibold mb-1">Backend</h3>
-            <p class="text-sm text-white/80">Node.js, Express, Python</p>
+            <p class="text-sm text-white/80">Node.js, Python, Java</p>
           </div>
           <div class="about-card border border-white/60 p-4">
             <h3 class="font-semibold mb-1">Bases de datos</h3>
@@ -71,111 +78,215 @@ import BoxLayout from "../layouts/BoxLayout.astro";
       </div>
     </BoxLayout>
   </section>
-  <section id="experiencia">
+  <section id="experiencia" class="h-[150vh]">
     <BoxLayout>
       <h2 class="text-5xl font-Jost font-extrabold mb-10">Experiencia</h2>
       <div class="grid grid-cols-2 justify-center gap-5 mx-auto">
         <Experiencebox
-          title="Desarrollador Web"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          icon="/icons/react_light.svg"
-          durationDate="12/04 - 15/08"
+          title="Full Stack Developer"
+          company="Freelance"
+          location="Remoto"
+          durationDate="03/23 - ACT"
+          icon="/logo-portfolio.png"
+          points={[
+            "Apps web rápidas y modulares",
+            "Integración con APIs externas",
+            "Entrega continua simple",
+          ]}
+          techs={[
+            "/icons/astro.svg",
+            "/icons/vue.svg",
+            "/icons/sql-server.svg",
+            "/icons/sqlite.svg",
+            "/icons/django.svg",
+            "/icons/expressjs.svg",
+            "/icons/csharp.svg",
+          ]}
         />
         <Experiencebox
-          title="Desarrollador Web"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          icon="/icons/react_light.svg"
-          durationDate="12/04 - 15/08"
+          title="Web Developer"
+          company="Proyecta UNI"
+          location="Lima"
+          durationDate="06/24 - 03/25"
+          icon="/experience-logos/proy-uni.png"
+          points={[
+            "Portal interno estable",
+            "Refactor de componentes",
+            "Mejora de tiempos de carga",
+          ]}
+          techs={["/icons/wordpress.svg", "/icons/html.svg", "/icons/css.svg"]}
         />
         <Experiencebox
-          title="Desarrollador Web"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          icon="/icons/react_light.svg"
-          durationDate="12/04 - ACT"
+          title="Tech Lead Jr"
+          company="DSC"
+          location="Lima"
+          durationDate="09/24 - 05/25"
+          icon="/experience-logos/dsc.png"
+          points={[
+            "Coordinación de equipo",
+            "Patrones base definidos",
+            "Soporte a despliegues",
+          ]}
+          techs={[
+            "/icons/tailwindcss.svg",
+            "/icons/github.svg",
+            "/icons/react.svg",
+          ]}
+        />
+        <Experiencebox
+          title="Developer"
+          company="UNI"
+          location="Lima"
+          durationDate="02/25 - ACT"
+          icon="/experience-logos/uni.png"
+          points={[
+            "Módulos académicos",
+            "Optimización de consultas",
+            "Documentación interna",
+          ]}
+          techs={[
+            "/icons/postgresql.svg",
+            "/icons/spring.svg",
+            "/icons/react.svg",
+            "/icons/docker.svg",
+            "/icons/github.svg",
+            "/icons/typescript.svg",
+            "/icons/fastapi.svg",
+          ]}
+        />
+        <Experiencebox
+          title="Dev Intern"
+          company="Peri Institute"
+          location="Remoto"
+          durationDate="03/25 - ACT"
+          icon="/experience-logos/peri.jpg"
+          points={[
+            "Scripts de soporte",
+            "Tareas rutinarias automatizadas",
+            "Mejor organización de repos",
+          ]}
+          techs={[
+            "/icons/appsheet.png",
+            "/icons/python.svg",
+            "/icons/javascript.svg",
+            "/icons/google-cloud.svg",
+          ]}
+        />
+        <Experiencebox
+          title="Director Pilar EA"
+          company="LEAD UNI"
+          location="Lima"
+          durationDate="04/25 - ACT"
+          icon="/experience-logos/lead.svg"
+          points={[
+            "Gestión de iniciativas",
+            "Definición de roadmap",
+            "Soporte a proyectos estudiantiles",
+          ]}
+          techs={[
+            "/icons/react.svg",
+            "/icons/typescript.svg",
+            "/icons/aws.svg",
+            "/icons/github.svg",
+            "/icons/actions.png",
+          ]}
         />
       </div>
     </BoxLayout>
   </section>
-  <section id="proyectos">
+  <section id="proyectos" class="h-[100vh]">
     <BoxLayout>
       <h2 class="text-5xl font-Jost font-extrabold mb-10">Proyectos</h2>
-    <div class="grid grid-cols-3 justify-center gap-5 mx-auto">
-      <Projectsbox
-        title="Pagina Web LEAD UNI"
-        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-        icon="/icons/react_light.svg"
-        finishDate="04/25"
-      />
-      <Projectsbox
-        title="Ensigna"
-        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-        icon="/icons/react_light.svg"
-        finishDate="03/25"
-      />
-      <Projectsbox
-        title="GreedisGood"
-        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-        icon="/icons/react_light.svg"
-        finishDate="02/25"
-      />
-      <Projectsbox
-        title="UNIVirtual"
-        description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-        icon="/icons/react_light.svg"
-        finishDate="01/25"
-      />
-    </div>
+      <div class="grid grid-cols-3 justify-center gap-5 mx-auto">
+        <Projectsbox
+          title="Pagina Web LEAD UNI"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          finishDate="04/25"
+          techs={[
+            "/icons/astro.svg",
+            "/icons/react.svg",
+            "/icons/postgresql.svg",
+            "/icons/aws.svg",
+          ]}
+          liveUrl="https://ejemplo-leaduni.com"
+          repoUrl="https://github.com/user/leaduni"
+        />
+        <Projectsbox
+          title="Ensigna"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          finishDate="03/25"
+          techs={[
+            "/icons/astro.svg",
+            { src: "/icons/typescript.svg", alt: "TypeScript" },
+            "/icons/docker.svg",
+          ]}
+          repoUrl="https://github.com/user/ensigna"
+        />
+        <Projectsbox
+          title="GreedisGood"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          finishDate="02/25"
+          techs={[
+            "/icons/react.svg",
+            "/icons/postgresql.svg",
+            "/icons/supabase.svg",
+          ]}
+        />
+        <Projectsbox
+          title="UNIVirtual"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          finishDate="01/25"
+          techs={[
+            "/icons/astro.svg",
+            "/icons/mongodb.svg",
+            "/icons/aws_light.svg",
+          ]}
+          liveUrl="https://univirtual-demo.com"
+        />
+      </div>
     </BoxLayout>
-    
   </section>
   <section id="contacto">
     <BoxLayout>
-      <h2 class="text-5xl font-Jost font-extrabold  mb-10">Contacto</h2>
-    <div class="w-2/5 mx-auto border space-y-2 border-white p-4 text-sm">
-      <div class="flex flex-col">
-        <label
-          class="bg-white border-2 px-2 border-white w-1/5 text-black"
-          for="email">Email</label
-        >
-        <input
-          type="text"
-          class="border outline-none border-white px-1 py-2"
-          placeholder="Correo Electronico"
-        />
+      <h2 class="text-5xl font-Jost font-extrabold mb-10">Contacto</h2>
+      <div class="flex mx-auto gap-5 justify-center w-4/5">
+        <div class="w-1/2">
+          <ContactBox />
+          <div class="bg-white px-1.5 py-1.5 flex justify-end gap-2 text-xs">
+            <div class="relative inline-block group">
+              <button class="button-clean-dark">Enviar Mensaje</button>
+              <span class="shadow-box-dark"></span>
+            </div>
+          </div>
+        </div>
+        <div class="w-1/3 self-start">
+          <div
+            class="border p-4 h-full flex flex-col justify-between bg-black/20 backdrop-blur-sm"
+          >
+            <div class="space-y-2">
+              <h3 class="text-lg font-bold font-Jost">¿Prefieres hablar?</h3>
+              <p class="text-xs leading-relaxed text-white/80">
+                Agenda una reunión corta conmigo y revisamos tu idea o
+                necesidad.
+              </p>
+            </div>
+            <div class="mt-4">
+              <a
+                href="https://calendly.com/diogo-abregu-g-uni/web-page-contact"
+                target="_blank"
+                rel="noopener"
+                class="relative inline-block group"
+              >
+                <button class="button-clean-dark text-xs"
+                  >Agendar reunión</button
+                >
+                <span class="shadow-box"></span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flex flex-col">
-        <label
-          class="bg-white border-2 px-2 border-white w-1/5 text-black"
-          for="email">Asunto</label
-        >
-        <select class="border outline-none text-white border-white px-1 py-2">
-          <option class="text-black" selected value="consulta">Consulta</option>
-          <option class="text-black" value="soporte">Soporte</option>
-          <option class="text-black" value="otro">Otro</option>
-        </select>
-      </div>
-      <div class="flex flex-col">
-        <label
-          class="bg-white border-2 px-2 border-white w-1/5 text-black"
-          for="email">Mensaje</label
-        >
-        <textarea
-          name="mensaje"
-          placeholder="Escribe tu mensaje aquí..."
-          id=""
-          class="border outline-none border-white px-1 py-2"></textarea>
-      </div>
-    </div>
-    <div
-      class="bg-white w-2/5 mx-auto px-1.5 py-1.5 flex justify-end gap-2 text-xs"
-    >
-      <div class="relative inline-block group">
-        <button class="button-clean-dark">Enviar Mensaje</button>
-        <span class="shadow-box-dark"></span>
-      </div>
-    </div>
-    </BoxLayout> 
-    
+    </BoxLayout>
   </section>
 
   <section id="redes-sociales">

@@ -20,7 +20,7 @@
 }
 
 .button-clean {
-    @apply bg-white/80 relative focus:scale-95 z-20 text-xs hover:bg-white duration-300   cursor-pointer px-2 py-1 text-black hover:shadow-xl/10
+    @apply bg-white/80 hover:bg-white relative focus:scale-95 z-20 text-xs  duration-300   cursor-pointer px-2 py-1 text-black hover:shadow-xl/10
 	 shadow-white
 }
 
@@ -34,5 +34,5 @@
 }
 
 .shadow-box{
-    @apply absolute inset-0 duration-100 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20  justify-center text-white  pointer-events-none
+    @apply absolute inset-0 duration-100 z-0 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:bg-white/20  justify-center text-white  pointer-events-none
 }

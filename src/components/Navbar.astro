@@ -38,16 +38,6 @@
         </a>
       </li>
       <li>
-        <a href="#proyectos" class="nav-link flex items-center gap-2">
-          <span
-            class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
-          >
-            <img src="/icons/briefcase.svg" alt="Proyectos" class="w-5 h-5" />
-          </span>
-          <span class="nav-text nav-li">Proyectos</span>
-        </a>
-      </li>
-      <li>
         <a href="#experiencia" class="nav-link flex items-center gap-2">
           <span
             class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
@@ -57,6 +47,17 @@
           <span class="nav-text nav-li">Experiencia</span>
         </a>
       </li>
+      <li>
+        <a href="#proyectos" class="nav-link flex items-center gap-2">
+          <span
+            class="icon-btn items-center justify-center border border-white/30 w-10 h-10 bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            <img src="/icons/briefcase.svg" alt="Proyectos" class="w-5 h-5" />
+          </span>
+          <span class="nav-text nav-li">Proyectos</span>
+        </a>
+      </li>
+      
       <li>
         <a href="#bot" class="nav-link flex items-center gap-2">
           <span
@@ -90,6 +91,26 @@
   }
   onScroll();
   window.addEventListener("scroll", onScroll);
+
+  // Smooth scroll with offset for sticky navbar
+  function smoothScrollTo(targetId: string) {
+    const el = document.querySelector(targetId);
+    if (!el) return;
+    const navHeight = nav ? nav.offsetHeight : 0;
+    const rect = el.getBoundingClientRect();
+    const absoluteY = rect.top + window.scrollY - navHeight - 8; // small gap
+    window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('#site-nav a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        smoothScrollTo(href);
+      }
+    });
+  });
 </script>
 
 <style>
