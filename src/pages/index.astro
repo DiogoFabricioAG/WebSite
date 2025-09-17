@@ -5,15 +5,17 @@ import Navbar from "../components/Navbar.astro";
 import Experiencebox from "../components/Experiencebox.astro";
 import Projectsbox from "../components/Projectsbox.astro";
 import BoxLayout from "../layouts/BoxLayout.astro";
+import { Image } from 'astro:assets';
 import ContactBox from "../components/ContactBox.astro";
+import ImageAvatar from '../../public/avatar.png';
 ---
 
 <BaseLayout>
   <Navbar />
   <section id="inicio" class="h-[100vh]">
     <div class="my-8 text-center w-48 mx-auto shadow-xl/30
-	 shadow-white">
-      <img src="/avatar.png" id="avatar" alt="" class="mx-auto h-48 w-48" />
+	 shadow-white"> 
+      <Image src={ImageAvatar} id="avatar" alt="Avatar Diogo Abregu" class="mx-auto h-48 w-48" />
       <div class="bg-white text-black w-48 mx-auto">
         <span class="text-lg">System Engineer</span>
       </div>
@@ -197,52 +199,96 @@ import ContactBox from "../components/ContactBox.astro";
   <section id="proyectos" class="h-[100vh]">
     <BoxLayout>
       <h2 class="text-5xl font-Jost font-extrabold mb-10">Proyectos</h2>
+
       <div class="grid grid-cols-3 justify-center gap-5 mx-auto">
         <Projectsbox
-          title="Pagina Web LEAD UNI"
+          title="Clon UNIVirtual"
           description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="04/25"
+          finishDate="05/23"
           techs={[
-            "/icons/astro.svg",
-            "/icons/react.svg",
-            "/icons/postgresql.svg",
-            "/icons/aws.svg",
+            "/icons/vue.svg",
+            "/icons/django.svg",
+            "/icons/sqlite.svg",
+            "/icons/tailwindcss.svg",
+            "/icons/github.svg",
           ]}
-          liveUrl="https://ejemplo-leaduni.com"
-          repoUrl="https://github.com/user/leaduni"
+          liveUrl="https://univirtual-demo.com"
         />
         <Projectsbox
-          title="Ensigna"
+          title="Sistema de Contabilidad"
           description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="03/25"
+          finishDate="12/24"
           techs={[
-            "/icons/astro.svg",
-            { src: "/icons/typescript.svg", alt: "TypeScript" },
-            "/icons/docker.svg",
+            "/icons/vue.svg",
+            "/icons/netlify.svg",
+            "/icons/spring.svg",
+            "/icons/neon.svg",
+            "/icons/github.svg",
           ]}
-          repoUrl="https://github.com/user/ensigna"
+          liveUrl="https://univirtual-demo.com"
         />
         <Projectsbox
           title="GreedisGood"
           description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
           finishDate="02/25"
           techs={[
-            "/icons/react.svg",
+            "/icons/nuxt.svg",
+            "/icons/spring.svg",
             "/icons/postgresql.svg",
-            "/icons/supabase.svg",
+            "/icons/github.svg",
           ]}
         />
         <Projectsbox
-          title="UNIVirtual"
+          title="Ensigna"
           description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="01/25"
+          finishDate="05/25"
           techs={[
-            "/icons/astro.svg",
-            "/icons/mongodb.svg",
-            "/icons/aws_light.svg",
+            "/icons/stripe.svg",
+            "/icons/fastapi.svg",
+            "/icons/react.svg",
+            "/icons/typescript.svg",
+            "/icons/postgresql.svg",
+            "/icons/github.svg",
           ]}
-          liveUrl="https://univirtual-demo.com"
+          repoUrl="https://github.com/user/ensigna"
         />
+        <Projectsbox
+          title="Pagina Web LEAD UNI"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          finishDate="07/25"
+          techs={[
+            "/icons/google-cloud.svg",
+            "/icons/react.svg",
+            "/icons/netlify.svg",
+            "/icons/tailwindcss.svg",
+            "/icons/github.svg",
+          ]}
+          liveUrl="https://ejemplo-leaduni.com"
+          repoUrl="https://github.com/user/leaduni"
+        />
+        
+        
+        
+        <div class="flex flex-col">
+          <div
+            class="bg-white border-2 px-2 border-white w-1/5 text-xs text-black"
+          >
+            + 10 Más
+          </div>
+
+          <div
+            class="border border-white font-medium bg-white/20 flex justify-center w-full items-center h-full px-3 py-2"
+          >
+            <h3 class="text-2xl font-bold text-center">¿Más Proyectos?</h3>
+          </div>
+
+          <div class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]">
+            <div class="relative inline-block group">
+              <button class="button-clean-dark">Ir a Proyectos</button>
+              <span class="shadow-box-dark"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </BoxLayout>
   </section>
