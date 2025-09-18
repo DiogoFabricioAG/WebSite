@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Fabricio",
+        "age": 30,
+        "location": "Argentina"
+    },
+    {
+        "name": "Ana",
+        "age": 25,
+        "location": "Brasil"
+    },
+    {
+        "name": "Luis",
+        "age": 28,
+        "location": "Chile"
+    },
+    {
+        "name": "Maria",
+        "age": 22,
+        "location": "Peru"
+    }
+]

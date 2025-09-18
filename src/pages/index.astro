@@ -5,17 +5,22 @@ import Navbar from "../components/Navbar.astro";
 import Experiencebox from "../components/Experiencebox.astro";
 import Projectsbox from "../components/Projectsbox.astro";
 import BoxLayout from "../layouts/BoxLayout.astro";
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import ContactBox from "../components/ContactBox.astro";
-import ImageAvatar from '../../public/avatar.png';
+import ImageAvatar from "../../public/avatar.png";
 ---
 
 <BaseLayout>
   <Navbar />
   <section id="inicio" class="h-[100vh]">
     <div class="my-8 text-center w-48 mx-auto shadow-xl/30
-	 shadow-white"> 
-      <Image src={ImageAvatar} id="avatar" alt="Avatar Diogo Abregu" class="mx-auto h-48 w-48" />
+	 shadow-white">
+      <Image
+        src={ImageAvatar}
+        id="avatar"
+        alt="Avatar Diogo Abregu"
+        class="mx-auto h-48 w-48"
+      />
       <div class="bg-white text-black w-48 mx-auto">
         <span class="text-lg">System Engineer</span>
       </div>
@@ -266,9 +271,7 @@ import ImageAvatar from '../../public/avatar.png';
           liveUrl="https://ejemplo-leaduni.com"
           repoUrl="https://github.com/user/leaduni"
         />
-        
-        
-        
+
         <div class="flex flex-col">
           <div
             class="bg-white border-2 px-2 border-white w-1/5 text-xs text-black"
@@ -282,7 +285,9 @@ import ImageAvatar from '../../public/avatar.png';
             <h3 class="text-2xl font-bold text-center">¿Más Proyectos?</h3>
           </div>
 
-          <div class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]">
+          <div
+            class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]"
+          >
             <div class="relative inline-block group">
               <button class="button-clean-dark">Ir a Proyectos</button>
               <span class="shadow-box-dark"></span>
@@ -337,7 +342,7 @@ import ImageAvatar from '../../public/avatar.png';
 
   <section id="redes-sociales">
     <div class="flex justify-between mt-24 w-4/5 mx-auto text-sm items-center">
-      <p>@ Diogo Abregu 2025</p>
+      <button id="copyright-btn">@ Diogo Abregu 2025</button>
       <div class="flex gap-4">
         <img
           src="/icons/github.svg"
@@ -357,6 +362,104 @@ import ImageAvatar from '../../public/avatar.png';
       </div>
     </div>
   </section>
+
+  <!-- Objetivos por cada Experiencia (3 Bullet Points)🟩 -->
+  <!-- Rol y Contribución (Texto Destacada y Parrafo pequeño) 🟩 -->
+  <!-- Resultados y Logros (Indicador con Numeritos JEje) -->
+  <!-- Enlaces y Pruebas (Carrusel de Imagenes + Enlaces) -->
+  <div class="w-[100vw] h-[100vh] fixed top-0 left-0 bg-black/70">
+    <div class="flex flex-col justify-center items-center h-full">
+      <div class="bg-black/80 text-white p-6 border shadow-lg w-2/3">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <h2 class="text-2xl font-bold font-Jost">Web Developer</h2>
+            <p class="text-xs text-white/80">
+              PROYECTA UNI - 06/24 - 03/25 🏠🏢
+            </p>
+          </div>
+          <img
+            src="/experience-logos/proy-uni.png"
+            alt="Web Developer"
+            class="size-10"
+          />
+        </div>
+        <h3 class="text-lg font-bold font-Jost">Descripción del Empleo</h3>
+        <div class="grid grid-cols-4 gap-2">
+          <div class="flex flex-col justify-center text-center gap-2 p-2">
+            <div
+              class="border text-xs p-2 select-none hover:bg-red-800/50 duration-150"
+            >
+              Desarrollo Inteligente
+            </div>
+            <div
+              class="border text-xs p-2 select-none hover:bg-white/50 duration-150"
+            >
+              Optimización de Procesos
+            </div>
+            <div
+              class="border text-xs p-2 select-none hover:bg-blue-800/50 duration-150"
+            >
+              Ecosistema Google Cloud
+            </div>
+          </div>
+          <div class="mt-4 col-span-2">
+            <p class="text-sm leading-relaxed">
+              Desarrollé y mantuve el portal interno de Proyecta UNI, asegurando
+              su estabilidad y mejorando la experiencia del usuario. Implementé
+              refactorizaciones de componentes clave para optimizar el
+              rendimiento y reducir los tiempos de carga, lo que resultó en una
+              navegación más fluida. Colaboré estrechamente con el equipo para
+              identificar áreas de mejora y aplicar soluciones efectivas.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+              <div
+                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
+              >
+                Reducción de tiempos
+                <br>
+                <span class=" text-2xl font-bold">30%</span>
+              </div>
+              <div
+                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
+              >
+                Mejoras Implementadas
+                <br>
+                <span class=" text-2xl font-bold">15</span>
+              </div>
+              <div
+                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
+              >
+                Usuarios Activos
+                <br>
+                <span class=" text-2xl font-bold">2000+</span>
+              </div>
+              <div
+                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
+              >
+                Feedback 
+                <br>
+                <span class=" text-2xl font-bold">95%</span>
+              </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-2 w-2/3 flex justify-end gap-2">
+        <div class="relative inline-block group">
+              <button class="button-clean-dark">Cerrar</button>
+              <span class="shadow-box-dark"></span>
+            </div>
+        <div class="relative inline-block group">
+              <button class="button-clean-dark">Ver Imagenes</button>
+              <span class="shadow-box-dark"></span>
+            </div>
+        
+      </div>
+    </div>
+  </div>
 </BaseLayout>
 
 <script>
@@ -454,4 +557,15 @@ import ImageAvatar from '../../public/avatar.png';
       toggleActions: "play none none none",
     },
   });
+  import { getAllPeople } from "../utils/dataUtils";
+
+  // Attach event listener after DOM is loaded
+  if (typeof window !== "undefined") {
+    window.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("copyright-btn");
+      if (btn) {
+        btn.addEventListener("click", () => console.log(getAllPeople()));
+      }
+    });
+  }
 </script>
