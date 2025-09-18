@@ -1,0 +1,196 @@
+---
+interface ColoredPoint { text: string; color: string }
+interface Metric { label: string; value: string }
+interface Props {
+  id: string; // identificador único para controlar apertura/cierre y aislar la galería
+  title: string;
+  company: string;
+  location: string;
+  durationDate: string;
+  icon: string;
+  companyUrl?: string | null;
+  description?: string | null;
+  pointsColored?: ColoredPoint[];
+  metrics?: Metric[];
+  images?: string[]; // galería opcional; si no hay, se usa el icon
+}
+
+const {
+  id,
+  title,
+  company,
+  location,
+  durationDate,
+  icon,
+  companyUrl = null,
+  description = null,
+  pointsColored = [],
+  metrics = [],
+  images = [],
+} = Astro.props as Props;
+
+const galleryImages: string[] = Array.isArray(images) && images.length ? images : [icon];
+---
+
+<!-- Modal de detalle de experiencia -->
+<div id={`${id}-modal`} class="fixed inset-0 w-[100vw] h-[100vh] bg-black/70 z-[11000] hidden" aria-hidden="true">
+  <div id={`${id}-overlay`} class="absolute inset-0 z-0"></div>
+  <div class="relative z-10 flex flex-col justify-center items-center h-full px-4">
+    <div class="bg-black/80 text-white p-6 border border-white/20 ring-1 ring-white/10 shadow-2xl w-full max-w-3xl">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h2 class="text-2xl font-bold font-Jost">{title}</h2>
+          <p class="text-xs text-white/80">
+            {companyUrl ? (
+              <a href={companyUrl} target="_blank" rel="noopener" class="underline hover:text-white">{company}</a>
+            ) : company}{" "}- {durationDate}{location ? ` · ${location}` : ''}
+          </p>
+        </div>
+        <img src={icon} alt={`${title} icon`} class="size-12 object-contain" />
+      </div>
+
+      <h3 class="text-lg font-bold font-Jost mb-2">Descripción del Empleo</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div class="flex flex-col justify-center text-center gap-2 p-2">
+          {pointsColored && pointsColored.length > 0 ? (
+            pointsColored.map((pc) => (
+              <div
+                class="border border-white/20 text-xs p-2 select-none duration-150  transition-colors"
+                style={`background-color: transparent; color: #ffffff;`}
+                onmouseenter={`this.style.backgroundColor='${pc.color}33'`}
+                onmouseleave="this.style.backgroundColor='transparent'"
+              >
+                {pc.text}
+              </div>
+            ))
+          ) : (
+            <div class="text-xs text-white/60">Sin puntos destacados</div>
+          )}
+        </div>
+        <div class="mt-2 md:mt-4 md:col-span-2">
+          <p class="text-sm leading-relaxed">{description || ''}</p>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          {metrics && metrics.length > 0 ? (
+            metrics.map((m) => (
+              <div class="border border-white/20 text-xs p-2 select-none hover:bg-white/15 duration-150 ">
+                {m.label}<br />
+                <span class="text-2xl font-bold">{m.value}</span>
+              </div>
+            ))
+          ) : (
+            <div class="col-span-2 text-xs text-white/60">Sin métricas</div>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white p-2 w-full max-w-3xl flex justify-end gap-2">
+      <div class="relative inline-block group">
+        <button id={`${id}-close`} class="button-clean-dark">Cerrar</button>
+        <span class="shadow-box-dark"></span>
+      </div>
+      <div class="relative inline-block group">
+        <button id={`${id}-open-gallery`} class="button-clean-dark">Ver Imagenes</button>
+        <span class="shadow-box-dark"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox simple -->
+<div id={`${id}-gallery`} class="fixed inset-0 z-[11500] hidden items-center justify-center" aria-hidden="true">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" id={`${id}-gallery-overlay`}></div>
+  <div class="relative w-full h-full flex items-center justify-center select-none">
+    <button id={`${id}-gallery-close`} class="absolute top-5 right-5 text-white/90 hover:text-red-400 text-3xl w-10 h-10 flex items-center justify-center hover:bg-white/10" aria-label="Cerrar galería">×</button>
+    <button id={`${id}-gallery-prev`} class="absolute left-5 md:left-10 text-white/90 hover:text-white text-3xl w-10 h-10 flex items-center justify-center hover:bg-white/10" aria-label="Anterior">‹</button>
+    <img id={`${id}-gallery-image`} src={galleryImages[0]} alt={`imagen ${title}`} class="max-w-[92vw] max-h-[82vh] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)] border border-white/10 bg-black/20" />
+    <button id={`${id}-gallery-next`} class="absolute right-5 md:right-10 text-white/90 hover:text-white text-3xl w-10 h-10 flex items-center justify-center hover:bg-white/10" aria-label="Siguiente">›</button>
+  </div>
+ </div>
+
+<script define:vars={{ modalId: id, galleryImages }}>
+  // @ts-nocheck
+  ;(() => {
+    // cache elements
+    const modal = document.getElementById(`${modalId}-modal`);
+    const overlay = document.getElementById(`${modalId}-overlay`);
+    const btnClose = document.getElementById(`${modalId}-close`);
+    const btnOpenGallery = document.getElementById(`${modalId}-open-gallery`);
+    const gRoot = document.getElementById(`${modalId}-gallery`);
+    const gOverlay = document.getElementById(`${modalId}-gallery-overlay`);
+    const gClose = document.getElementById(`${modalId}-gallery-close`);
+    const gPrev = document.getElementById(`${modalId}-gallery-prev`);
+    const gNext = document.getElementById(`${modalId}-gallery-next`);
+    const gImg = document.getElementById(`${modalId}-gallery-image`);
+
+    let current = 0;
+
+    /** @param {number} idx */
+    function show(idx) {
+      if (!gImg) return;
+      current = (idx + galleryImages.length) % galleryImages.length;
+      gImg.setAttribute('src', galleryImages[current]);
+    }
+
+    function open() {
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function close() {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function openGallery() {
+      if (!gRoot) return;
+      gRoot.classList.remove('hidden');
+      gRoot.classList.add('flex');
+      show(current);
+    }
+
+    function closeGallery() {
+      if (!gRoot) return;
+      gRoot.classList.add('hidden');
+      gRoot.classList.remove('flex');
+    }
+
+    // wire events
+    if (btnClose) btnClose.addEventListener('click', close);
+    if (overlay) overlay.addEventListener('click', close);
+    if (btnOpenGallery) btnOpenGallery.addEventListener('click', openGallery);
+    if (gOverlay) gOverlay.addEventListener('click', closeGallery);
+    if (gClose) gClose.addEventListener('click', closeGallery);
+    if (gPrev) gPrev.addEventListener('click', () => show(current - 1));
+    if (gNext) gNext.addEventListener('click', () => show(current + 1));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (gRoot && !gRoot.classList.contains('hidden')) return closeGallery();
+        close();
+      }
+      if (!gRoot || gRoot.classList.contains('hidden')) return;
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    // Exponer controlador global para abrir/cerrar desde fuera (usando cast seguro)
+    const w = /** @type {any} */(window);
+    w.__experienceModals = w.__experienceModals || {};
+    w.__experienceModals[modalId] = { open, close, openGallery };
+    if (!w.openExperienceModal) {
+      /** @param {string} id */
+      w.openExperienceModal = function (id) {
+        const api = w.__experienceModals && w.__experienceModals[id];
+        if (api && typeof api.open === 'function') return api.open();
+        const el = document.getElementById(`${id}-modal`);
+        if (el) {
+          el.classList.remove('hidden');
+          el.setAttribute('aria-hidden','false');
+        }
+      }
+    }
+  })();
+</script>

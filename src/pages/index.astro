@@ -8,8 +8,10 @@ import BoxLayout from "../layouts/BoxLayout.astro";
 import { Image } from "astro:assets";
 import ContactBox from "../components/ContactBox.astro";
 import ImageAvatar from "../../public/avatar.png";
+import { getAllExperiences } from "../utils/dataUtils";
+import ExperienceDetail from "../components/ExperienceDetail.astro";
+const experiences = getAllExperiences();
 ---
-
 <BaseLayout>
   <Navbar />
   <section id="inicio" class="h-[100vh]">
@@ -89,118 +91,39 @@ import ImageAvatar from "../../public/avatar.png";
     <BoxLayout>
       <h2 class="text-5xl font-Jost font-extrabold mb-10">Experiencia</h2>
       <div class="grid grid-cols-2 justify-center gap-5 mx-auto">
-        <Experiencebox
-          title="Full Stack Developer"
-          company="Freelance"
-          location="Remoto"
-          durationDate="03/23 - ACT"
-          icon="/logo-portfolio.png"
-          points={[
-            "Apps web rápidas y modulares",
-            "Integración con APIs externas",
-            "Entrega continua simple",
-          ]}
-          techs={[
-            "/icons/astro.svg",
-            "/icons/vue.svg",
-            "/icons/sql-server.svg",
-            "/icons/sqlite.svg",
-            "/icons/django.svg",
-            "/icons/expressjs.svg",
-            "/icons/csharp.svg",
-          ]}
-        />
-        <Experiencebox
-          title="Web Developer"
-          company="Proyecta UNI"
-          location="Lima"
-          durationDate="06/24 - 03/25"
-          icon="/experience-logos/proy-uni.png"
-          points={[
-            "Portal interno estable",
-            "Refactor de componentes",
-            "Mejora de tiempos de carga",
-          ]}
-          techs={["/icons/wordpress.svg", "/icons/html.svg", "/icons/css.svg"]}
-        />
-        <Experiencebox
-          title="Tech Lead Jr"
-          company="DSC"
-          location="Lima"
-          durationDate="09/24 - 05/25"
-          icon="/experience-logos/dsc.png"
-          points={[
-            "Coordinación de equipo",
-            "Patrones base definidos",
-            "Soporte a despliegues",
-          ]}
-          techs={[
-            "/icons/tailwindcss.svg",
-            "/icons/github.svg",
-            "/icons/react.svg",
-          ]}
-        />
-        <Experiencebox
-          title="Developer"
-          company="UNI"
-          location="Lima"
-          durationDate="02/25 - ACT"
-          icon="/experience-logos/uni.png"
-          points={[
-            "Módulos académicos",
-            "Optimización de consultas",
-            "Documentación interna",
-          ]}
-          techs={[
-            "/icons/postgresql.svg",
-            "/icons/spring.svg",
-            "/icons/react.svg",
-            "/icons/docker.svg",
-            "/icons/github.svg",
-            "/icons/typescript.svg",
-            "/icons/fastapi.svg",
-          ]}
-        />
-        <Experiencebox
-          title="Dev Intern"
-          company="Peri Institute"
-          location="Remoto"
-          durationDate="03/25 - ACT"
-          icon="/experience-logos/peri.jpg"
-          points={[
-            "Scripts de soporte",
-            "Tareas rutinarias automatizadas",
-            "Mejor organización de repos",
-          ]}
-          techs={[
-            "/icons/appsheet.png",
-            "/icons/python.svg",
-            "/icons/javascript.svg",
-            "/icons/google-cloud.svg",
-          ]}
-        />
-        <Experiencebox
-          title="Director Pilar EA"
-          company="LEAD UNI"
-          location="Lima"
-          durationDate="04/25 - ACT"
-          icon="/experience-logos/lead.svg"
-          points={[
-            "Gestión de iniciativas",
-            "Definición de roadmap",
-            "Soporte a proyectos estudiantiles",
-          ]}
-          techs={[
-            "/icons/react.svg",
-            "/icons/typescript.svg",
-            "/icons/aws.svg",
-            "/icons/github.svg",
-            "/icons/actions.png",
-          ]}
-        />
+        {experiences.map((exp) => (
+          <Experiencebox
+            title={exp.title}
+            company={exp.company}
+            location={exp.location}
+            durationDate={exp.durationDate}
+            icon={exp.icon}
+            companyUrl={exp.companyUrl || undefined}
+            description={exp.description || undefined}
+            points={exp.points}
+            techs={(exp.techs || []).map(t => t.icon)}
+            modalId={exp.id}
+          />
+        ))}
       </div>
+      
     </BoxLayout>
   </section>
+  {experiences.map((exp) => (
+        <ExperienceDetail
+          id={exp.id}
+          title={exp.title}
+          company={exp.company}
+          location={exp.location}
+          durationDate={exp.durationDate}
+          icon={exp.icon}
+          companyUrl={exp.companyUrl}
+          description={exp.description}
+          pointsColored={exp.pointsColored}
+          metrics={exp.metrics}
+          images={exp.images}
+        />
+      ))}
   <section id="proyectos" class="h-[100vh]">
     <BoxLayout>
       <h2 class="text-5xl font-Jost font-extrabold mb-10">Proyectos</h2>
@@ -362,104 +285,6 @@ import ImageAvatar from "../../public/avatar.png";
       </div>
     </div>
   </section>
-
-  <!-- Objetivos por cada Experiencia (3 Bullet Points)🟩 -->
-  <!-- Rol y Contribución (Texto Destacada y Parrafo pequeño) 🟩 -->
-  <!-- Resultados y Logros (Indicador con Numeritos JEje) -->
-  <!-- Enlaces y Pruebas (Carrusel de Imagenes + Enlaces) -->
-  <div class="w-[100vw] h-[100vh] fixed top-0 left-0 bg-black/70">
-    <div class="flex flex-col justify-center items-center h-full">
-      <div class="bg-black/80 text-white p-6 border shadow-lg w-2/3">
-        <div class="flex justify-between items-center mb-4">
-          <div>
-            <h2 class="text-2xl font-bold font-Jost">Web Developer</h2>
-            <p class="text-xs text-white/80">
-              PROYECTA UNI - 06/24 - 03/25 🏠🏢
-            </p>
-          </div>
-          <img
-            src="/experience-logos/proy-uni.png"
-            alt="Web Developer"
-            class="size-10"
-          />
-        </div>
-        <h3 class="text-lg font-bold font-Jost">Descripción del Empleo</h3>
-        <div class="grid grid-cols-4 gap-2">
-          <div class="flex flex-col justify-center text-center gap-2 p-2">
-            <div
-              class="border text-xs p-2 select-none hover:bg-red-800/50 duration-150"
-            >
-              Desarrollo Inteligente
-            </div>
-            <div
-              class="border text-xs p-2 select-none hover:bg-white/50 duration-150"
-            >
-              Optimización de Procesos
-            </div>
-            <div
-              class="border text-xs p-2 select-none hover:bg-blue-800/50 duration-150"
-            >
-              Ecosistema Google Cloud
-            </div>
-          </div>
-          <div class="mt-4 col-span-2">
-            <p class="text-sm leading-relaxed">
-              Desarrollé y mantuve el portal interno de Proyecta UNI, asegurando
-              su estabilidad y mejorando la experiencia del usuario. Implementé
-              refactorizaciones de componentes clave para optimizar el
-              rendimiento y reducir los tiempos de carga, lo que resultó en una
-              navegación más fluida. Colaboré estrechamente con el equipo para
-              identificar áreas de mejora y aplicar soluciones efectivas.
-            </p>
-          </div>
-          <div class="grid grid-cols-2 gap-2">
-              <div
-                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
-              >
-                Reducción de tiempos
-                <br>
-                <span class=" text-2xl font-bold">30%</span>
-              </div>
-              <div
-                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
-              >
-                Mejoras Implementadas
-                <br>
-                <span class=" text-2xl font-bold">15</span>
-              </div>
-              <div
-                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
-              >
-                Usuarios Activos
-                <br>
-                <span class=" text-2xl font-bold">2000+</span>
-              </div>
-              <div
-                class="border text-xs p-2 select-none hover:bg-white/15 duration-150"
-              >
-                Feedback 
-                <br>
-                <span class=" text-2xl font-bold">95%</span>
-              </div>
-
-
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white p-2 w-2/3 flex justify-end gap-2">
-        <div class="relative inline-block group">
-              <button class="button-clean-dark">Cerrar</button>
-              <span class="shadow-box-dark"></span>
-            </div>
-        <div class="relative inline-block group">
-              <button class="button-clean-dark">Ver Imagenes</button>
-              <span class="shadow-box-dark"></span>
-            </div>
-        
-      </div>
-    </div>
-  </div>
 </BaseLayout>
 
 <script>
@@ -557,7 +382,24 @@ import ImageAvatar from "../../public/avatar.png";
       toggleActions: "play none none none",
     },
   });
-  import { getAllPeople } from "../utils/dataUtils";
+  import { getAllPeople, fetchExperiencesFromPublic } from "../utils/dataUtils";
+
+  // Bootstrap global modal opener (fallback if component script hasn't registered yet)
+  ;(() => {
+    const w = window as any;
+    w.__experienceModals = w.__experienceModals || {};
+    if (!w.openExperienceModal) {
+      w.openExperienceModal = (id: string) => {
+        const api = w.__experienceModals && w.__experienceModals[id];
+        if (api && typeof api.open === 'function') return api.open();
+        const el = document.getElementById(`${id}-modal`);
+        if (el) {
+          el.classList.remove('hidden');
+          el.setAttribute('aria-hidden','false');
+        }
+      };
+    }
+  })();
 
   // Attach event listener after DOM is loaded
   if (typeof window !== "undefined") {
@@ -566,6 +408,120 @@ import ImageAvatar from "../../public/avatar.png";
       if (btn) {
         btn.addEventListener("click", () => console.log(getAllPeople()));
       }
+
+  // Sim modal handlers
+  /** @type {HTMLElement|null} */ const simModal = document.getElementById('sim-modal');
+  /** @type {HTMLButtonElement|null} */ const simClose = document.getElementById('sim-close') as HTMLButtonElement | null;
+  /** @type {HTMLButtonElement|null} */ const simOpenGallery = document.getElementById('sim-open-gallery') as HTMLButtonElement | null;
+  /** @type {HTMLElement|null} */ const simGallery = document.getElementById('sim-gallery');
+  /** @type {HTMLElement|null} */ const simGalleryOverlay = document.getElementById('sim-gallery-overlay');
+  /** @type {HTMLButtonElement|null} */ const simGalleryClose = document.getElementById('sim-gallery-close') as HTMLButtonElement | null;
+  /** @type {HTMLButtonElement|null} */ const simGalleryPrev = document.getElementById('sim-gallery-prev') as HTMLButtonElement | null;
+  /** @type {HTMLButtonElement|null} */ const simGalleryNext = document.getElementById('sim-gallery-next') as HTMLButtonElement | null;
+  /** @type {HTMLImageElement|null} */ const simGalleryImg = document.getElementById('sim-gallery-image') as HTMLImageElement | null;
+
+      // Imágenes demo de la experiencia (puedes ajustar/mover a data)
+      /** @type {string[]} */
+      let images = [
+        '/experience-logos/proy-uni.png'
+      ];
+      let current = 0;
+
+      /**
+       * @param {number} idx
+       */
+      function show(idx: number) {
+        if (!simGalleryImg) return;
+        current = (idx + images.length) % images.length;
+        simGalleryImg.setAttribute('src', images[current]);
+      }
+
+      function openGallery() {
+        if (!simGallery) return;
+        simGallery.classList.remove('hidden');
+        simGallery.classList.add('flex');
+        show(current);
+      }
+
+      function closeGallery() {
+        if (!simGallery) return;
+        simGallery.classList.add('hidden');
+        simGallery.classList.remove('flex');
+      }
+
+      // Cerrar modal simulado (solo oculta para la demo)
+      if (simClose && simModal) {
+        simClose.addEventListener('click', () => {
+          simModal.setAttribute('aria-hidden', 'true');
+          simModal.classList.add('hidden');
+        });
+      }
+
+      if (simOpenGallery) simOpenGallery.addEventListener('click', openGallery);
+      if (simGalleryOverlay) simGalleryOverlay.addEventListener('click', closeGallery);
+      if (simGalleryClose) simGalleryClose.addEventListener('click', closeGallery);
+      if (simGalleryPrev) simGalleryPrev.addEventListener('click', () => show(current - 1));
+      if (simGalleryNext) simGalleryNext.addEventListener('click', () => show(current + 1));
+
+      document.addEventListener('keydown', (e) => {
+        if (!simGallery || simGallery.classList.contains('hidden')) return;
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowLeft') show(current - 1);
+        if (e.key === 'ArrowRight') show(current + 1);
+      });
+
+      // Cargar datos desde experience.json para la demo (usamos Proyecta UNI)
+      const targetId = 'web-developer-proyecta-uni';
+      fetchExperiencesFromPublic()
+        .then(list => {
+          const exp = list.find(e => e.id === targetId);
+          if (!exp) return;
+          // Header
+          const titleEl = document.getElementById('sim-title');
+          const subtitleEl = document.getElementById('sim-subtitle');
+          const iconEl = document.getElementById('sim-icon') as HTMLImageElement | null;
+          if (titleEl) titleEl.textContent = exp.title;
+          if (subtitleEl) subtitleEl.textContent = `${exp.company?.toUpperCase?.() || ''} - ${exp.durationDate} 🏠${exp.location ? '🏢' : ''}`;
+          if (iconEl) iconEl.src = exp.icon;
+
+          // Points colored
+          const pointsWrap = document.getElementById('sim-points');
+          if (pointsWrap) {
+            pointsWrap.innerHTML = '';
+            (exp.pointsColored || []).forEach(pc => {
+              const div = document.createElement('div');
+              div.className = 'border border-white/20 text-xs p-2 select-none duration-150 rounded';
+              div.style.backgroundColor = 'transparent';
+              div.style.boxShadow = `inset 0 0 0 1px ${pc.color}33`;
+              div.style.color = '#ffffff';
+              div.style.borderColor = `${pc.color}66`;
+              div.textContent = pc.text;
+              pointsWrap.appendChild(div);
+            });
+          }
+
+          // Description
+          const descEl = document.getElementById('sim-description');
+          if (descEl) descEl.textContent = exp.description || '';
+
+          // Metrics
+          const metricsWrap = document.getElementById('sim-metrics');
+          if (metricsWrap) {
+            metricsWrap.innerHTML = '';
+            (exp.metrics || []).forEach(m => {
+              const div = document.createElement('div');
+              div.className = 'border border-white/20 text-xs p-2 select-none hover:bg-white/15 duration-150 rounded';
+              div.innerHTML = `${m.label}<br><span class="text-2xl font-bold">${m.value}</span>`;
+              metricsWrap.appendChild(div);
+            });
+          }
+
+          // Images for gallery
+          images = Array.isArray(exp.images) && exp.images.length ? exp.images : [exp.icon];
+          current = 0;
+          show(current);
+        })
+        .catch(err => console.error('Error cargando experiencias:', err));
     });
   }
 </script>

@@ -10,6 +10,7 @@ interface Props {
   companyUrl?: string;
   techs?: Array<string | TechItem>;
   points?: string[]; // bullet points cortos (máx 3 recomendados)
+  modalId?: string; // id del modal a abrir con "Ver Detalles"
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   companyUrl,
   techs = [],
   points = [],
+  modalId,
 } = Astro.props as Props;
 
 const resolvedTechs: TechItem[] = techs.map(t => typeof t === 'string' ? ({ src: t, alt: `${title} tech` }) : ({ src: t.src, alt: t.alt ?? `${title} tech` }));
@@ -58,7 +60,7 @@ const resolvedTechs: TechItem[] = techs.map(t => typeof t === 'string' ? ({ src:
   </div>
   <div class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]">
     <div class="relative inline-block group">
-      <button class="button-clean-dark">Ver Detalles</button>
+  <button class="button-clean-dark" onclick={modalId ? `window.openExperienceModal && window.openExperienceModal('${modalId}')` : undefined}>Ver Detalles</button>
       <span class="shadow-box-dark"></span>
     </div>
 
