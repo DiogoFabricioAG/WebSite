@@ -1,0 +1,169 @@
+[
+  {
+    "id": "project-saas-billing",
+    "title": "Plataforma SaaS Billing",
+    "description": "Sistema de facturación modular multi-tenant con reporting en tiempo real y conciliación automática bancaria. Incluye webhooks de Stripe y arquitectura hexagonal.",
+    "finishDate": "08/2025",
+    "status": "wip",
+    "role": "Full Stack Developer",
+    "icon": "/project-logos/saas-billing.png",
+    "liveUrl": "https://demo-saas.com",
+    "repoUrl": "https://github.com/usuario/saas-billing",
+    "imagesUrl": null,
+    "features": [
+      "Módulo de conciliación bancaria automática",
+      "Webhooks de eventos Stripe en tiempo real",
+      "Refactor a arquitectura hexagonal"
+    ],
+    "metrics": [
+      { "label": "MTTR", "value": "12m" },
+      { "label": "Uptime", "value": "99.7%" },
+      { "label": "Facturas procesadas", "value": "4.2k" }
+    ],
+    "tags": ["SaaS", "FinTech", "Stripe", "Multi-tenant"],
+    "techs": [
+      { "name": "React", "icon": "/icons/react.svg" },
+      { "name": "TypeScript", "icon": "/icons/typescript.svg" },
+      { "name": "FastAPI", "icon": "/icons/fastapi.svg" },
+      { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
+      { "name": "Docker", "icon": "/icons/docker.svg" }
+    ],
+    "images": [
+      "/projects/saas-billing/screenshot-1.png",
+      "/projects/saas-billing/screenshot-2.png",
+      "/projects/saas-billing/screenshot-3.png"
+    ]
+  },
+  {
+    "id": "project-ecommerce-dashboard",
+    "title": "Dashboard E-commerce",
+    "description": "Panel administrativo con analytics en vivo, gestión de inventario y reportes exportables. Optimizado para grandes volúmenes de datos.",
+    "finishDate": "12/2024",
+    "status": "done",
+    "role": "Frontend Lead",
+    "icon": "/project-logos/ecommerce.png",
+    "liveUrl": "https://dashboard.example.com",
+    "repoUrl": null,
+    "imagesUrl": "https://imgur.com/a/xyz",
+    "features": [
+      "Analytics en tiempo real con gráficas interactivas",
+      "Exportación masiva de reportes (CSV/PDF)",
+      "Sistema de notificaciones push"
+    ],
+    "metrics": [
+      { "label": "Carga inicial", "value": "<2s" },
+      { "label": "Usuarios concurrentes", "value": "500+" },
+      { "label": "Productos gestionados", "value": "12k" }
+    ],
+    "tags": ["E-commerce", "Analytics", "Admin Panel"],
+    "techs": [
+      { "name": "Vue 3", "icon": "/icons/vue.svg" },
+      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
+      { "name": "Node.js", "icon": "/icons/nodejs.svg" },
+      { "name": "MongoDB", "icon": "/icons/mongodb.svg" }
+    ],
+    "images": [
+      "/projects/ecommerce/home.png",
+      "/projects/ecommerce/analytics.png"
+    ]
+  },
+  {
+    "id": "project-portfolio-personal",
+    "title": "Portfolio Personal",
+    "description": "Sitio web personal construido con Astro, enfocado en rendimiento, SEO y diseño minimalista. Incluye blog integrado y sección de proyectos.",
+    "finishDate": "03/2025",
+    "status": "done",
+    "role": "Solo Developer",
+    "icon": "/logo-portfolio.png",
+    "liveUrl": "https://miportfolio.dev",
+    "repoUrl": "https://github.com/usuario/portfolio",
+    "imagesUrl": null,
+    "features": [
+      "SEO optimizado con meta tags dinámicos",
+      "Blog con Markdown y syntax highlighting",
+      "Lightbox para galería de proyectos"
+    ],
+    "metrics": [
+      { "label": "Lighthouse", "value": "100" },
+      { "label": "First Paint", "value": "0.8s" },
+      { "label": "Bundle size", "value": "42kb" }
+    ],
+    "tags": ["Portfolio", "Blog", "SSG"],
+    "techs": [
+      { "name": "Astro", "icon": "/icons/astro.svg" },
+      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
+      { "name": "TypeScript", "icon": "/icons/typescript.svg" }
+    ],
+    "images": [
+      "/projects/portfolio/hero.png",
+      "/projects/portfolio/blog.png",
+      "/projects/portfolio/projects.png"
+    ]
+  },
+  {
+    "id": "project-task-manager",
+    "title": "Gestor de Tareas Colaborativo",
+    "description": "Aplicación de gestión de tareas en tiempo real con autenticación, tableros Kanban, asignación de miembros y notificaciones.",
+    "finishDate": "06/2024",
+    "status": "mvp",
+    "role": "Backend Developer",
+    "icon": "/project-logos/task-manager.png",
+    "liveUrl": null,
+    "repoUrl": "https://github.com/usuario/task-manager",
+    "imagesUrl": null,
+    "features": [
+      "Tableros Kanban con drag & drop",
+      "Autenticación JWT con refresh tokens",
+      "Notificaciones WebSocket en tiempo real"
+    ],
+    "metrics": [
+      { "label": "Usuarios beta", "value": "85" },
+      { "label": "Tareas creadas", "value": "1.3k" },
+      { "label": "Uptime", "value": "98.5%" }
+    ],
+    "tags": ["Productivity", "Real-time", "Kanban"],
+    "techs": [
+      { "name": "React", "icon": "/icons/react.svg" },
+      { "name": "Express.js", "icon": "/icons/expressjs.svg" },
+      { "name": "Socket.io", "icon": "/icons/socketio.svg" },
+      { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" }
+    ],
+    "images": [
+      "/projects/task-manager/board.png",
+      "/projects/task-manager/login.png"
+    ]
+  },
+  {
+    "id": "project-ai-chatbot",
+    "title": "Chatbot con IA",
+    "description": "Asistente conversacional basado en OpenAI GPT-4, integrado en sitio web con UI personalizada y historial de conversaciones.",
+    "finishDate": "11/2024",
+    "status": "paused",
+    "role": "Full Stack Developer",
+    "icon": "/project-logos/ai-chatbot.png",
+    "liveUrl": "https://chatbot-demo.com",
+    "repoUrl": null,
+    "imagesUrl": null,
+    "features": [
+      "Integración con OpenAI GPT-4",
+      "Historial persistente de conversaciones",
+      "UI con animaciones de typing"
+    ],
+    "metrics": [
+      { "label": "Conversaciones", "value": "450" },
+      { "label": "Tiempo respuesta", "value": "1.2s" },
+      { "label": "Satisfacción", "value": "4.6/5" }
+    ],
+    "tags": ["AI", "Chatbot", "OpenAI", "NLP"],
+    "techs": [
+      { "name": "Next.js", "icon": "/icons/nextjs.svg" },
+      { "name": "OpenAI API", "icon": "/icons/openai.svg" },
+      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
+      { "name": "Supabase", "icon": "/icons/supabase.svg" }
+    ],
+    "images": [
+      "/projects/chatbot/chat.png",
+      "/projects/chatbot/history.png"
+    ]
+  }
+]

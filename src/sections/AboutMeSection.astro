@@ -1,0 +1,44 @@
+---
+import BoxLayout from "../layouts/BoxLayout.astro";
+---
+
+<section id="sobre-mi" class="h-[80vh] flex mb-10">
+    <BoxLayout>
+      <h2 class="text-5xl font-Jost font-extrabold mb-10">Sobre mí</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
+        <div class="space-y-3">
+          <p class="text-lg leading-relaxed">
+            Enfocado en crear soluciones web rápidas, accesibles y mantenibles.
+            Me gusta trabajar cerca del negocio para alinear la tecnología con
+            objetivos reales.
+          </p>
+          <p class="text-white/80 text-sm">
+            Implemento la tecnología adecuada para resolver problemas,
+            priorizando la arquitectura y la calidad de la solución, entre ellas
+            destaco: <br />
+            <b>Web Development</b>, <b>Cloud Computing</b> y <b
+              >AI Integration</b
+            >.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">Frontend</h3>
+            <p class="text-sm text-white/80">Astro, React, TypeScript</p>
+          </div>
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">Backend</h3>
+            <p class="text-sm text-white/80">Node.js, Python, Java</p>
+          </div>
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">Bases de datos</h3>
+            <p class="text-sm text-white/80">PostgreSQL, MongoDB</p>
+          </div>
+          <div class="about-card border border-white/60 p-4">
+            <h3 class="font-semibold mb-1">DevOps</h3>
+            <p class="text-sm text-white/80">Docker, CI/CD, AWS</p>
+          </div>
+        </div>
+      </div>
+    </BoxLayout>
+  </section>

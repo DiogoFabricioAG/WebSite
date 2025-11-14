@@ -2,289 +2,27 @@
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
-import Experiencebox from "../components/Experiencebox.astro";
-import Projectsbox from "../components/Projectsbox.astro";
 import BoxLayout from "../layouts/BoxLayout.astro";
-import { Image } from "astro:assets";
 import ContactBox from "../components/ContactBox.astro";
-import ImageAvatar from "../../public/avatar.png";
-import { getAllExperiences } from "../utils/dataUtils";
-import ExperienceDetail from "../components/ExperienceDetail.astro";
-const experiences = getAllExperiences();
+import PresentationSection from "../sections/PresentationSection.astro";
+import AboutMeSection from "../sections/AboutMeSection.astro";
+import ExperienceSection from "../sections/ExperienceSection.astro";
+import ProjectsSection from "../sections/ProjectsSection.astro";
+import ContactSection from "../sections/ContactSection.astro";
+import SocialMediaSection from "../sections/SocialMediaSection.astro";
 ---
+
 <BaseLayout>
   <Navbar />
-  <section id="inicio" class="h-[100vh]">
-    <div class="my-8 text-center w-48 mx-auto shadow-xl/30
-	 shadow-white">
-      <Image
-        src={ImageAvatar}
-        id="avatar"
-        alt="Avatar Diogo Abregu"
-        class="mx-auto h-48 w-48"
-      />
-      <div class="bg-white text-black w-48 mx-auto">
-        <span class="text-lg">System Engineer</span>
-      </div>
-    </div>
-    <div class="space-y-3 mx-auto">
-      <h2 class="text-4xl text-center font-Jost font-extrabold">
-        Diogo Abregu Gonzales
-      </h2>
-      <p class="text-center font-light">
-        Especializado en el desarrollo de soluciones tecnológicas en cualquier
-        aspecto del negocio
-      </p>
-      <div class="flex justify-center flex-wrap space-x-2">
-        <a href="#contacto" class="relative inline-block group">
-          <button class="button-clean">Contactar</button>
-          <span class="shadow-box"></span>
-        </a>
-        <div class="relative inline-block group">
-          <button class="button-clean">Descargar CV</button>
-          <span class="shadow-box"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="sobre-mi" class="h-[100vh]">
-    <BoxLayout>
-      <h2 class="text-5xl font-Jost font-extrabold mb-10">Sobre mí</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
-        <div class="space-y-3">
-          <p class="text-lg leading-relaxed">
-            Enfocado en crear soluciones web rápidas, accesibles y mantenibles.
-            Me gusta trabajar cerca del negocio para alinear la tecnología con
-            objetivos reales.
-          </p>
-          <p class="text-white/80 text-sm">
-            Implemento la tecnología adecuada para resolver problemas,
-            priorizando la arquitectura y la calidad de la solución, entre ellas
-            destaco: <br />
-            <b>Web Development</b>, <b>Cloud Computing</b> y <b
-              >AI Integration</b
-            >.
-          </p>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">Frontend</h3>
-            <p class="text-sm text-white/80">Astro, React, TypeScript</p>
-          </div>
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">Backend</h3>
-            <p class="text-sm text-white/80">Node.js, Python, Java</p>
-          </div>
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">Bases de datos</h3>
-            <p class="text-sm text-white/80">PostgreSQL, MongoDB</p>
-          </div>
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">DevOps</h3>
-            <p class="text-sm text-white/80">Docker, CI/CD, AWS</p>
-          </div>
-        </div>
-      </div>
-    </BoxLayout>
-  </section>
-  <section id="experiencia" class="h-[150vh]">
-    <BoxLayout>
-      <h2 class="text-5xl font-Jost font-extrabold mb-10">Experiencia</h2>
-      <div class="grid grid-cols-2 justify-center gap-5 mx-auto">
-        {experiences.map((exp) => (
-          <Experiencebox
-            title={exp.title}
-            company={exp.company}
-            location={exp.location}
-            durationDate={exp.durationDate}
-            icon={exp.icon}
-            companyUrl={exp.companyUrl || undefined}
-            description={exp.description || undefined}
-            points={exp.points}
-            techs={(exp.techs || []).map(t => t.icon)}
-            modalId={exp.id}
-          />
-        ))}
-      </div>
-      
-    </BoxLayout>
-  </section>
-  {experiences.map((exp) => (
-        <ExperienceDetail
-          id={exp.id}
-          title={exp.title}
-          company={exp.company}
-          location={exp.location}
-          durationDate={exp.durationDate}
-          icon={exp.icon}
-          companyUrl={exp.companyUrl}
-          description={exp.description}
-          pointsColored={exp.pointsColored}
-          metrics={exp.metrics}
-          images={exp.images}
-        />
-      ))}
-  <section id="proyectos" class="h-[100vh]">
-    <BoxLayout>
-      <h2 class="text-5xl font-Jost font-extrabold mb-10">Proyectos</h2>
+  <PresentationSection />
+  <AboutMeSection />
+  <ExperienceSection />
+  <ProjectsSection />
+  <ContactSection />
+  <SocialMediaSection />
+  
 
-      <div class="grid grid-cols-3 justify-center gap-5 mx-auto">
-        <Projectsbox
-          title="Clon UNIVirtual"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="05/23"
-          techs={[
-            "/icons/vue.svg",
-            "/icons/django.svg",
-            "/icons/sqlite.svg",
-            "/icons/tailwindcss.svg",
-            "/icons/github.svg",
-          ]}
-          liveUrl="https://univirtual-demo.com"
-        />
-        <Projectsbox
-          title="Sistema de Contabilidad"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="12/24"
-          techs={[
-            "/icons/vue.svg",
-            "/icons/netlify.svg",
-            "/icons/spring.svg",
-            "/icons/neon.svg",
-            "/icons/github.svg",
-          ]}
-          liveUrl="https://univirtual-demo.com"
-        />
-        <Projectsbox
-          title="GreedisGood"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="02/25"
-          techs={[
-            "/icons/nuxt.svg",
-            "/icons/spring.svg",
-            "/icons/postgresql.svg",
-            "/icons/github.svg",
-          ]}
-        />
-        <Projectsbox
-          title="Ensigna"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="05/25"
-          techs={[
-            "/icons/stripe.svg",
-            "/icons/fastapi.svg",
-            "/icons/react.svg",
-            "/icons/typescript.svg",
-            "/icons/postgresql.svg",
-            "/icons/github.svg",
-          ]}
-          repoUrl="https://github.com/user/ensigna"
-        />
-        <Projectsbox
-          title="Pagina Web LEAD UNI"
-          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
-          finishDate="07/25"
-          techs={[
-            "/icons/google-cloud.svg",
-            "/icons/react.svg",
-            "/icons/netlify.svg",
-            "/icons/tailwindcss.svg",
-            "/icons/github.svg",
-          ]}
-          liveUrl="https://ejemplo-leaduni.com"
-          repoUrl="https://github.com/user/leaduni"
-        />
-
-        <div class="flex flex-col">
-          <div
-            class="bg-white border-2 px-2 border-white w-1/5 text-xs text-black"
-          >
-            + 10 Más
-          </div>
-
-          <div
-            class="border border-white font-medium bg-white/20 flex justify-center w-full items-center h-full px-3 py-2"
-          >
-            <h3 class="text-2xl font-bold text-center">¿Más Proyectos?</h3>
-          </div>
-
-          <div
-            class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]"
-          >
-            <div class="relative inline-block group">
-              <button class="button-clean-dark">Ir a Proyectos</button>
-              <span class="shadow-box-dark"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </BoxLayout>
-  </section>
-  <section id="contacto">
-    <BoxLayout>
-      <h2 class="text-5xl font-Jost font-extrabold mb-10">Contacto</h2>
-      <div class="flex mx-auto gap-5 justify-center w-4/5">
-        <div class="w-1/2">
-          <ContactBox />
-          <div class="bg-white px-1.5 py-1.5 flex justify-end gap-2 text-xs">
-            <div class="relative inline-block group">
-              <button class="button-clean-dark">Enviar Mensaje</button>
-              <span class="shadow-box-dark"></span>
-            </div>
-          </div>
-        </div>
-        <div class="w-1/3 self-start">
-          <div
-            class="border p-4 h-full flex flex-col justify-between bg-black/20 backdrop-blur-sm"
-          >
-            <div class="space-y-2">
-              <h3 class="text-lg font-bold font-Jost">¿Prefieres hablar?</h3>
-              <p class="text-xs leading-relaxed text-white/80">
-                Agenda una reunión corta conmigo y revisamos tu idea o
-                necesidad.
-              </p>
-            </div>
-            <div class="mt-4">
-              <a
-                href="https://calendly.com/diogo-abregu-g-uni/web-page-contact"
-                target="_blank"
-                rel="noopener"
-                class="relative inline-block group"
-              >
-                <button class="button-clean-dark text-xs"
-                  >Agendar reunión</button
-                >
-                <span class="shadow-box"></span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </BoxLayout>
-  </section>
-
-  <section id="redes-sociales">
-    <div class="flex justify-between mt-24 w-4/5 mx-auto text-sm items-center">
-      <button id="copyright-btn">@ Diogo Abregu 2025</button>
-      <div class="flex gap-4">
-        <img
-          src="/icons/github.svg"
-          alt="GitHub"
-          class="h-6 w-6 hover:scale-110 transition-transform duration-300"
-        />
-        <img
-          src="/icons/linkedin.svg"
-          alt="LinkedIn"
-          class="h-6 w-6 hover:scale-110 transition-transform duration-300"
-        />
-        <img
-          src="/icons/instagram.svg"
-          alt="Instagram"
-          class="h-6 w-6 hover:scale-110 transition-transform duration-300"
-        />
-      </div>
-    </div>
-  </section>
+  
 </BaseLayout>
 
 <script>
@@ -382,49 +120,50 @@ const experiences = getAllExperiences();
       toggleActions: "play none none none",
     },
   });
-  import { getAllPeople, fetchExperiencesFromPublic } from "../utils/dataUtils";
+  import { fetchExperiencesFromPublic } from "../utils/dataUtils";
 
   // Bootstrap global modal opener (fallback if component script hasn't registered yet)
-  ;(() => {
+  (() => {
     const w = window as any;
     w.__experienceModals = w.__experienceModals || {};
     if (!w.openExperienceModal) {
       w.openExperienceModal = (id: string) => {
         const api = w.__experienceModals && w.__experienceModals[id];
-        if (api && typeof api.open === 'function') return api.open();
+        if (api && typeof api.open === "function") return api.open();
         const el = document.getElementById(`${id}-modal`);
         if (el) {
-          el.classList.remove('hidden');
-          el.setAttribute('aria-hidden','false');
+          el.classList.remove("hidden");
+          el.setAttribute("aria-hidden", "false");
         }
       };
     }
   })();
 
-  // Attach event listener after DOM is loaded
   if (typeof window !== "undefined") {
     window.addEventListener("DOMContentLoaded", () => {
-      const btn = document.getElementById("copyright-btn");
-      if (btn) {
-        btn.addEventListener("click", () => console.log(getAllPeople()));
-      }
+      /** @type {HTMLElement|null} */ const simModal =
+        document.getElementById("sim-modal");
+      /** @type {HTMLButtonElement|null} */ const simClose =
+        document.getElementById("sim-close") as HTMLButtonElement | null;
+      /** @type {HTMLButtonElement|null} */ const simOpenGallery =
+        document.getElementById("sim-open-gallery") as HTMLButtonElement | null;
+      /** @type {HTMLElement|null} */ const simGallery =
+        document.getElementById("sim-gallery");
+      /** @type {HTMLElement|null} */ const simGalleryOverlay =
+        document.getElementById("sim-gallery-overlay");
+      /** @type {HTMLButtonElement|null} */ const simGalleryClose =
+        document.getElementById(
+          "sim-gallery-close"
+        ) as HTMLButtonElement | null;
+      /** @type {HTMLButtonElement|null} */ const simGalleryPrev =
+        document.getElementById("sim-gallery-prev") as HTMLButtonElement | null;
+      /** @type {HTMLButtonElement|null} */ const simGalleryNext =
+        document.getElementById("sim-gallery-next") as HTMLButtonElement | null;
+      /** @type {HTMLImageElement|null} */ const simGalleryImg =
+        document.getElementById("sim-gallery-image") as HTMLImageElement | null;
 
-  // Sim modal handlers
-  /** @type {HTMLElement|null} */ const simModal = document.getElementById('sim-modal');
-  /** @type {HTMLButtonElement|null} */ const simClose = document.getElementById('sim-close') as HTMLButtonElement | null;
-  /** @type {HTMLButtonElement|null} */ const simOpenGallery = document.getElementById('sim-open-gallery') as HTMLButtonElement | null;
-  /** @type {HTMLElement|null} */ const simGallery = document.getElementById('sim-gallery');
-  /** @type {HTMLElement|null} */ const simGalleryOverlay = document.getElementById('sim-gallery-overlay');
-  /** @type {HTMLButtonElement|null} */ const simGalleryClose = document.getElementById('sim-gallery-close') as HTMLButtonElement | null;
-  /** @type {HTMLButtonElement|null} */ const simGalleryPrev = document.getElementById('sim-gallery-prev') as HTMLButtonElement | null;
-  /** @type {HTMLButtonElement|null} */ const simGalleryNext = document.getElementById('sim-gallery-next') as HTMLButtonElement | null;
-  /** @type {HTMLImageElement|null} */ const simGalleryImg = document.getElementById('sim-gallery-image') as HTMLImageElement | null;
-
-      // Imágenes demo de la experiencia (puedes ajustar/mover a data)
       /** @type {string[]} */
-      let images = [
-        '/experience-logos/proy-uni.png'
-      ];
+      let images = ["/experience-logos/proy-uni.png"];
       let current = 0;
 
       /**
@@ -433,67 +172,75 @@ const experiences = getAllExperiences();
       function show(idx: number) {
         if (!simGalleryImg) return;
         current = (idx + images.length) % images.length;
-        simGalleryImg.setAttribute('src', images[current]);
+        simGalleryImg.setAttribute("src", images[current]);
       }
 
       function openGallery() {
         if (!simGallery) return;
-        simGallery.classList.remove('hidden');
-        simGallery.classList.add('flex');
+        simGallery.classList.remove("hidden");
+        simGallery.classList.add("flex");
         show(current);
       }
 
       function closeGallery() {
         if (!simGallery) return;
-        simGallery.classList.add('hidden');
-        simGallery.classList.remove('flex');
+        simGallery.classList.add("hidden");
+        simGallery.classList.remove("flex");
       }
 
       // Cerrar modal simulado (solo oculta para la demo)
       if (simClose && simModal) {
-        simClose.addEventListener('click', () => {
-          simModal.setAttribute('aria-hidden', 'true');
-          simModal.classList.add('hidden');
+        simClose.addEventListener("click", () => {
+          simModal.setAttribute("aria-hidden", "true");
+          simModal.classList.add("hidden");
         });
       }
 
-      if (simOpenGallery) simOpenGallery.addEventListener('click', openGallery);
-      if (simGalleryOverlay) simGalleryOverlay.addEventListener('click', closeGallery);
-      if (simGalleryClose) simGalleryClose.addEventListener('click', closeGallery);
-      if (simGalleryPrev) simGalleryPrev.addEventListener('click', () => show(current - 1));
-      if (simGalleryNext) simGalleryNext.addEventListener('click', () => show(current + 1));
+      if (simOpenGallery) simOpenGallery.addEventListener("click", openGallery);
+      if (simGalleryOverlay)
+        simGalleryOverlay.addEventListener("click", closeGallery);
+      if (simGalleryClose)
+        simGalleryClose.addEventListener("click", closeGallery);
+      if (simGalleryPrev)
+        simGalleryPrev.addEventListener("click", () => show(current - 1));
+      if (simGalleryNext)
+        simGalleryNext.addEventListener("click", () => show(current + 1));
 
-      document.addEventListener('keydown', (e) => {
-        if (!simGallery || simGallery.classList.contains('hidden')) return;
-        if (e.key === 'Escape') closeGallery();
-        if (e.key === 'ArrowLeft') show(current - 1);
-        if (e.key === 'ArrowRight') show(current + 1);
+      document.addEventListener("keydown", (e) => {
+        if (!simGallery || simGallery.classList.contains("hidden")) return;
+        if (e.key === "Escape") closeGallery();
+        if (e.key === "ArrowLeft") show(current - 1);
+        if (e.key === "ArrowRight") show(current + 1);
       });
 
       // Cargar datos desde experience.json para la demo (usamos Proyecta UNI)
-      const targetId = 'web-developer-proyecta-uni';
+      const targetId = "web-developer-proyecta-uni";
       fetchExperiencesFromPublic()
-        .then(list => {
-          const exp = list.find(e => e.id === targetId);
+        .then((list) => {
+          const exp = list.find((e) => e.id === targetId);
           if (!exp) return;
           // Header
-          const titleEl = document.getElementById('sim-title');
-          const subtitleEl = document.getElementById('sim-subtitle');
-          const iconEl = document.getElementById('sim-icon') as HTMLImageElement | null;
+          const titleEl = document.getElementById("sim-title");
+          const subtitleEl = document.getElementById("sim-subtitle");
+          const iconEl = document.getElementById(
+            "sim-icon"
+          ) as HTMLImageElement | null;
           if (titleEl) titleEl.textContent = exp.title;
-          if (subtitleEl) subtitleEl.textContent = `${exp.company?.toUpperCase?.() || ''} - ${exp.durationDate} 🏠${exp.location ? '🏢' : ''}`;
+          if (subtitleEl)
+            subtitleEl.textContent = `${exp.company?.toUpperCase?.() || ""} - ${exp.durationDate} 🏠${exp.location ? "🏢" : ""}`;
           if (iconEl) iconEl.src = exp.icon;
 
           // Points colored
-          const pointsWrap = document.getElementById('sim-points');
+          const pointsWrap = document.getElementById("sim-points");
           if (pointsWrap) {
-            pointsWrap.innerHTML = '';
-            (exp.pointsColored || []).forEach(pc => {
-              const div = document.createElement('div');
-              div.className = 'border border-white/20 text-xs p-2 select-none duration-150 rounded';
-              div.style.backgroundColor = 'transparent';
+            pointsWrap.innerHTML = "";
+            (exp.pointsColored || []).forEach((pc) => {
+              const div = document.createElement("div");
+              div.className =
+                "border border-white/20 text-xs p-2 select-none duration-150 rounded";
+              div.style.backgroundColor = "transparent";
               div.style.boxShadow = `inset 0 0 0 1px ${pc.color}33`;
-              div.style.color = '#ffffff';
+              div.style.color = "#ffffff";
               div.style.borderColor = `${pc.color}66`;
               div.textContent = pc.text;
               pointsWrap.appendChild(div);
@@ -501,27 +248,31 @@ const experiences = getAllExperiences();
           }
 
           // Description
-          const descEl = document.getElementById('sim-description');
-          if (descEl) descEl.textContent = exp.description || '';
+          const descEl = document.getElementById("sim-description");
+          if (descEl) descEl.textContent = exp.description || "";
 
           // Metrics
-          const metricsWrap = document.getElementById('sim-metrics');
+          const metricsWrap = document.getElementById("sim-metrics");
           if (metricsWrap) {
-            metricsWrap.innerHTML = '';
-            (exp.metrics || []).forEach(m => {
-              const div = document.createElement('div');
-              div.className = 'border border-white/20 text-xs p-2 select-none hover:bg-white/15 duration-150 rounded';
+            metricsWrap.innerHTML = "";
+            (exp.metrics || []).forEach((m) => {
+              const div = document.createElement("div");
+              div.className =
+                "border border-white/20 text-xs p-2 select-none hover:bg-white/15 duration-150 rounded";
               div.innerHTML = `${m.label}<br><span class="text-2xl font-bold">${m.value}</span>`;
               metricsWrap.appendChild(div);
             });
           }
 
           // Images for gallery
-          images = Array.isArray(exp.images) && exp.images.length ? exp.images : [exp.icon];
+          images =
+            Array.isArray(exp.images) && exp.images.length
+              ? exp.images
+              : [exp.icon];
           current = 0;
           show(current);
         })
-        .catch(err => console.error('Error cargando experiencias:', err));
+        .catch((err) => console.error("Error cargando experiencias:", err));
     });
   }
 </script>

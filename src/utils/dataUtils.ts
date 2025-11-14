@@ -1,10 +1,3 @@
-// Tipos para el JSON
-interface Person {
-    name: string;
-    age: number;
-    location: string;
-}
-
 // Tipos para experiencias
 export interface TechRef {
     name: string;
@@ -37,52 +30,33 @@ export interface Experience {
     metrics?: Metric[];
 }
 
+interface Project {
+    id: string;                    // Identificador único (kebab-case)
+    title: string;                 // Título del proyecto
+    description: string;           // Descripción breve
+    finishDate: string;            // Formato: MM/YYYY o "ACT" si está activo
+    status: 'done' | 'wip' | 'paused' | 'mvp'; // Estado del proyecto
+    role: string;                  // Rol que desempeñaste
+    icon: string;                  // Logo/icono del proyecto
+    liveUrl: string | null;        // URL del proyecto en vivo
+    repoUrl: string | null;        // URL del repositorio
+    imagesUrl: string | null;      // URL externa de galería (Imgur, etc.)
+    features: string[];            // Características destacadas (máx 3)
+    metrics: Array<{               // Métricas/resultados (máx 3)
+        label: string;
+        value: string;
+    }>;
+    tags: string[];                // Tags temáticos (máx 6)
+    techs: Array<{                 // Stack tecnológico
+        name: string;
+        icon: string;
+    }>;
+    images: string[];              // Screenshots locales para galería
+}
+
 // Importar el JSON directamente (para uso en el servidor)
-import data from '../data/data.json';
 import experiencesData from '../data/experience.json';
 
-// Funciones utilitarias
-export function getAllPeople(): Person[] {
-    return data as Person[];
-}
-
-export function getPersonByName(name: string): Person | undefined {
-    return data.find((person: Person) => person.name === name);
-}
-
-export function getPeopleByLocation(location: string): Person[] {
-    return data.filter((person: Person) => person.location === location);
-}
-
-export function getAverageAge(): number {
-    const total = data.reduce((sum: number, person: Person) => sum + person.age, 0);
-    return total / data.length;
-}
-
-// Para uso en el cliente (browser)
-export async function fetchDataFromPublic(): Promise<Person[]> {
-    try {
-        const response = await fetch('/data/data.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-
-// Ejemplo de uso
-export function logAllPeople(): void {
-    const people = getAllPeople();
-    console.log('=== Todas las personas ===');
-    people.forEach(person => {
-        console.log(`${person.name} - ${person.age} años - ${person.location}`);
-    });
-
-    console.log(`\nEdad promedio: ${getAverageAge().toFixed(1)} años`);
-}
 
 // ===== Experiencias: utilidades (lado servidor) =====
 export function getAllExperiences(): Experience[] {

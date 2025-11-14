@@ -1,0 +1,102 @@
+---
+import Projectsbox from "../components/Projectsbox.astro";
+import BoxLayout from "../layouts/BoxLayout.astro";
+
+---
+
+<section id="proyectos" class="h-[100vh]">
+    <BoxLayout>
+      <h2 class="text-5xl font-Jost font-extrabold mb-10">Proyectos</h2>
+
+      <div class="grid grid-cols-3 justify-center gap-5 mx-auto">
+        <Projectsbox
+          title="Clon UNIVirtual"
+          description="Clon de una plataforma educativa virtual que permite la gestión de cursos, usuarios y actividades, ideal para demostrar habilidades en desarrollo web y sistemas de aprendizaje online."
+          finishDate="05/23"
+          techs={[
+            "/icons/vue.svg",
+            "/icons/django.svg",
+            "/icons/sqlite.svg",
+            "/icons/tailwindcss.svg",
+            "/icons/github.svg",
+          ]}
+          liveUrl="https://univirtual-demo.com"
+        />
+        <Projectsbox
+          title="Sistema de Contabilidad"
+          description="Sistema integral orientado a la gestión contable de comercios en Gamarra. Permite registrar negocios, llevar el control de ventas, compras, movimientos de caja y generar reportes contables, facilitando la organización financiera y la toma de decisiones para comerciantes de la zona."
+          finishDate="12/24"
+          techs={[
+            "/icons/vue.svg",
+            "/icons/netlify.svg",
+            "/icons/spring.svg",
+            "/icons/neon.svg",
+            "/icons/github.svg",
+          ]}
+          liveUrl="https://univirtual-demo.com"
+        />
+        <Projectsbox
+          title="GreedisGood"
+          description="Plataforma de comercio electrónico diseñada para facilitar la compra y venta de productos de manera eficiente. Permite a los usuarios explorar catálogos, gestionar carritos de compra, realizar pedidos y administrar cuentas, mientras que los administradores pueden controlar inventarios y órdenes a través de un panel especializado."
+          finishDate="02/25"
+          techs={[
+            "/icons/nuxt.svg",
+            "/icons/spring.svg",
+            "/icons/postgresql.svg",
+            "/icons/github.svg",
+          ]}
+        />
+        <Projectsbox
+          title="Ensigna"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          finishDate="05/25"
+          techs={[
+            "/icons/stripe.svg",
+            "/icons/fastapi.svg",
+            "/icons/react.svg",
+            "/icons/typescript.svg",
+            "/icons/postgresql.svg",
+            "/icons/github.svg",
+          ]}
+          repoUrl="https://github.com/user/ensigna"
+        />
+        <Projectsbox
+          title="Pagina Web LEAD UNI"
+          description="lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam illo dicta, accusamus neque ex cum porro. Eveniet harum quibusdam ut et exercitationem, alias, libero iure illo veritatis qui hic quidem."
+          finishDate="07/25"
+          techs={[
+            "/icons/google-cloud.svg",
+            "/icons/react.svg",
+            "/icons/netlify.svg",
+            "/icons/tailwindcss.svg",
+            "/icons/github.svg",
+          ]}
+          liveUrl="https://ejemplo-leaduni.com"
+          repoUrl="https://github.com/user/leaduni"
+        />
+
+        <div class="flex flex-col">
+          <div
+            class="bg-white border-2 px-2 border-white w-1/5 text-xs text-black"
+          >
+            + 10 Más
+          </div>
+
+          <div
+            class="border border-white font-medium bg-white/20 flex justify-center w-full items-center h-full px-3 py-2"
+          >
+            <h3 class="text-2xl font-bold text-center">¿Más Proyectos?</h3>
+          </div>
+
+          <div
+            class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]"
+          >
+            <div class="relative inline-block group">
+              <button class="button-clean-dark">Ir a Proyectos</button>
+              <span class="shadow-box-dark"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </BoxLayout>
+  </section>

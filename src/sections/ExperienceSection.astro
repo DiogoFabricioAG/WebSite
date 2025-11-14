@@ -1,0 +1,47 @@
+---
+import Experiencebox from "../components/Experiencebox.astro";
+import BoxLayout from "../layouts/BoxLayout.astro";
+import { getAllExperiences } from "../utils/dataUtils";
+import ExperienceDetail from "../components/ExperienceDetail.astro";
+const experiences = getAllExperiences();
+---
+<section id="experiencia" class="h-[150vh]">
+    <BoxLayout>
+      <h2 class="text-5xl font-Jost font-extrabold mb-10">Experiencia</h2>
+      <div class="grid grid-cols-2 justify-center gap-5 mx-auto">
+        {
+          experiences.map((exp) => (
+            <Experiencebox
+              title={exp.title}
+              company={exp.company}
+              location={exp.location}
+              durationDate={exp.durationDate}
+              icon={exp.icon}
+              companyUrl={exp.companyUrl || undefined}
+              description={exp.description || undefined}
+              points={exp.points}
+              techs={(exp.techs || []).map((t) => t.icon)}
+              modalId={exp.id}
+            />
+          ))
+        }
+      </div>
+    </BoxLayout>
+    {
+    experiences.map((exp) => (
+      <ExperienceDetail
+        id={exp.id}
+        title={exp.title}
+        company={exp.company}
+        location={exp.location}
+        durationDate={exp.durationDate}
+        icon={exp.icon}
+        companyUrl={exp.companyUrl}
+        description={exp.description}
+        pointsColored={exp.pointsColored}
+        metrics={exp.metrics}
+        images={exp.images}
+      />
+    ))
+  }
+  </section>
