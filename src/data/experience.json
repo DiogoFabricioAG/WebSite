@@ -96,7 +96,7 @@
 			{ "text": "Soporte a despliegues", "color": "#06475c" }
 		],
 		"techs": [
-			{ "name": "Tailwind CSS", "icon": "/icons/tailwindcss.svg" },
+			{ "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
 			{ "name": "GitHub", "icon": "/icons/github.svg" },
 			{ "name": "React", "icon": "/icons/react.svg" }
 		],

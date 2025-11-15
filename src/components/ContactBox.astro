@@ -1,35 +1,56 @@
-<div class="border space-y-2 border-white p-4 text-sm">
+<form 
+  id="contact-form"
+  action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSf8BMn-0jHZrca0a9w1vudkolfkzKlF6bj-GqL1OGliesIO9w/formResponse" 
+  method="POST" 
+  target="hidden_iframe"
+  class="border space-y-2 border-white p-4 text-sm"
+>
+  <!-- EMAIL Field -->
   <div class="flex flex-col">
     <label
-      class="bg-white border-2 px-2 border-white  text-black"
-      for="email">Email</label
+      class="bg-white border-2 px-2 border-white text-black"
+      for="entry.176472047">Email</label
+    >
+    <input
+      type="email"
+      name="entry.176472047"
+      id="entry.176472047"
+      required
+      class="border outline-none border-white px-1 py-2 bg-transparent text-white"
+      placeholder="tu@email.com"
+    />
+  </div>
+
+  <!-- ASUNTO Field -->
+  <div class="flex flex-col">
+    <label
+      class="bg-white border-2 px-2 border-white text-black"
+      for="entry.2049134383">Asunto</label
     >
     <input
       type="text"
-      class="border outline-none border-white px-1 py-2"
-      placeholder="Correo Electronico"
+      name="entry.2049134383"
+      id="entry.2049134383"
+      required
+      class="border outline-none border-white px-1 py-2 bg-transparent text-white"
+      placeholder="Asunto de tu mensaje"
     />
   </div>
+
+  <!-- MENSAJE Field -->
   <div class="flex flex-col">
     <label
-      class="bg-white border-2 px-2 border-white  text-black"
-      for="email">Asunto</label
-    >
-    <select class="border outline-none text-white border-white px-1 py-2">
-      <option class="text-black" selected value="consulta">Consulta</option>
-      <option class="text-black" value="soporte">Soporte</option>
-      <option class="text-black" value="otro">Otro</option>
-    </select>
-  </div>
-  <div class="flex flex-col">
-    <label
-      class="bg-white border-2 px-2 border-white  text-black"
-      for="email">Mensaje</label
+      class="bg-white border-2 px-2 border-white text-black"
+      for="entry.895521336">Mensaje</label
     >
     <textarea
-      name="mensaje"
+      name="entry.895521336"
+      id="entry.895521336"
+      required
+      rows="4"
       placeholder="Escribe tu mensaje aquí..."
-      id=""
-      class="border outline-none border-white px-1 py-2"></textarea>
+      class="border outline-none border-white px-1 py-2 bg-transparent text-white resize-none"
+    ></textarea>
   </div>
-</div>
+</form>
+

@@ -11,8 +11,21 @@ import ContactBox from "../components/ContactBox.astro";
           <ContactBox />
           <div class="bg-white px-1.5 py-1.5 flex justify-end gap-2 text-xs">
             <div class="relative inline-block group">
-              <button class="button-clean-dark">Enviar Mensaje</button>
+              <button type="submit" form="contact-form" class="button-clean-dark">Enviar Mensaje</button>
               <span class="shadow-box-dark"></span>
+            </div>
+          </div>
+          
+          <!-- Success Message Block (initially hidden) -->
+          <div id="success-message" class="mt-4 border-2 border-white  p-4" style="display: none;">
+            <div class="flex items-start gap-3">
+              <div class="text-3xl text-white">✓</div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">¡Mensaje enviado!</h3>
+                <p class="text-white/90 text-sm">
+                  Tus datos han sido enviados correctamente. Te responderé lo antes posible.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -45,3 +58,48 @@ import ContactBox from "../components/ContactBox.astro";
       </div>
     </BoxLayout>
   </section>
+
+<!-- Hidden iframe to catch form submission -->
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<script is:inline>
+  let submitted = false;
+
+  // Handle iframe load (when form is submitted)
+  if (typeof window !== 'undefined') {
+    window.addEventListener('load', function() {
+      const iframe = document.getElementById('hidden_iframe');
+      if (iframe) {
+        iframe.onload = function() {
+          if (submitted) {
+            const form = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            
+            if (successMessage) {
+              successMessage.style.display = 'block';
+              
+              // Auto-hide after 6 seconds
+              setTimeout(() => {
+                successMessage.style.display = 'none';
+              }, 6000);
+            }
+            
+            if (form) {
+              form.reset();
+            }
+
+            submitted = false;
+          }
+        };
+      }
+
+      // Set submitted flag on form submit
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function() {
+          submitted = true;
+        });
+      }
+    });
+  }
+</script>

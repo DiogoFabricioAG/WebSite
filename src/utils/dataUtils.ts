@@ -56,6 +56,17 @@ interface Project {
 
 // Importar el JSON directamente (para uso en el servidor)
 import experiencesData from '../data/experience.json';
+import projectsData from '../data/projects.json';
+
+// ===== Proyectos: utilidades (lado servidor) =====
+export function getAllProjects(): Project[] {
+    return projectsData as Project[];
+}
+
+export function getProjectById(id: string): Project | undefined {
+    const list = getAllProjects();
+    return list.find(proj => proj.id === id);
+}
 
 
 // ===== Experiencias: utilidades (lado servidor) =====
