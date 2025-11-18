@@ -11,13 +11,48 @@ import "../styles/global.css";
 		<title>Diogo Abregu</title>
 	</head>
 	<body class="bg-gray-900 text-white">
-		<slot />
+		<!-- Custom Cursor Elements -->
+		<div id="cursor-dot" class="cursor-dot"></div>
+		<div id="cursor-outline" class="cursor-outline"></div>
+		
+		<slot class="relative"/>
 		
 		<!-- Music Player Floating Widget -->
 		<div id="music-player" class="fixed bottom-4 right-4 bg-black/90 backdrop-blur-md border border-white/80 p-3 shadow-2xl z-50 max-w-xs transition-all duration-500">
 			<div class="space-y-2">
 
 <style>
+	/* Cursor Styles */
+	body {
+		cursor: none;
+	}
+
+	.cursor-dot {
+		width: 8px;
+		height: 8px;
+		background: linear-gradient(135deg, #d5d8e7 0%, #cbc3d4 100%);
+		border-radius: 50%;
+		position: fixed;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+		z-index: 9999;
+		transition: transform 0.15s ease, opacity 0.15s ease;
+		box-shadow: 0 0 20px rgba(242, 243, 245, 0.6);
+	}
+
+	.cursor-outline {
+		width: 40px;
+		height: 40px;
+		border: 2px solid rgba(241, 241, 243, 0.5);
+		border-radius: 50%;
+		position: fixed;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+		z-index: 9998;
+		transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+		box-shadow: 0 0 30px rgba(223, 224, 228, 0.3);
+	}
+
 	@keyframes pulse {
 		0%, 100% {
 			box-shadow: 0 0 30px rgba(251, 146, 60, 0.3);
@@ -203,6 +238,64 @@ import "../styles/global.css";
 
 				// Initialize
 				loadTrack(currentTrack);
+			});
+
+			// Custom Cursor Movement
+			const cursorDot = document.getElementById('cursor-dot');
+			const cursorOutline = document.getElementById('cursor-outline');
+
+			let mouseX = 0, mouseY = 0;
+			let outlineX = 0, outlineY = 0;
+
+			document.addEventListener('mousemove', (e) => {
+				mouseX = e.clientX;
+				mouseY = e.clientY;
+
+				// Instant follow for dot
+				cursorDot.style.left = mouseX + 'px';
+				cursorDot.style.top = mouseY + 'px';
+			});
+
+			// Smooth follow for outline with delay
+			function animateOutline() {
+				outlineX += (mouseX - outlineX) * 0.15;
+				outlineY += (mouseY - outlineY) * 0.15;
+
+				cursorOutline.style.left = outlineX + 'px';
+				cursorOutline.style.top = outlineY + 'px';
+
+				requestAnimationFrame(animateOutline);
+			}
+			animateOutline();
+
+			// Hover detection
+			document.addEventListener('mouseover', (e) => {
+				if (e.target.matches('a, button, input, textarea, select')) {
+					cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+					cursorOutline.style.width = '60px';
+					cursorOutline.style.height = '60px';
+					cursorOutline.style.borderColor = 'rgba(225, 225, 225, 0.8)';
+				}
+			});
+
+			document.addEventListener('mouseout', (e) => {
+				if (e.target.matches('a, button, input, textarea, select')) {
+					cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+					cursorOutline.style.width = '40px';
+					cursorOutline.style.height = '40px';
+					cursorOutline.style.borderColor = 'rgba(225, 225, 225, 0.5)';
+				}
+			});
+
+			// Hide cursor when leaving window
+			document.addEventListener('mouseleave', () => {
+				cursorDot.style.opacity = '0';
+				cursorOutline.style.opacity = '0';
+			});
+
+			document.addEventListener('mouseenter', () => {
+				cursorDot.style.opacity = '1';
+				cursorOutline.style.opacity = '1';
 			});
 		</script>
 	</body>

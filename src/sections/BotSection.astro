@@ -1,0 +1,207 @@
+---
+import BoxLayout from "../layouts/BoxLayout.astro";
+---
+
+<section id="bot" class="">
+  <BoxLayout>
+    
+    <div class="max-w-4xl mx-auto mt-10">
+      <!-- Chat Container -->
+      <div class="border-2 border-white/30 bg-black/40 backdrop-blur-sm  overflow-hidden">
+        <!-- Chat Header -->
+        <div class="bg-white/20 border-b border-white/20 px-6 py-4">
+          <div class="flex justify-between items-center gap-3">
+            <div class="flex gap-3 items-center">
+                <div class="relative">
+                    <img src="/avatar.png" alt="Diogo" class="w-12 h-12  border-2 border-white/40" />
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg">Diogo Bot</h3>
+                    <p class="text-xs text-white/60">Respondiendo como Diogo Abregu</p>
+                </div>
+            </div>
+            <div>
+                <a href="/" class="relative inline-block group" title="Volver al inicio">
+                    <div class="button-clean-dark flex items-center gap-2 px-3 py-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        <span class="text-sm font-medium">Volver</span>
+                    </div>
+                    <span class="shadow-box-dark"></span>
+                </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div id="chat-messages" class="h-[500px] overflow-y-auto p-6 space-y-4">
+          <!-- Welcome Message -->
+          <div class="flex items-start gap-3">
+            <img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />
+            <div class="bg-white/10 px-4 py-3 max-w-md">
+              <p class="text-sm">¡Hola! 👋 Soy un asistente virtual que responde como Diogo. Pregúntame sobre mi experiencia, proyectos, habilidades o cualquier cosa que quieras saber.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="border-t border-white/20 p-4 bg-black/20">
+          <form id="chat-form" class="flex gap-3">
+            <input
+              type="text"
+              id="user-input"
+              placeholder="Escribe tu pregunta aquí..."
+              class="flex-1 bg-white/5 border border-white/20  px-6 py-3 text-sm outline-none focus:border-white/80 focus:bg-white/10 transition"
+              autocomplete="off"
+            />
+
+            <button
+              type="submit"
+              id="send-btn"
+              class="px-6 py-3 bg-gradient-to-r button-clean  font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Enviar
+            </button>
+          </form>
+          <p class="text-[10px] text-white/40 mt-2 text-center">Conectado a IA real con memoria de conversación.</p>
+        </div>
+      </div>
+    </div>
+  </BoxLayout>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatForm = document.getElementById('chat-form');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const messagesContainer = document.getElementById('chat-messages');
+
+    // Session management
+    let sessionId = localStorage.getItem('bot-session-id') || null;
+
+    async function getBotResponse(userMessage) {
+      try {
+        const response = await fetch('https://me-virtual.diogofabricio17.workers.dev/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            message: userMessage,
+            ...(sessionId && { sessionId })
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+
+        const data = await response.json();
+        
+        // Save session ID for future requests
+        if (data.sessionId && !sessionId) {
+          sessionId = data.sessionId;
+          localStorage.setItem('bot-session-id', sessionId);
+        }
+
+        return data.response || data.message || "Lo siento, no pude procesar tu mensaje.";
+      } catch (error) {
+        console.error('Error al conectar con el bot:', error);
+        return "Lo siento, hubo un error al conectar con el servidor. Por favor intenta de nuevo.";
+      }
+    }
+
+    function addMessage(text, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `flex items-start gap-3 ${isUser ? 'flex-row-reverse' : ''}`;
+      
+      const avatar = isUser 
+        ? '<div class="w-8 h-8 bg-white text-black flex items-center justify-center flex-shrink-0"><span class="text-xs font-bold">Tú</span></div>'
+        : '<img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />';
+      
+      const bubbleClass ='bg-white/10';
+      
+      messageDiv.innerHTML = `
+        ${avatar}
+        <div class="${bubbleClass} px-4 py-3 max-w-md">
+          <p class="text-sm">${text}</p>
+        </div>
+      `;
+      
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.id = 'typing-indicator';
+      typingDiv.className = 'flex items-start gap-3';
+      typingDiv.innerHTML = `
+        <img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />
+        <div class="bg-white/10  -none px-4 py-3">
+          <div class="flex gap-1">
+            <div class="w-2 h-2 bg-white/60  animate-bounce" style="animation-delay: 0ms"></div>
+            <div class="w-2 h-2 bg-white/60  animate-bounce" style="animation-delay: 150ms"></div>
+            <div class="w-2 h-2 bg-white/60  animate-bounce" style="animation-delay: 300ms"></div>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(typingDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      // Add user message
+      addMessage(message, true);
+      userInput.value = '';
+      sendBtn.disabled = true;
+
+      // Show typing indicator
+      showTypingIndicator();
+
+      // Get bot response from API
+      const response = await getBotResponse(message);
+
+      // Remove typing and add bot response
+      removeTypingIndicator();
+      addMessage(response, false);
+
+      sendBtn.disabled = false;
+      userInput.focus();
+    });
+
+    // Add reset session button (optional)
+    const resetBtn = document.createElement('button');
+    resetBtn.textContent = '🔄 Nueva conversación';
+    resetBtn.className = 'text-[10px] text-white/40 hover:text-white/60 transition mt-2';
+    resetBtn.addEventListener('click', () => {
+      if (confirm('¿Quieres iniciar una nueva conversación? Se perderá el historial actual.')) {
+        localStorage.removeItem('bot-session-id');
+        sessionId = null;
+        messagesContainer.innerHTML = `
+          <div class="flex items-start gap-3">
+            <img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />
+            <div class="bg-white/10 px-4 py-3 max-w-md">
+              <p class="text-sm">¡Hola! 👋 Soy un asistente virtual que responde como Diogo. Pregúntame sobre mi experiencia, proyectos, habilidades o cualquier cosa que quieras saber.</p>
+            </div>
+          </div>
+        `;
+      }
+    });
+    document.querySelector('.text-\\[10px\\]').parentElement.appendChild(resetBtn);
+  });
+</script>
