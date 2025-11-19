@@ -12,6 +12,7 @@
         src="/logo-portfolio.png"
         alt="Logo"
         class="logo-img my-4 h-24 logo-icon nav:transition-all"
+        transition:name="portfolio-logo"
       />
     </a>
 
@@ -82,34 +83,60 @@
 </nav>
 
 <script>
-  // Shrink navbar on scroll and switch to icon-only links
-  const nav = document.getElementById("site-nav");
-  function onScroll() {
+  // Initialize navbar behavior - Works with View Transitions
+  function initNavbar() {
+    const nav = document.getElementById("site-nav");
     if (!nav) return;
-    if (window.scrollY > 100) nav.classList.add("nav--compact");
-    else nav.classList.remove("nav--compact");
-  }
-  onScroll();
-  window.addEventListener("scroll", onScroll);
 
-  // Smooth scroll with offset for sticky navbar
-  function smoothScrollTo(targetId: string) {
-    const el = document.querySelector(targetId);
-    if (!el) return;
-    const navHeight = nav ? nav.offsetHeight : 0;
-    const rect = el.getBoundingClientRect();
-    const absoluteY = rect.top + window.scrollY - navHeight - 8; // small gap
-    window.scrollTo({ top: absoluteY, behavior: 'smooth' });
-  }
+    // Shrink navbar on scroll and switch to icon-only links
+    function onScroll() {
+      if (!nav) return;
+      if (window.scrollY > 100) nav.classList.add("nav--compact");
+      else nav.classList.remove("nav--compact");
+    }
+    
+    // Check scroll position immediately
+    onScroll();
+    
+    // Smooth scroll with offset for sticky navbar
+    function smoothScrollTo(targetId: string) {
+      const el = document.querySelector(targetId);
+      if (!el || !nav) return;
+      const navHeight = nav.offsetHeight || 0;
+      const rect = el.getBoundingClientRect();
+      const absoluteY = rect.top + window.scrollY - navHeight - 8;
+      window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+    }
 
-  document.querySelectorAll('#site-nav a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
+    // Add scroll listener
+    const handleScroll = () => onScroll();
+    window.addEventListener("scroll", handleScroll);
+
+    // Add smooth scroll to hash links
+    const handleHashClick = (e: Event) => {
       const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
       if (href && href.startsWith('#')) {
         e.preventDefault();
         smoothScrollTo(href);
       }
+    };
+
+    document.querySelectorAll('#site-nav a[href^="#"]').forEach(a => {
+      a.addEventListener('click', handleHashClick);
     });
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }
+
+  // Initialize on load and after View Transitions
+  let cleanupNav = initNavbar();
+
+  document.addEventListener('astro:after-swap', () => {
+    if (cleanupNav) cleanupNav();
+    cleanupNav = initNavbar();
   });
 </script>
 

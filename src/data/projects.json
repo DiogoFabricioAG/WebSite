@@ -1,71 +1,64 @@
 [
   {
-    "id": "project-saas-billing",
-    "title": "Plataforma SaaS Billing",
-    "description": "Sistema de facturación modular multi-tenant con reporting en tiempo real y conciliación automática bancaria. Incluye webhooks de Stripe y arquitectura hexagonal.",
-    "finishDate": "08/2025",
-    "status": "wip",
+    "id": "project-univirtual-clon",
+    "title": "Clon de Univirtual - UNI",
+    "description": "Plataforma educativa completa tipo Moodle para la Universidad Nacional de Ingeniería. Sistema LMS con gestión de cursos, tareas, calificaciones, foros y recursos multimedia.",
+    "finishDate": "2024",
+    "status": "done",
     "role": "Full Stack Developer",
-    "icon": "/project-logos/saas-billing.png",
-    "liveUrl": "https://demo-saas.com",
-    "repoUrl": "https://github.com/usuario/saas-billing",
+    "icon": "/icons/django.svg",
+    "liveUrl": "https://univirtualplatform.netlify.app/",
+    "repoUrl": "https://github.com/DiogoFabricioAG/UNIVIRTUAL-CLON",
     "imagesUrl": null,
     "features": [
-      "Módulo de conciliación bancaria automática",
-      "Webhooks de eventos Stripe en tiempo real",
-      "Refactor a arquitectura hexagonal"
+      "Sistema completo de gestión de cursos y estudiantes",
+      "Módulo de tareas y calificaciones automatizado",
+      "Foros de discusión y recursos multimedia"
     ],
     "metrics": [
-      { "label": "MTTR", "value": "12m" },
-      { "label": "Uptime", "value": "99.7%" },
-      { "label": "Facturas procesadas", "value": "4.2k" }
+      { "label": "Frontend", "value": "Netlify" },
+      { "label": "DB", "value": "SQLite" },
+      { "label": "API", "value": "REST" }
     ],
-    "tags": ["SaaS", "FinTech", "Stripe", "Multi-tenant"],
+    "tags": ["LMS", "Educación", "Universidad", "Moodle"],
     "techs": [
-      { "name": "React", "icon": "/icons/react.svg" },
-      { "name": "TypeScript", "icon": "/icons/typescript.svg" },
-      { "name": "FastAPI", "icon": "/icons/fastapi.svg" },
-      { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
-      { "name": "Docker", "icon": "/icons/docker.svg" }
+      { "name": "Django", "icon": "/icons/django.svg" },
+      { "name": "Vue.js", "icon": "/icons/vue.svg" },
+      { "name": "Tailwind ", "icon": "/icons/tailwind.svg" },
+      { "name": "SQLite", "icon": "/icons/sqlite.svg" },
+      { "name": "Netlify", "icon": "/icons/netlify.svg" }
     ],
-    "images": [
-      "/projects/saas-billing/screenshot-1.png",
-      "/projects/saas-billing/screenshot-2.png",
-      "/projects/saas-billing/screenshot-3.png"
-    ]
+    "images": []
   },
   {
-    "id": "project-ecommerce-dashboard",
-    "title": "Dashboard E-commerce",
-    "description": "Panel administrativo con analytics en vivo, gestión de inventario y reportes exportables. Optimizado para grandes volúmenes de datos.",
-    "finishDate": "12/2024",
+    "id": "project-contabilidad-gamarra",
+    "title": "Sistema de Contabilidad",
+    "description": "Plataforma de gestión financiera para negocio familiar. Control de ingresos, egresos, clientes y reportes contables en tiempo real.",
+    "finishDate": "2024",
     "status": "done",
-    "role": "Frontend Lead",
-    "icon": "/project-logos/ecommerce.png",
-    "liveUrl": "https://dashboard.example.com",
-    "repoUrl": null,
-    "imagesUrl": "https://imgur.com/a/xyz",
+    "role": "Full Stack Developer",
+    "icon": "/icons/vue.svg",
+    "liveUrl": "https://trab-gamr-front123.netlify.app/",
+    "repoUrl": "https://github.com/DiogoFabricioAG/TrabajoGamarra-Frontend",
+    "imagesUrl": null,
     "features": [
-      "Analytics en tiempo real con gráficas interactivas",
-      "Exportación masiva de reportes (CSV/PDF)",
-      "Sistema de notificaciones push"
+      "Gestión de clientes y proveedores",
+      "Control de ingresos y egresos",
+      "Reportes financieros exportables"
     ],
     "metrics": [
-      { "label": "Carga inicial", "value": "<2s" },
-      { "label": "Usuarios concurrentes", "value": "500+" },
-      { "label": "Productos gestionados", "value": "12k" }
+      { "label": "Deploy", "value": "Netlify" },
+      { "label": "Database", "value": "NeonDB" },
+      { "label": "Stack", "value": "Vue" }
     ],
-    "tags": ["E-commerce", "Analytics", "Admin Panel"],
+    "tags": ["FinTech", "Contabilidad", "PYME", "Gestión"],
     "techs": [
-      { "name": "Vue 3", "icon": "/icons/vue.svg" },
-      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
-      { "name": "Node.js", "icon": "/icons/nodejs.svg" },
-      { "name": "MongoDB", "icon": "/icons/mongodb.svg" }
+      { "name": "Vue.js", "icon": "/icons/vue.svg" },
+      { "name": "Tailwind ", "icon": "/icons/tailwind.svg" },
+      { "name": "Neon", "icon": "/icons/neon.svg" },
+      { "name": "Netlify", "icon": "/icons/netlify.svg" }
     ],
-    "images": [
-      "/projects/ecommerce/home.png",
-      "/projects/ecommerce/analytics.png"
-    ]
+    "images": []
   },
   {
     "id": "project-portfolio-personal",

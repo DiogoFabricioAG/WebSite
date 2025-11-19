@@ -14,18 +14,16 @@
 			"Entrega continua simple"
 		],
 		"pointsColored": [
-			{ "text": "Apps web rápidas y modulares", "color": "#dddddd" },
-			{ "text": "Integración con APIs externas", "color": "#eeeeee" },
-			{ "text": "Entrega continua simple", "color": "#ffffff" }
+			{ "text": "Apps web rápidas y modulares" },
+			{ "text": "Integración con APIs externas" },
+			{ "text": "Entrega continua simple" }
 		],
 		"techs": [
 			{ "name": "Astro", "icon": "/icons/astro.svg" },
 			{ "name": "Vue", "icon": "/icons/vue.svg" },
-			{ "name": "SQL Server", "icon": "/icons/sql-server.svg" },
-			{ "name": "SQLite", "icon": "/icons/sqlite.svg" },
-			{ "name": "Django", "icon": "/icons/django.svg" },
-			{ "name": "Express.js", "icon": "/icons/expressjs.svg" },
-			{ "name": "C#", "icon": "/icons/csharp.svg" }
+			{ "name": "AWS", "icon": "/icons/aws.svg" },
+			{ "name": "C#", "icon": "/icons/csharp.svg" },
+			{ "name": "Stripe", "icon": "/icons/stripe.svg" }
 		],
 		"images": [
 			"/logo-portfolio.png",
@@ -39,109 +37,7 @@
 			{ "label": "Feedback", "value": "95%" }
 		]
 	},
-	{
-		"id": "web-developer-proyecta-uni",
-		"title": "Web Developer",
-		"company": "Proyecta UNI",
-		"location": "Lima",
-		"durationDate": "06/24 - 03/25",
-		"icon": "/experience-logos/proy-uni.png",
-		"companyUrl": null,
-		"description": "Desarrollé y mantuve el portal interno de Proyecta UNI, priorizando estabilidad, refactor de componentes clave y mejora de tiempos de carga para una experiencia de usuario más fluida.",
-		"points": [
-			"Portal interno estable",
-			"Refactor de componentes",
-			"Mejora de tiempos de carga"
-		],
-		"pointsColored": [
-			{ "text": "Desarrollo Inteligente", "color": "#e11d48" },
-			{ "text": "Optimización de Procesos", "color": "#d4d4d4" },
-			{ "text": "Ecosistema Google Cloud", "color": "#1e3a8a" }
-		],
-		"techs": [
-			{ "name": "WordPress", "icon": "/icons/wordpress.svg" },
-			{ "name": "HTML", "icon": "/icons/html.svg" },
-			{ "name": "CSS", "icon": "/icons/css.svg" }
-		],
-		"images": [
-			"/experience-logos/proy-uni.png",
-			"/icons/wordpress.svg",
-			"/icons/html.svg",
-			"/icons/css.svg"
-		],
-		"metrics": [
-			{ "label": "Reducción de tiempos", "value": "30%" },
-			{ "label": "Mejoras Implementadas", "value": "15" },
-			{ "label": "Usuarios Activos", "value": "2000+" },
-			{ "label": "Feedback", "value": "95%" }
-		]
-	},
-	{
-		"id": "tech-lead-jr-dsc",
-		"title": "Tech Lead Jr",
-		"company": "DSC",
-		"location": "Lima",
-		"durationDate": "09/24 - 05/25",
-		"icon": "/experience-logos/dsc.png",
-		"companyUrl": null,
-		"description": "Lideré iniciativas técnicas junior, coordinando al equipo, definiendo patrones base y apoyando despliegues para asegurar consistencia técnica y entregas confiables.",
-		"points": [
-			"Coordinación de equipo",
-			"Patrones base definidos",
-			"Soporte a despliegues"
-		],
-		"pointsColored": [
-			{ "text": "Coordinación de equipo", "color": "#0c6064" },
-			{ "text": "Patrones base definidos", "color": "#acc6ca" },
-			{ "text": "Soporte a despliegues", "color": "#06475c" }
-		],
-		"techs": [
-			{ "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
-			{ "name": "GitHub", "icon": "/icons/github.svg" },
-			{ "name": "React", "icon": "/icons/react.svg" }
-		],
-		"images": [
-			"/experience-logos/dsc.png",
-			"/icons/react.svg",
-			"/icons/github.svg"
-		],
-		"metrics": []
-	},
-	{
-		"id": "developer-uni",
-		"title": "Developer",
-		"company": "UNI",
-		"location": "Lima",
-		"durationDate": "02/25 - ACT",
-		"icon": "/experience-logos/uni.png",
-		"companyUrl": null,
-		"description": "Construí y mantuve módulos académicos, optimicé consultas críticas y documenté procesos internos para mejorar la colaboración y el rendimiento del sistema.",
-		"points": [
-			"Módulos académicos",
-			"Optimización de consultas",
-			"Documentación interna"
-		],
-		"pointsColored": [
-			{ "text": "Módulos académicos", "color": "#c4ac61" },
-			{ "text": "Optimización de consultas", "color": "#75643d" },
-			{ "text": "Documentación interna", "color": "#473612" }
-		],
-		"techs": [
-			{ "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
-			{ "name": "Spring", "icon": "/icons/spring.svg" },
-			{ "name": "React", "icon": "/icons/react.svg" },
-			{ "name": "Docker", "icon": "/icons/docker.svg" },
-			{ "name": "GitHub", "icon": "/icons/github.svg" },
-			{ "name": "TypeScript", "icon": "/icons/typescript.svg" },
-			{ "name": "FastAPI", "icon": "/icons/fastapi.svg" }
-		],
-		"images": [
-			"/experience-logos/uni.png",
-			"/icons/postgresql.svg",
-			"/icons/react.svg"
-		],
-		"metrics": []
-	},
+	
 	{
 		"id": "dev-intern-peri-institute",
 		"title": "Dev Intern",
@@ -157,15 +53,16 @@
 			"Mejor organización de repos"
 		],
 		"pointsColored": [
-			{ "text": "Scripts de soporte", "color": "#d7dbe6" },
-			{ "text": "Tareas rutinarias automatizadas", "color": "#424968" },
-			{ "text": "Ecosistema Google Cloud", "color": "#8c94a8" }
+			{ "text": "Scripts de soporte" },
+			{ "text": "Tareas rutinarias automatizadas" },
+			{ "text": "Ecosistema Google Cloud" }
 		],
 		"techs": [
 			{ "name": "AppSheet", "icon": "/icons/appsheet.png" },
 			{ "name": "Python", "icon": "/icons/python.svg" },
 			{ "name": "JavaScript", "icon": "/icons/javascript.svg" },
-			{ "name": "Google Cloud", "icon": "/icons/google-cloud.svg" }
+			{ "name": "Google Cloud", "icon": "/icons/google-cloud.svg" },
+			{ "name": "n8n", "icon": "/icons/n8n.svg" }
 		],
 		"images": [
 			"/experience-logos/peri.jpg",
@@ -176,35 +73,39 @@
 	},
 	{
 		"id": "director-pilar-ea-lead-uni",
-		"title": "Director Pilar EA",
+		"title": "Director Pilar Excelencia Académica",
 		"company": "LEAD UNI",
 		"location": "Lima",
 		"durationDate": "04/25 - ACT",
 		"icon": "/experience-logos/lead.svg",
 		"companyUrl": null,
-		"description": "Dirigí iniciativas del pilar EA, definiendo roadmap y brindando soporte a proyectos estudiantiles, asegurando alineación con objetivos y ejecución ordenada.",
+		"description": "Dirigí iniciativas del pilar Excelencia Académica, definiendo roadmap y brindando soporte a proyectos estudiantiles, asegurando alineación con objetivos y ejecución ordenada.",
 		"points": [
 			"Gestión de iniciativas",
 			"Definición de roadmap",
 			"Soporte a proyectos estudiantiles"
 		],
 		"pointsColored": [
-			{ "text": "Gestión de iniciativas", "color": "#ec2c5c" },
-			{ "text": "Definición de roadmap", "color": "#e82c64" },
-			{ "text": "Soporte a proyectos estudiantiles", "color": "#db2c7c" }
+			{ "text": "Gestión de iniciativas" },
+			{ "text": "Definición de roadmap" },
+			{ "text": "Soporte a proyectos estudiantiles" }
 		],
 		"techs": [
-			{ "name": "React", "icon": "/icons/react.svg" },
 			{ "name": "TypeScript", "icon": "/icons/typescript.svg" },
-			{ "name": "AWS", "icon": "/icons/aws.svg" },
-			{ "name": "GitHub", "icon": "/icons/github.svg" },
-			{ "name": "GitHub Actions", "icon": "/icons/actions.png" }
+			{ "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
+			{ "name": "Railway", "icon": "/icons/railway.svg" },
+			{ "name": "GitHub Actions", "icon": "/icons/actions.png" },
+			{ "name": "Strapi", "icon": "/icons/strapi.svg" }
+
 		],
 		"images": [
 			"/experience-logos/lead.svg",
 			"/icons/typescript.svg",
 			"/icons/aws.svg"
 		],
-		"metrics": []
+		"metrics": [
+			{ "label": "Sistemas Soportados", "value": "5" },
+			{ "label": "Proyectos Liderados", "value": "3+" }
+		]
 	}
 ]
