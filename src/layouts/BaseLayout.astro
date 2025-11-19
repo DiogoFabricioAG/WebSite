@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <html lang="en">
@@ -9,6 +10,7 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Diogo Abregu</title>
+		<ViewTransitions />
 	</head>
 	<body class="bg-gray-900 text-white">
 		<!-- Custom Cursor Elements -->
@@ -18,10 +20,42 @@ import "../styles/global.css";
 		<slot class="relative"/>
 		
 		<!-- Music Player Floating Widget -->
-		<div id="music-player" class="fixed bottom-4 right-4 bg-black/90 backdrop-blur-md border border-white/80 p-3 shadow-2xl z-50 max-w-xs transition-all duration-500">
+		<div id="music-player" transition:persist class="fixed bottom-4 right-4 bg-black/90 backdrop-blur-md border border-white/80 p-3 shadow-2xl z-50 max-w-xs transition-all duration-500">
 			<div class="space-y-2">
 
 <style>
+	/* View Transitions Animations */
+	@view-transition {
+		navigation: auto;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.3s;
+	}
+
+	::view-transition-old(root) {
+		animation-name: fadeOut;
+	}
+
+	::view-transition-new(root) {
+		animation-name: fadeIn;
+	}
+
+	@keyframes fadeOut {
+		to {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+	}
+
 	/* Cursor Styles */
 	body {
 		cursor: none;
@@ -109,7 +143,7 @@ import "../styles/global.css";
 			</div>
 		</div>
 
-		<audio id="audio-player" preload="metadata"></audio>
+		<audio id="audio-player" preload="metadata" transition:persist></audio>
 
 		<script is:inline>
 			const playlist = [
@@ -240,62 +274,92 @@ import "../styles/global.css";
 				loadTrack(currentTrack);
 			});
 
-			// Custom Cursor Movement
-			const cursorDot = document.getElementById('cursor-dot');
-			const cursorOutline = document.getElementById('cursor-outline');
+			// Custom Cursor Movement - Reinitialize on page transitions
+			function initCursor() {
+				const cursorDot = document.getElementById('cursor-dot');
+				const cursorOutline = document.getElementById('cursor-outline');
 
-			let mouseX = 0, mouseY = 0;
-			let outlineX = 0, outlineY = 0;
+				if (!cursorDot || !cursorOutline) return;
 
-			document.addEventListener('mousemove', (e) => {
-				mouseX = e.clientX;
-				mouseY = e.clientY;
+				let mouseX = 0, mouseY = 0;
+				let outlineX = 0, outlineY = 0;
+				let animationId = null;
 
-				// Instant follow for dot
-				cursorDot.style.left = mouseX + 'px';
-				cursorDot.style.top = mouseY + 'px';
-			});
+				const handleMouseMove = (e) => {
+					mouseX = e.clientX;
+					mouseY = e.clientY;
 
-			// Smooth follow for outline with delay
-			function animateOutline() {
-				outlineX += (mouseX - outlineX) * 0.15;
-				outlineY += (mouseY - outlineY) * 0.15;
+					// Instant follow for dot
+					cursorDot.style.left = mouseX + 'px';
+					cursorDot.style.top = mouseY + 'px';
+				};
 
-				cursorOutline.style.left = outlineX + 'px';
-				cursorOutline.style.top = outlineY + 'px';
+				// Smooth follow for outline with delay
+				function animateOutline() {
+					outlineX += (mouseX - outlineX) * 0.15;
+					outlineY += (mouseY - outlineY) * 0.15;
 
-				requestAnimationFrame(animateOutline);
+					cursorOutline.style.left = outlineX + 'px';
+					cursorOutline.style.top = outlineY + 'px';
+
+					animationId = requestAnimationFrame(animateOutline);
+				}
+
+				const handleMouseOver = (e) => {
+					if (e.target.matches('a, button, input, textarea, select')) {
+						cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+						cursorOutline.style.width = '60px';
+						cursorOutline.style.height = '60px';
+						cursorOutline.style.borderColor = 'rgba(225, 225, 225, 0.8)';
+					}
+				};
+
+				const handleMouseOut = (e) => {
+					if (e.target.matches('a, button, input, textarea, select')) {
+						cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+						cursorOutline.style.width = '40px';
+						cursorOutline.style.height = '40px';
+						cursorOutline.style.borderColor = 'rgba(225, 225, 225, 0.5)';
+					}
+				};
+
+				const handleMouseLeave = () => {
+					cursorDot.style.opacity = '0';
+					cursorOutline.style.opacity = '0';
+				};
+
+				const handleMouseEnter = () => {
+					cursorDot.style.opacity = '1';
+					cursorOutline.style.opacity = '1';
+				};
+
+				// Add event listeners
+				document.addEventListener('mousemove', handleMouseMove);
+				document.addEventListener('mouseover', handleMouseOver);
+				document.addEventListener('mouseout', handleMouseOut);
+				document.addEventListener('mouseleave', handleMouseLeave);
+				document.addEventListener('mouseenter', handleMouseEnter);
+
+				// Start animation
+				animateOutline();
+
+				// Cleanup function for page transitions
+				return () => {
+					if (animationId) cancelAnimationFrame(animationId);
+					document.removeEventListener('mousemove', handleMouseMove);
+					document.removeEventListener('mouseover', handleMouseOver);
+					document.removeEventListener('mouseout', handleMouseOut);
+					document.removeEventListener('mouseleave', handleMouseLeave);
+					document.removeEventListener('mouseenter', handleMouseEnter);
+				};
 			}
-			animateOutline();
 
-			// Hover detection
-			document.addEventListener('mouseover', (e) => {
-				if (e.target.matches('a, button, input, textarea, select')) {
-					cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
-					cursorOutline.style.width = '60px';
-					cursorOutline.style.height = '60px';
-					cursorOutline.style.borderColor = 'rgba(225, 225, 225, 0.8)';
-				}
-			});
+			// Initialize cursor on load and after each page transition
+			let cleanupCursor = initCursor();
 
-			document.addEventListener('mouseout', (e) => {
-				if (e.target.matches('a, button, input, textarea, select')) {
-					cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-					cursorOutline.style.width = '40px';
-					cursorOutline.style.height = '40px';
-					cursorOutline.style.borderColor = 'rgba(225, 225, 225, 0.5)';
-				}
-			});
-
-			// Hide cursor when leaving window
-			document.addEventListener('mouseleave', () => {
-				cursorDot.style.opacity = '0';
-				cursorOutline.style.opacity = '0';
-			});
-
-			document.addEventListener('mouseenter', () => {
-				cursorDot.style.opacity = '1';
-				cursorOutline.style.opacity = '1';
+			document.addEventListener('astro:after-swap', () => {
+				if (cleanupCursor) cleanupCursor();
+				cleanupCursor = initCursor();
 			});
 		</script>
 	</body>
