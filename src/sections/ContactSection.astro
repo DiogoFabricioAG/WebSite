@@ -3,11 +3,11 @@ import BoxLayout from "../layouts/BoxLayout.astro";
 import ContactBox from "../components/ContactBox.astro";
 ---
 
-<section id="contacto">
+<section id="contacto" class="px-4 py-8">
     <BoxLayout>
-      <h2 class="text-5xl font-Jost font-extrabold mb-10">Contacto</h2>
-      <div class="flex mx-auto gap-5 justify-center w-4/5">
-        <div class="w-1/2">
+      <h2 class="text-3xl md:text-5xl font-Jost font-extrabold mb-6 md:mb-10">Contacto</h2>
+      <div class="flex flex-col md:flex-row mx-auto gap-5 justify-center w-full md:w-4/5">
+        <div class="w-full md:w-1/2">
           <ContactBox />
           <div class="bg-white px-1.5 py-1.5 flex justify-end gap-2 text-xs">
             <div class="relative inline-block group">
@@ -29,7 +29,7 @@ import ContactBox from "../components/ContactBox.astro";
             </div>
           </div>
         </div>
-        <div class="w-1/3 self-start">
+        <div class="w-full md:w-1/3 self-start mt-6 md:mt-0">
           <div
             class="border p-4 h-full flex flex-col justify-between bg-black/20 backdrop-blur-sm"
           >

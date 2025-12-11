@@ -2,13 +2,13 @@
 import BoxLayout from "../layouts/BoxLayout.astro";
 ---
 
-<section id="sobre-mi" class="h-[80vh] flex mb-10">
+<section id="sobre-mi" class="h-auto md:h-[80vh] mb-10 px-4">
     <BoxLayout>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
         <div class="space-y-2">
-          <h2 class="text-5xl font-Jost font-extrabold mb-10">Sobre mí</h2>
+          <h2 class="text-3xl md:text-5xl font-Jost font-extrabold mb-6 md:mb-10">Sobre mí</h2>
 
-          <p class="text-lg leading-relaxed">
+          <p class="text-base md:text-lg leading-relaxed">
             Enfocado en crear soluciones web rápidas, accesibles y mantenibles.
             Me gusta trabajar cerca del negocio para alinear la tecnología con
             objetivos reales.
@@ -22,7 +22,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
             >
           </p>
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="about-card border border-white/60 p-4">
             <h3 class="font-semibold mb-1">Frontend</h3>
             <p class="text-sm text-white/80">Astro, React, TypeScript</p>
@@ -39,7 +39,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
             <h3 class="font-semibold mb-1">DevOps</h3>
             <p class="text-sm text-white/80">Docker, CI/CD, AWS</p>
           </div>
-          <div class="about-card border col-span-2 border-white/60 p-4">
+          <div class="about-card border sm:col-span-2 border-white/60 p-4">
             <h3 class="font-semibold mb-1">AI Integration</h3>
             <p class="text-sm text-white/80">OpenAI, Claude, n8n</p>
           </div>

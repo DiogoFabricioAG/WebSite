@@ -5,11 +5,11 @@ import BoxLayout from "../layouts/BoxLayout.astro";
 <section id="bot" class="">
   <BoxLayout>
     
-    <div class="max-w-4xl mx-auto mt-10">
+    <div class="mx-auto mt-10">
       <!-- Chat Container -->
       <div class="border-2 border-white/30 bg-black/40 backdrop-blur-sm  overflow-hidden">
         <!-- Chat Header -->
-        <div class="bg-white/20 border-b border-white/20 px-6 py-4">
+        <div class="sticky top-0 z-10 bg-white/20 border-b border-white/20 px-4 sm:px-6 py-3 sm:py-4 backdrop-blur-sm">
           <div class="flex justify-between items-center gap-3">
             <div class="flex gap-3 items-center">
                 <div class="relative">
@@ -20,46 +20,47 @@ import BoxLayout from "../layouts/BoxLayout.astro";
                     <p class="text-xs text-white/60">Respondiendo como Diogo Abregu</p>
                 </div>
             </div>
-            <div>
-                <a href="/" class="relative inline-block group" title="Volver al inicio">
-                    <div class="button-clean-dark flex items-center gap-2 px-3 py-1.5">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                        </svg>
-                        <span class="text-sm font-medium">Volver</span>
-                    </div>
-                    <span class="shadow-box-dark"></span>
-                </a>
-            </div>
+          <div class="flex items-center gap-2">
+            <button id="reset-convo" class="px-3 py-1.5 text-xs border border-white/40 bg-white/10 hover:bg-white/20 transition" title="Nueva conversación">Nueva conversación</button>
+            <a href="/" class="relative inline-block group" title="Volver al inicio">
+              <div class="button-clean-dark flex items-center gap-2 px-3 py-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                <span class="text-sm font-medium">Volver</span>
+              </div>
+              <span class="shadow-box-dark"></span>
+            </a>
+          </div>
           </div>
         </div>
 
         <!-- Messages Area -->
-        <div id="chat-messages" class="h-[500px] overflow-y-auto p-6 space-y-4">
+        <div id="chat-messages" class="h-[60vh] sm:h-[500px] overflow-y-auto p-4 sm:p-6 space-y-4">
           <!-- Welcome Message -->
           <div class="flex items-start gap-3">
             <img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />
-            <div class="bg-white/10 px-4 py-3 max-w-md">
+            <div class="bg-white/10 px-4 py-3 max-w-[85%] sm:max-w-md">
               <p class="text-sm">¡Hola! 👋 Soy un asistente virtual que responde como Diogo. Pregúntame sobre mi experiencia, proyectos, habilidades o cualquier cosa que quieras saber.</p>
             </div>
           </div>
         </div>
 
         <!-- Input Area -->
-        <div class="border-t border-white/20 p-4 bg-black/20">
-          <form id="chat-form" class="flex gap-3">
+        <div class="border-t border-white/20 p-3 sm:p-4 bg-black/20">
+          <form id="chat-form" class="flex gap-2 sm:gap-3">
             <input
               type="text"
               id="user-input"
               placeholder="Escribe tu pregunta aquí..."
-              class="flex-1 bg-white/5 border border-white/20  px-6 py-3 text-sm outline-none focus:border-white/80 focus:bg-white/10 transition"
+              class="flex-1 bg-white/5 border border-white/20 px-4 sm:px-6 py-2.5 sm:py-3 text-sm outline-none focus:border-white/80 focus:bg-white/10 transition"
               autocomplete="off"
             />
 
             <button
               type="submit"
               id="send-btn"
-              class="px-6 py-3 bg-gradient-to-r button-clean  font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              class="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r button-clean font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Enviar
             </button>
@@ -72,14 +73,25 @@ import BoxLayout from "../layouts/BoxLayout.astro";
 </section>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initBot() {
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const messagesContainer = document.getElementById('chat-messages');
+    const resetBtn = document.getElementById('reset-convo');
 
     // Session management
     let sessionId = localStorage.getItem('bot-session-id') || null;
+    const HISTORY_KEY = 'bot-chat-history';
+
+    // Restore chat history
+    try {
+      const raw = localStorage.getItem(HISTORY_KEY);
+      const history = raw ? JSON.parse(raw) : [];
+      if (Array.isArray(history)) {
+        history.forEach((m) => addMessage(m.text, !!m.isUser));
+      }
+    } catch {}
 
     async function getBotResponse(userMessage) {
       try {
@@ -121,7 +133,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
         ? '<div class="w-8 h-8 bg-white text-black flex items-center justify-center flex-shrink-0"><span class="text-xs font-bold">Tú</span></div>'
         : '<img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />';
       
-      const bubbleClass ='bg-white/10';
+      const bubbleClass = 'bg-white/10 max-w-[85%] sm:max-w-md';
       
       messageDiv.innerHTML = `
         ${avatar}
@@ -140,7 +152,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
       typingDiv.className = 'flex items-start gap-3';
       typingDiv.innerHTML = `
         <img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />
-        <div class="bg-white/10  -none px-4 py-3">
+        <div class="bg-white/10 px-4 py-3 max-w-[70%] sm:max-w-xs">
           <div class="flex gap-1">
             <div class="w-2 h-2 bg-white/60  animate-bounce" style="animation-delay: 0ms"></div>
             <div class="w-2 h-2 bg-white/60  animate-bounce" style="animation-delay: 150ms"></div>
@@ -167,6 +179,13 @@ import BoxLayout from "../layouts/BoxLayout.astro";
 
       // Add user message
       addMessage(message, true);
+      // Persist
+      try {
+        const raw = localStorage.getItem(HISTORY_KEY);
+        const history = raw ? JSON.parse(raw) : [];
+        history.push({ text: message, isUser: true });
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+      } catch {}
       userInput.value = '';
       sendBtn.disabled = true;
 
@@ -179,18 +198,31 @@ import BoxLayout from "../layouts/BoxLayout.astro";
       // Remove typing and add bot response
       removeTypingIndicator();
       addMessage(response, false);
+      // Persist
+      try {
+        const raw = localStorage.getItem(HISTORY_KEY);
+        const history = raw ? JSON.parse(raw) : [];
+        history.push({ text: response, isUser: false });
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+      } catch {}
 
       sendBtn.disabled = false;
       userInput.focus();
     });
 
-    // Add reset session button (optional)
-    const resetBtn = document.createElement('button');
-    resetBtn.textContent = '🔄 Nueva conversación';
-    resetBtn.className = 'text-[10px] text-white/40 hover:text-white/60 transition mt-2';
-    resetBtn.addEventListener('click', () => {
+    // Enter to send; Shift+Enter for newline
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        chatForm.requestSubmit();
+      }
+    });
+
+    // Reset conversation
+    resetBtn?.addEventListener('click', () => {
       if (confirm('¿Quieres iniciar una nueva conversación? Se perderá el historial actual.')) {
         localStorage.removeItem('bot-session-id');
+        localStorage.removeItem(HISTORY_KEY);
         sessionId = null;
         messagesContainer.innerHTML = `
           <div class="flex items-start gap-3">
@@ -202,6 +234,8 @@ import BoxLayout from "../layouts/BoxLayout.astro";
         `;
       }
     });
-    document.querySelector('.text-\\[10px\\]').parentElement.appendChild(resetBtn);
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', initBot);
+  document.addEventListener('astro:after-swap', initBot);
 </script>
