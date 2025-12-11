@@ -10,7 +10,7 @@ const projects = getAllProjects();
       <h2 class="text-5xl font-Jost font-extrabold mb-10">Proyectos</h2>
 
       <div class="grid grid-cols-3 justify-center gap-5 mx-auto">
-        {projects.slice(0, 5).map((project) => (
+        {projects.slice(0, 6).map((project) => (
           <Projectsbox
             id={project.id}
             title={project.title}
@@ -29,28 +29,6 @@ const projects = getAllProjects();
           />
         ))}
 
-        <div class="flex flex-col">
-          <div
-            class="bg-white border-2 px-2 border-white w-1/5 text-xs text-black"
-          >
-            + 8 Más
-          </div>
-
-          <div
-            class="border border-white font-medium bg-white/20 flex justify-center w-full items-center h-full px-3 py-2"
-          >
-            <h3 class="text-2xl font-bold text-center">¿Más Proyectos?</h3>
-          </div>
-
-          <div
-            class="px-1.5 py-1.5 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]"
-          >
-            <div class="relative inline-block group">
-              <button class="button-clean-dark">Ir a Proyectos</button>
-              <span class="shadow-box-dark"></span>
-            </div>
-          </div>
-        </div>
       </div>
     </BoxLayout>
   </section>

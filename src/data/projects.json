@@ -60,103 +60,122 @@
     ],
     "images": []
   },
+
   {
-    "id": "project-portfolio-personal",
-    "title": "Portfolio Personal",
-    "description": "Sitio web personal construido con Astro, enfocado en rendimiento, SEO y diseño minimalista. Incluye blog integrado y sección de proyectos.",
-    "finishDate": "03/2025",
+  "id": "project-ensigna",
+  "title": "Ensigna - Inversiones Sociales",
+  "description": "Plataforma para promover inversiones en proyectos de impacto social. ",
+  "finishDate": "2024",
+  "status": "mvp",
+  "role": "Full Stack Developer",
+  "icon": "/icons/nextjs.svg",
+  "liveUrl": null,
+  "repoUrl": "https://github.com/AdalAr1475/Inversiones-Interbank",
+  "imagesUrl": null,
+  "features": [
+    "Publicación de proyectos con detalle y metas",
+    "Recepción de inversiones/donaciones de terceros",
+    "Gestión de participación de acreedores"
+  ],
+  "metrics": [
+    { "label": "Frontend", "value": "Next.js" },
+    { "label": "Backend", "value": "FastAPI" },
+    { "label": "DB", "value": "PostgreSQL" }
+  ],
+  "tags": ["Impacto social", "Inversiones", "Donaciones", "Marketplace"],
+  "techs": [
+    { "name": "Next.js", "icon": "/icons/nextjs.svg" },
+    { "name": "FastAPI", "icon": "/icons/fastapi.svg" },
+    { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" }
+  ],
+  "images": []
+},
+{
+    "id": "project-leaduni-webpage",
+    "title": "Lead UNI - Web Oficial",
+    "description": "Página web institucional de Lead UNI, comunidad estudiantil de liderazgo de la Universidad Nacional de Ingeniería. Sitio informativo con CI/CD automatizado.",
+    "finishDate": "2024",
     "status": "done",
-    "role": "Solo Developer",
-    "icon": "/logo-portfolio.png",
-    "liveUrl": "https://miportfolio.dev",
-    "repoUrl": "https://github.com/usuario/portfolio",
+    "role": "Frontend Developer",
+    "icon": "/icons/react.svg",
+    "liveUrl": "https://www.leaduni.page",
+    "repoUrl": "https://github.com/leaduni/web-page",
     "imagesUrl": null,
     "features": [
-      "SEO optimizado con meta tags dinámicos",
-      "Blog con Markdown y syntax highlighting",
-      "Lightbox para galería de proyectos"
+      "Diseño responsivo y moderno",
+      "CI/CD con GitHub Actions",
+      "Despliegue automatizado en AWS"
     ],
     "metrics": [
-      { "label": "Lighthouse", "value": "100" },
-      { "label": "First Paint", "value": "0.8s" },
-      { "label": "Bundle size", "value": "42kb" }
+      { "label": "Deploy", "value": "AWS" },
+      { "label": "CI/CD", "value": "GitHub Actions" },
+      { "label": "Framework", "value": "React" }
     ],
-    "tags": ["Portfolio", "Blog", "SSG"],
-    "techs": [
-      { "name": "Astro", "icon": "/icons/astro.svg" },
-      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
-      { "name": "TypeScript", "icon": "/icons/typescript.svg" }
-    ],
-    "images": [
-      "/projects/portfolio/hero.png",
-      "/projects/portfolio/blog.png",
-      "/projects/portfolio/projects.png"
-    ]
-  },
-  {
-    "id": "project-task-manager",
-    "title": "Gestor de Tareas Colaborativo",
-    "description": "Aplicación de gestión de tareas en tiempo real con autenticación, tableros Kanban, asignación de miembros y notificaciones.",
-    "finishDate": "06/2024",
-    "status": "mvp",
-    "role": "Backend Developer",
-    "icon": "/project-logos/task-manager.png",
-    "liveUrl": null,
-    "repoUrl": "https://github.com/usuario/task-manager",
-    "imagesUrl": null,
-    "features": [
-      "Tableros Kanban con drag & drop",
-      "Autenticación JWT con refresh tokens",
-      "Notificaciones WebSocket en tiempo real"
-    ],
-    "metrics": [
-      { "label": "Usuarios beta", "value": "85" },
-      { "label": "Tareas creadas", "value": "1.3k" },
-      { "label": "Uptime", "value": "98.5%" }
-    ],
-    "tags": ["Productivity", "Real-time", "Kanban"],
+    "tags": ["Institucional", "Comunidad", "Liderazgo", "UNI"],
     "techs": [
       { "name": "React", "icon": "/icons/react.svg" },
-      { "name": "Express.js", "icon": "/icons/expressjs.svg" },
-      { "name": "Socket.io", "icon": "/icons/socketio.svg" },
-      { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" }
+      { "name": "AWS", "icon": "/icons/aws.svg" },
+      { "name": "GitHub", "icon": "/icons/github.svg" }
     ],
-    "images": [
-      "/projects/task-manager/board.png",
-      "/projects/task-manager/login.png"
-    ]
+    "images": []
   },
   {
-    "id": "project-ai-chatbot",
-    "title": "Chatbot con IA",
-    "description": "Asistente conversacional basado en OpenAI GPT-4, integrado en sitio web con UI personalizada y historial de conversaciones.",
-    "finishDate": "11/2024",
-    "status": "paused",
+    "id": "project-capictive",
+    "title": "Capictive",
+    "description": "Plataforma de IA que asiste a ciudadanos en decisiones electorales durante elecciones presidenciales. ",
+    "finishDate": "2024",
+    "status": "done",
     "role": "Full Stack Developer",
-    "icon": "/project-logos/ai-chatbot.png",
-    "liveUrl": "https://chatbot-demo.com",
-    "repoUrl": null,
+    "icon": "/icons/react.svg",
+    "liveUrl": "https://www.capictive.app",
+    "repoUrl": "https://github.com/DiogoFabricioAG/Capictive-Web",
     "imagesUrl": null,
     "features": [
-      "Integración con OpenAI GPT-4",
-      "Historial persistente de conversaciones",
-      "UI con animaciones de typing"
+      "Análisis político con IA conversacional",
+      "Síntesis de voz con ElevenLabs API",
+      "Bot de Telegram para consultas ciudadanas"
     ],
     "metrics": [
-      { "label": "Conversaciones", "value": "450" },
-      { "label": "Tiempo respuesta", "value": "1.2s" },
-      { "label": "Satisfacción", "value": "4.6/5" }
+      { "label": "Deploy", "value": "Vercel" },
+      { "label": "Edge", "value": "Cloudflare" },
+      { "label": "Voice AI", "value": "ElevenLabs" }
     ],
-    "tags": ["AI", "Chatbot", "OpenAI", "NLP"],
+    "tags": ["AI", "Política", "Chatbot", "Voice AI", "Telegram"],
     "techs": [
-      { "name": "Next.js", "icon": "/icons/nextjs.svg" },
-      { "name": "OpenAI API", "icon": "/icons/openai.svg" },
-      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" },
-      { "name": "Supabase", "icon": "/icons/supabase.svg" }
+      { "name": "React", "icon": "/icons/react.svg" },
+      { "name": "Supabase", "icon": "/icons/supabase.svg" },
+      { "name": "Cloudflare", "icon": "/icons/aws.svg" },
+      { "name": "Telegram", "icon": "/icons/bot.svg" }
     ],
-    "images": [
-      "/projects/chatbot/chat.png",
-      "/projects/chatbot/history.png"
-    ]
+    "images": []
+  },
+  {
+    "id": "project-connect2",
+    "title": "connect2 - v.0.1",
+    "description": "Sistema inteligente de conexión para eventos que empareja asistentes según intereses, objetivos y perfil profesional. Optimiza el networking mediante algoritmos de matching.",
+    "finishDate": "2024",
+    "status": "done",
+    "role": "Full Stack Developer",
+    "icon": "/icons/react.svg",
+    "liveUrl": "https://connect2v.vercel.app/",
+    "repoUrl": "https://github.com/DiogoFabricioAG/connect2",
+    "imagesUrl": null,
+    "features": [
+      "Matching automático por intereses afines",
+      "Sistema de registro y perfiles de asistentes",
+      "Dashboard de conexiones recomendadas"
+    ],
+    "metrics": [
+      { "label": "Deploy", "value": "Vercel" },
+      { "label": "Database", "value": "Supabase" },
+      { "label": "Stack", "value": "React" }
+    ],
+    "tags": ["Networking", "Eventos", "Matching", "SaaS"],
+    "techs": [
+      { "name": "React", "icon": "/icons/react.svg" },
+      { "name": "Supabase", "icon": "/icons/supabase.svg" },
+      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" }
+    ],
+    "images": []
   }
 ]

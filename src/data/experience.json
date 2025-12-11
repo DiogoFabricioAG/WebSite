@@ -10,14 +10,11 @@
 		"description": "Diseñé y desarrollé aplicaciones web modulares enfocadas en rendimiento y mantenibilidad, integrando APIs de terceros y estableciendo flujos de entrega continua simples para reducir el tiempo de salida a producción.",
 		"points": [
 			"Apps web rápidas y modulares",
-			"Integración con APIs externas",
-			"Entrega continua simple"
+			"Integración con APIs externas"
 		],
 		"pointsColored": [
 			{ "text": "Apps web rápidas y modulares" },
-			{ "text": "Integración con APIs externas" },
-			{ "text": "Entrega continua simple" }
-		],
+			{ "text": "Integración con APIs externas" }		],
 		"techs": [
 			{ "name": "Astro", "icon": "/icons/astro.svg" },
 			{ "name": "Vue", "icon": "/icons/vue.svg" },
@@ -49,12 +46,10 @@
 		"description": "Apoyé tareas de desarrollo mediante scripts de soporte, automatizando rutinas y mejorando la organización de repositorios para aumentar la eficiencia del equipo.",
 		"points": [
 			"Scripts de soporte",
-			"Tareas rutinarias automatizadas",
 			"Mejor organización de repos"
 		],
 		"pointsColored": [
 			{ "text": "Scripts de soporte" },
-			{ "text": "Tareas rutinarias automatizadas" },
 			{ "text": "Ecosistema Google Cloud" }
 		],
 		"techs": [
@@ -82,12 +77,10 @@
 		"description": "Dirigí iniciativas del pilar Excelencia Académica, definiendo roadmap y brindando soporte a proyectos estudiantiles, asegurando alineación con objetivos y ejecución ordenada.",
 		"points": [
 			"Gestión de iniciativas",
-			"Definición de roadmap",
 			"Soporte a proyectos estudiantiles"
 		],
 		"pointsColored": [
 			{ "text": "Gestión de iniciativas" },
-			{ "text": "Definición de roadmap" },
 			{ "text": "Soporte a proyectos estudiantiles" }
 		],
 		"techs": [
@@ -95,7 +88,7 @@
 			{ "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
 			{ "name": "Railway", "icon": "/icons/railway.svg" },
 			{ "name": "GitHub Actions", "icon": "/icons/actions.png" },
-			{ "name": "Strapi", "icon": "/icons/strapi.svg" }
+			{ "name": "Payload", "icon": "/icons/payload.svg" }
 
 		],
 		"images": [
@@ -106,6 +99,38 @@
 		"metrics": [
 			{ "label": "Sistemas Soportados", "value": "5" },
 			{ "label": "Proyectos Liderados", "value": "3+" }
+		]
+	},
+	{
+		"id": "Programming Tools Intern",
+		"title": "Programming Tools Intern",
+		"company": "Growth Rockstar",
+		"location": "Buenos Aires",
+		"durationDate": "11/25 - ACT",
+		"icon": "/experience-logos/logo-gr.png",
+		"companyUrl": null,
+		"description": "Dirigí iniciativas del pilar Excelencia Académica, definiendo roadmap y brindando soporte a proyectos estudiantiles, asegurando alineación con objetivos y ejecución ordenada.",
+		"points": [
+			"Automatizaciones de Procesos",
+			"Virtualización de Entornos"
+		],
+		"pointsColored": [
+			{ "text": "Automatizaciones de Procesos", "color": "#a2b13a" },
+			{ "text": "Virtualización de Entornos" }
+		],
+		"techs": [
+			{ "name": "n8n", "icon": "/icons/n8n.svg" },
+			{ "name": "Google Cloud", "icon": "/icons/google-cloud.svg" }
+
+		],
+		"images": [
+			"/experience-logos/lead.svg",
+			"/icons/typescript.svg",
+			"/icons/aws.svg"
+		],
+		"metrics": [
+			{ "label": "Sistemas Soportados", "value": "2" },
+			{ "label": "Proyectos Liderados", "value": "1" }
 		]
 	}
 ]
