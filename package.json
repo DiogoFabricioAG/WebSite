@@ -18,5 +18,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.13"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.6.0"
   }
 }
