@@ -4,29 +4,13 @@
 
 @import "tailwindcss";
 
-@keyframes textPulse {
-  0%,
-  100% {
-    filter: brightness(1);
-    text-shadow: 0 0 0px rgba(255, 0, 0, 0);
-  }
-  50% {
-    filter: brightness(1.25);
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.35);
-  }
-}
-
-.animate-text-pulse {
-  animation: textPulse 2.5s ease-in-out infinite;
-}
-
 @keyframes blurPulse {
   0%,
   100% {
     filter: blur(0px);
   }
   50% {
-    filter: blur(2px);
+    filter: blur(3px);
   }
 }
 
