@@ -4,18 +4,13 @@
 
 @import "tailwindcss";
 
-@keyframes blurPulse {
-  0%,
-  100% {
-    filter: blur(0px);
-  }
-  50% {
-    filter: blur(3px);
-  }
+.animate-blur-pulse {
+  filter: grayscale(75%);
+  transition: filter 300ms ease-in-out;
 }
 
-.animate-blur-pulse {
-  animation: blurPulse 2.5s ease-in-out infinite;
+.animate-blur-pulse:hover {
+  filter: grayscale(25%);
 }
 
 /* Body margin responsive: 10px 100px on md+, 10px 50px below md */

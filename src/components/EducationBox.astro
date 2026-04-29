@@ -11,7 +11,7 @@ const { institution, program, logo, years } = Astro.props;
 
 <div class="education-card hover:shadow duration-150 hover:shadow-white/50 relative flex flex-col w-full max-w-[320px] mx-auto cursor-pointer group" style="aspect-ratio: 2/3;">
   <!-- Contenedor principal de la tarjeta -->
-  <div class="relative bg-black/70 border-1 p-2 border-white flex flex-col h-full overflow-hidden transition-all duration-500 ease-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
+  <div class="relative bg-black/70 border-1 pt-6 border-white flex flex-col h-full overflow-hidden transition-all duration-500 ease-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
     
     <!-- Etiqueta superior con los años (opcional) -->
     {years && (
@@ -21,24 +21,25 @@ const { institution, program, logo, years } = Astro.props;
     )}
  
     <!-- Contenido -->
-    <div class="flex-1 px-6 pt-28 pb-4 flex flex-col justify-between relative z-10 w-full h-full">
+    <div class="flex-1 px-6 pt-8 pb-4 flex flex-col justify-between relative z-10 w-full h-full">
       
       <!-- Texto placeholder -->
       <div class="w-full text-white opacity-80 mx-auto px-2 mt-2">
-        <p class="text-xs font-light leading-relaxed line-clamp-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-            
-        </p>
+        <div class="relative overflow-hidden transition-all duration-500 ease-in-out max-h-[60px] group-[.is-center-card]/edu:max-h-[120px]">
+          <p class="text-xs font-light leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+          </p>
+        </div>
       </div>
 
       <!-- Sección del logo y la universidad (Pegado abajo) -->
-      <div class="flex flex-row items-center justify-start gap-4 mb-4 mt-auto">
+      <div class="flex flex-row items-center justify-start gap-4 mt-auto">
         <!-- Contenedor del logo sin rombo -->
         <div class="relative flex-shrink-0 w-30 h-30 flex items-center justify-center p-1">
           <img 
             src={logo} 
             alt={institution} 
-            class="w-full h-full object-contain relative z-10"
+            class="w-full h-full object-contain relative z-10 transition-all duration-500 ease-in-out grayscale group-[.is-center-card]/edu:grayscale-0 group-hover/edu:grayscale-0"
           />
         </div>
         
@@ -53,7 +54,7 @@ const { institution, program, logo, years } = Astro.props;
   </div>
   <!-- Etiqueta blanca de la carrera -->
     <div class="py-2 bg-white w-full flex flex-col justify-center items-center mt-auto border-t-[3px] border-white">
-      <p class="text-sm  text-black whitespace-pre-wrap  text-center">
+      <p class="text-xs  text-black whitespace-pre-wrap  text-center">
         {program}
       </p>
     </div>

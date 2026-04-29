@@ -9,7 +9,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
     <div id="education-grid" class="flex flex-col lg:flex-row justify-center items-center gap-8 mx-auto lg:h-[500px]">
       
       <!-- Card 1 -->
-      <div class="edu-wrap transition-all duration-500 ease-in-out cursor-pointer lg:w-[320px] transform lg:scale-[0.90] lg:-translate-y-12 opacity-80 hover:opacity-100" style="order: 1">
+      <div class="edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] transform lg:scale-[0.85] lg:-translate-y-16 opacity-80 hover:opacity-100" style="order: 1">
         <EducationBox
           institution="Pontificia\nUniversidad\nCatólica de Chile"
           program="Software Engineering"
@@ -19,7 +19,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
       </div>
 
       <!-- Card 2 (Center Default) -->
-      <div class="edu-wrap transition-all duration-500 ease-in-out cursor-pointer lg:w-[320px] is-center-card transform lg:scale-110 lg:translate-y-4 z-10" style="order: 2">
+      <div class="edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] is-center-card transform lg:scale-[1.15] lg:translate-y-4 z-10" style="order: 2">
         <EducationBox
           institution="Universidad\nNacional de\nIngeniería"
           program="System Engineering"
@@ -29,11 +29,11 @@ import BoxLayout from "../layouts/BoxLayout.astro";
       </div>
 
       <!-- Card 3 -->
-      <div class="edu-wrap transition-all duration-500 ease-in-out cursor-pointer lg:w-[320px] transform lg:scale-[0.90] lg:-translate-y-12 opacity-80 hover:opacity-100" style="order: 3">
+      <div class="edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] transform lg:scale-[0.85] lg:-translate-y-16 opacity-80 hover:opacity-100" style="order: 3">
         <EducationBox
-          institution="AWS\nre/Star"
+          institution="AWS\nre/Start"
           program="Cloud Concepts"
-          logo="/experience-logos/manantial.png"
+          logo="/experience-logos/aws-logo.png"
           years="2026"
         />
       </div>
@@ -65,11 +65,11 @@ import BoxLayout from "../layouts/BoxLayout.astro";
           (card as HTMLElement).style.order = currentCenterOrder;
 
           // 2. Intercambio las clases de la tarjeta central (escala y elevación)
-          centerCard?.classList.remove("is-center-card", "lg:scale-110", "lg:translate-y-4", "z-10");
-          centerCard?.classList.add("lg:scale-[0.90]", "lg:-translate-y-12", "opacity-80", "hover:opacity-100");
+          centerCard?.classList.remove("is-center-card", "lg:scale-[1.15]", "lg:translate-y-4", "z-10");
+          centerCard?.classList.add("lg:scale-[0.85]", "lg:-translate-y-16", "opacity-80", "hover:opacity-100");
 
-          card.classList.remove("lg:scale-[0.90]", "lg:-translate-y-12", "opacity-80", "hover:opacity-100");
-          card.classList.add("is-center-card", "lg:scale-110", "lg:translate-y-4", "z-10");
+          card.classList.remove("lg:scale-[0.85]", "lg:-translate-y-16", "opacity-80", "hover:opacity-100");
+          card.classList.add("is-center-card", "lg:scale-[1.15]", "lg:translate-y-4", "z-10");
 
           // 3. Establezco la nueva tarjeta central
           centerCard = card;
