@@ -5,12 +5,12 @@
 @import "tailwindcss";
 
 .animate-blur-pulse {
-  filter: grayscale(75%);
+  filter: grayscale(90%);
   transition: filter 300ms ease-in-out;
 }
 
 .animate-blur-pulse:hover {
-  filter: grayscale(25%);
+  filter: grayscale(30%);
 }
 
 /* Body margin responsive: 10px 100px on md+, 10px 50px below md */
@@ -36,6 +36,7 @@ body {
 @theme {
   --font-Jost: "Jost", sans-serif;
   --font-EagleLake: "Eagle Lake", serif;
+  --color-premium: #ba9a74;
 }
 
 .nav-li {

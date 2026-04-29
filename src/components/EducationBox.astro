@@ -9,19 +9,19 @@ interface Props {
 const { institution, program, logo, years } = Astro.props;
 ---
 
-<div class="education-card hover:shadow duration-150 hover:shadow-white/50 relative flex flex-col w-full max-w-[320px] mx-auto cursor-pointer group" style="aspect-ratio: 2/3;">
+<div class="education-card hover:shadow duration-500 hover:shadow-white/50 relative flex flex-col w-full max-w-[320px] mx-auto cursor-pointer group" style="aspect-ratio: 2/3;">
   <!-- Contenedor principal de la tarjeta -->
-  <div class="relative bg-black/70 border-1 pt-6 border-white flex flex-col h-full overflow-hidden transition-all duration-500 ease-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
+  <div class="relative bg-black/50 border-1 pt-6 border-white/12 flex flex-col h-full overflow-hidden transition-all duration-500 ease-in-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
     
     <!-- Etiqueta superior con los años (opcional) -->
     {years && (
-      <div class="text-center text-white text-xs px-1 py-0.5 ">
+      <div class="text-end text-white text-[10px] px-3 py-0.5 ">
         {years}
       </div>
     )}
  
     <!-- Contenido -->
-    <div class="flex-1 px-6 pt-8 pb-4 flex flex-col justify-between relative z-10 w-full h-full">
+    <div class="flex-1 px-3 pt-8 pb-4 flex flex-col justify-between relative z-10 w-full h-full">
       
       <!-- Texto placeholder -->
       <div class="w-full text-white opacity-80 mx-auto px-2 mt-2">
@@ -44,7 +44,7 @@ const { institution, program, logo, years } = Astro.props;
         </div>
         
         <!-- Nombre de la institución -->
-        <h3 class="text-white text-base font-light  leading-tight text-left whitespace-pre-line tracking-wide">
+        <h3 class="text-white text-lg  font-light leading-tight text-left whitespace-pre-line tracking-wide">
           {institution}
         </h3>
       </div>
@@ -53,7 +53,7 @@ const { institution, program, logo, years } = Astro.props;
     
   </div>
   <!-- Etiqueta blanca de la carrera -->
-    <div class="py-2 bg-white w-full flex flex-col justify-center items-center mt-auto border-t-[3px] border-white">
+    <div class="py-2 bg-white w-full  flex flex-col justify-center items-center mt-auto  ">
       <p class="text-xs  text-black whitespace-pre-wrap  text-center">
         {program}
       </p>
