@@ -1,42 +1,35 @@
 ---
 import EducationBox from "../components/EducationBox.astro";
 import BoxLayout from "../layouts/BoxLayout.astro";
+import educationData from "../data/education.json";
 ---
 
 <section id="educacion" class="h-auto md:min-h-screen px-4 py-8">
   <BoxLayout>
-    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-20">Educación</h2>
+    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8">Educación</h2>
     <div id="education-grid" class="flex flex-col lg:flex-row justify-center items-center gap-8 mx-auto lg:h-[500px]">
       
-      <!-- Card 1 -->
-      <div class="edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] transform lg:scale-[0.85] lg:-translate-y-16 opacity-80 hover:opacity-100" style="order: 1">
-        <EducationBox
-          institution="Pontificia\nUniversidad\nCatólica de Chile"
-          program="Software Engineering"
-          logo="/experience-logos/uc.png"
-          years="2025"
-        />
-      </div>
+      {educationData.map((edu, index) => {
+        const isCenter = index === 1;
+        const classes = isCenter
+          ? "is-center-card transform lg:scale-[1.15] lg:translate-y-4 z-10"
+          : "transform lg:scale-[0.85] lg:-translate-y-16 opacity-80 hover:opacity-100";
 
-      <!-- Card 2 (Center Default) -->
-      <div class="edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] is-center-card transform lg:scale-[1.15] lg:translate-y-4 z-10" style="order: 2">
-        <EducationBox
-          institution="Universidad\nNacional de\nIngeniería"
-          program="System Engineering"
-          logo="/experience-logos/uni.png"
-          years="2022 - Present"
-        />
-      </div>
-
-      <!-- Card 3 -->
-      <div class="edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] transform lg:scale-[0.85] lg:-translate-y-16 opacity-80 hover:opacity-100" style="order: 3">
-        <EducationBox
-          institution="AWS\nre/Start"
-          program="Cloud Concepts"
-          logo="/experience-logos/aws-logo.png"
-          years="2026"
-        />
-      </div>
+        return (
+          <div 
+            class={`edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] ${classes}`} 
+            style={`order: ${index + 1}`}
+          >
+            <EducationBox
+              institution={edu.institution}
+              program={edu.program}
+              logo={edu.logo}
+              years={edu.years}
+              description={edu.description}
+            />
+          </div>
+        );
+      })}
       
     </div>
   </BoxLayout>

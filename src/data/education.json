@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "institution": "Pontificia\nUniversidad\nCatólica de Chile",
+    "program": "Software Engineering",
+    "logo": "/experience-logos/uc.png",
+    "years": "2025",
+    "description": "**Cursos clave**: Arquitectura de Software, Inteligencia Artificial e Innovación y Emprendimiento.\n\n**Proyecto destacado**: Sistema de arrendamiento basado en eventos con MQTT, mejorando la eficiencia del proceso en 25%."
+  },
+  {
+    "id": 2,
+    "institution": "Universidad\nNacional de\nIngeniería",
+    "program": "Systems Engineering",
+    "logo": "/experience-logos/uni.png",
+    "years": "2022 - Present",
+    "description": "**Cursos clave**: Diseño de Base de Datos, Sistemas Integrados Empresariales y Analítica de Datos.\n\n**Proyecto destacado**: Sistema de tickets para el comedor universitario, optimizando las reservas en 30%."
+  },
+  {
+    "id": 3,
+    "institution": "AWS\nre/Start",
+    "program": "Cloud Concepts",
+    "logo": "/experience-logos/aws-logo.png",
+    "years": "2026",
+    "description": "**Servicios aprendidos**: EC2, S3, RDS, Lambda y CloudWatch.\n\n**Proyecto destacado**: Despliegue de una aplicación e-commerce en AWS con buen rendimiento bajo carga simulada."
+  }
+]

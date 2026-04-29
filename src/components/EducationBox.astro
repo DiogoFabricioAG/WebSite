@@ -4,18 +4,27 @@ interface Props {
   program: string;
   logo: string;
   years?: string;
+  description: string;
 }
 
-const { institution, program, logo, years } = Astro.props;
+const { institution, program, logo, years, description } = Astro.props;
+
+function parseDescription(desc: string): string {
+  return desc
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+}
+
+const parsedDescription = parseDescription(description);
 ---
 
-<div class="education-card hover:shadow duration-500 hover:shadow-white/50 relative flex flex-col w-full max-w-[320px] mx-auto cursor-pointer group" style="aspect-ratio: 2/3;">
+<div class="education-card hover:shadow duration-500 hover:shadow-white/50 relative flex flex-col w-full max-w-[320px] mx-auto cursor-pointer group" >
   <!-- Contenedor principal de la tarjeta -->
-  <div class="relative bg-black/50 border-1 pt-6 border-white/12 flex flex-col h-full overflow-hidden transition-all duration-500 ease-in-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
+  <div class="relative bg-black/50 border-1  border-white/12 flex flex-col overflow-hidden transition-all duration-500 ease-in-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
     
     <!-- Etiqueta superior con los años (opcional) -->
     {years && (
-      <div class="text-end text-white text-[10px] px-3 py-0.5 ">
+      <div class=" bg-white flex ml-auto text-black w-fit mr-0 text-[10px] px-2 py-0.5 ">
         {years}
       </div>
     )}
@@ -25,9 +34,8 @@ const { institution, program, logo, years } = Astro.props;
       
       <!-- Texto placeholder -->
       <div class="w-full text-white opacity-80 mx-auto px-2 mt-2">
-        <div class="relative overflow-hidden transition-all duration-500 ease-in-out max-h-[60px] group-[.is-center-card]/edu:max-h-[120px]">
-          <p class="text-xs font-light leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        <div class="relative overflow-hidden transition-all duration-500 ease-in-out max-h-[60px] group-[.is-center-card]/edu:max-h-[240px]">
+          <p class="text-xs leading-relaxed" set:html={parsedDescription}>
           </p>
         </div>
       </div>
@@ -53,9 +61,9 @@ const { institution, program, logo, years } = Astro.props;
     
   </div>
   <!-- Etiqueta blanca de la carrera -->
-    <div class="py-2 bg-white w-full  flex flex-col justify-center items-center mt-auto  ">
-      <p class="text-xs  text-black whitespace-pre-wrap  text-center">
-        {program}
-      </p>
-    </div>
+  <div class="py-2 bg-white w-full flex flex-col justify-center items-center  ">
+    <p class="text-xs  text-black whitespace-pre-wrap  text-center">
+      {program}
+    </p>
+  </div>
 </div>
