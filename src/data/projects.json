@@ -1,181 +1,222 @@
 [
   {
-    "id": "project-univirtual-clon",
-    "title": "Clon de Univirtual - UNI",
-    "description": "Plataforma educativa completa tipo Moodle para la Universidad Nacional de Ingeniería. Sistema LMS con gestión de cursos, tareas, calificaciones, foros y recursos multimedia.",
-    "finishDate": "2024",
-    "status": "done",
+    "id": "print-system",
+    "title": "AI Business Control System",
+    "description": "Sistema inteligente para gestión financiera y análisis de negocio mediante IA, que centraliza ventas, gastos y relaciones con clientes y proveedores.",
+    "problem": "El negocio gestionaba su información financiera en Excel, sin estructura analítica ni visibilidad clara, lo que hacía difícil entender el estado del negocio y realizar comparaciones o proyecciones.",
+    "solution": "Desarrollé un sistema web con backend serverless que centraliza datos de ventas y gastos, integrando un chatbot con IA capaz de interpretar la información del negocio y responder consultas complejas en lenguaje natural.",
+    "impact": "Transformó la gestión del negocio al permitir consultas instantáneas como análisis trimestrales y generación de insights, reduciendo la dependencia de análisis manual y mejorando la toma de decisiones.",
     "role": "Full Stack Developer",
-    "icon": "/icons/django.svg",
-    "liveUrl": "https://univirtualplatform.netlify.app/",
-    "repoUrl": "https://github.com/DiogoFabricioAG/UNIVIRTUAL-CLON",
-    "imagesUrl": null,
+    "status": "done",
+    "finishDate": "2026",
+    "icon": "project-logos/print-system.png",
+    "liveUrl": null,
+    "repoUrl": "https://github.com/DiogoFabricioAG/print-system",
+    "demoUrl": "https://youtu.be/vDAOU0AZNJ8",
     "features": [
-      "Sistema completo de gestión de cursos y estudiantes",
-      "Módulo de tareas y calificaciones automatizado",
-      "Foros de discusión y recursos multimedia"
+      "Registro estructurado de ventas, gastos, clientes y proveedores",
+      "Chatbot con acceso contextual a datos del negocio",
+      "Consultas en lenguaje natural sobre métricas financieras",
+      "Generación automática de gráficos para análisis"
+    ],
+    "architecture": [
+      "Frontend con Astro + Tailwind CSS",
+      "API serverless con Cloudflare Workers",
+      "Base de datos D1 (SQLite serverless)",
+      "Integración con LangChain para orquestación del chatbot",
+      "Uso de modelos GPT OSS para procesamiento de consultas",
+      "Arquitectura basada en tools para acceso controlado a datos"
     ],
     "metrics": [
-      { "label": "Frontend", "value": "Netlify" },
-      { "label": "DB", "value": "SQLite" },
-      { "label": "API", "value": "REST" }
+      {
+        "label": "Usuarios activos",
+        "value": "2 (uso real)"
+      },
+      {
+        "label": "Consultas complejas",
+        "value": "Automatizadas"
+      },
+      {
+        "label": "Tiempo de análisis",
+        "value": "De minutos → segundos"
+      }
     ],
-    "tags": ["LMS", "Educación", "Universidad", "Moodle"],
+    "tags": [
+      "AI",
+      "Business Intelligence",
+      "Automation",
+      "Chatbot"
+    ],
     "techs": [
-      { "name": "Django", "icon": "/icons/django.svg" },
-      { "name": "Vue.js", "icon": "/icons/vue.svg" },
-      { "name": "Tailwind ", "icon": "/icons/tailwind.svg" },
-      { "name": "SQLite", "icon": "/icons/sqlite.svg" },
-      { "name": "Netlify", "icon": "/icons/netlify.svg" }
-    ],
-    "images": []
-  },
-  {
-    "id": "project-contabilidad-gamarra",
-    "title": "Sistema de Contabilidad",
-    "description": "Plataforma de gestión financiera para negocio familiar. Control de ingresos, egresos, clientes y reportes contables en tiempo real.",
-    "finishDate": "2024",
-    "status": "done",
-    "role": "Full Stack Developer",
-    "icon": "/icons/vue.svg",
-    "liveUrl": "https://trab-gamr-front123.netlify.app/",
-    "repoUrl": "https://github.com/DiogoFabricioAG/TrabajoGamarra-Frontend",
-    "imagesUrl": null,
-    "features": [
-      "Gestión de clientes y proveedores",
-      "Control de ingresos y egresos",
-      "Reportes financieros exportables"
-    ],
-    "metrics": [
-      { "label": "Deploy", "value": "Netlify" },
-      { "label": "Database", "value": "NeonDB" },
-      { "label": "Stack", "value": "Vue" }
-    ],
-    "tags": ["FinTech", "Contabilidad", "PYME", "Gestión"],
-    "techs": [
-      { "name": "Vue.js", "icon": "/icons/vue.svg" },
-      { "name": "Tailwind ", "icon": "/icons/tailwind.svg" },
-      { "name": "Neon", "icon": "/icons/neon.svg" },
-      { "name": "Netlify", "icon": "/icons/netlify.svg" }
-    ],
-    "images": []
-  },
+      {
+        "name": "Astro",
+        "icon": "/icons/astro.svg"
+      },
+      {
+        "name": "LangChain",
+        "icon": "/icons/langchain.png"
+      },
 
-  {
-  "id": "project-ensigna",
-  "title": "Ensigna - Inversiones Sociales",
-  "description": "Plataforma para promover inversiones en proyectos de impacto social. ",
-  "finishDate": "2024",
-  "status": "mvp",
-  "role": "Full Stack Developer",
-  "icon": "/icons/nextjs.svg",
-  "liveUrl": null,
-  "repoUrl": "https://github.com/AdalAr1475/Inversiones-Interbank",
-  "imagesUrl": null,
-  "features": [
-    "Publicación de proyectos con detalle y metas",
-    "Recepción de inversiones/donaciones de terceros",
-    "Gestión de participación de acreedores"
-  ],
-  "metrics": [
-    { "label": "Frontend", "value": "Next.js" },
-    { "label": "Backend", "value": "FastAPI" },
-    { "label": "DB", "value": "PostgreSQL" }
-  ],
-  "tags": ["Impacto social", "Inversiones", "Donaciones", "Marketplace"],
-  "techs": [
-    { "name": "Next.js", "icon": "/icons/nextjs.svg" },
-    { "name": "FastAPI", "icon": "/icons/fastapi.svg" },
-    { "name": "PostgreSQL", "icon": "/icons/postgresql.svg" }
-  ],
-  "images": []
-},
-{
-    "id": "project-leaduni-webpage",
-    "title": "Lead UNI - Web Oficial",
-    "description": "Página web institucional de Lead UNI, comunidad estudiantil de liderazgo de la Universidad Nacional de Ingeniería. Sitio informativo con CI/CD automatizado.",
-    "finishDate": "2024",
-    "status": "done",
-    "role": "Frontend Developer",
-    "icon": "/icons/react.svg",
-    "liveUrl": "https://www.leaduni.page",
-    "repoUrl": "https://github.com/leaduni/web-page",
-    "imagesUrl": null,
-    "features": [
-      "Diseño responsivo y moderno",
-      "CI/CD con GitHub Actions",
-      "Despliegue automatizado en AWS"
+      {
+        "name": "Cloudflare Workers",
+        "icon": "/icons/cloudflare.svg"
+      },
+      {
+        "name": "D1",
+        "icon": "/icons/sqlite.svg"
+      },
+      {
+        "name": "Tailwind CSS",
+        "icon": "/icons/tailwind.svg"
+      }
     ],
-    "metrics": [
-      { "label": "Deploy", "value": "AWS" },
-      { "label": "CI/CD", "value": "GitHub Actions" },
-      { "label": "Framework", "value": "React" }
-    ],
-    "tags": ["Institucional", "Comunidad", "Liderazgo", "UNI"],
-    "techs": [
-      { "name": "React", "icon": "/icons/react.svg" },
-      { "name": "AWS", "icon": "/icons/aws.svg" },
-      { "name": "GitHub", "icon": "/icons/github.svg" }
-    ],
-    "images": []
+    "logo": null
   },
   {
     "id": "project-capictive",
     "title": "Capictive",
-    "description": "Plataforma de IA que asiste a ciudadanos en decisiones electorales durante elecciones presidenciales. ",
-    "finishDate": "2024",
+    "description": "Plataforma de inteligencia artificial que centraliza, procesa y resume información política para asistir a ciudadanos en la toma de decisiones durante elecciones.",
+    "problem": "Durante procesos electorales, la información relevante (planes de gobierno, hojas de vida, entrevistas) está dispersa, es extensa y difícil de analizar, lo que impide que los ciudadanos tomen decisiones informadas.",
+    "solution": "Desarrollé una plataforma AI-first que recolecta, procesa y resume información política desde múltiples fuentes (JNE, YouTube, entrevistas), permitiendo a los usuarios acceder a contenido sintetizado y comparable en una sola interfaz.",
+    "impact": "La plataforma fue utilizada por más de 10,000 usuarios, facilitando el acceso a información política procesada y reduciendo significativamente el tiempo necesario para entender propuestas y perfiles de candidatos.",
+    "role": "Founder",
     "status": "done",
-    "role": "Full Stack Developer",
-    "icon": "/icons/react.svg",
+    "icon": "project-logos/capictive.png",
+    "finishDate": "2025- 2026",
     "liveUrl": "https://www.capictive.app",
     "repoUrl": "https://github.com/DiogoFabricioAG/Capictive-Web",
-    "imagesUrl": null,
+    "demoUrl": "https://www.youtube.com/watch?v=PJET84aCEtk",
     "features": [
-      "Análisis político con IA conversacional",
-      "Síntesis de voz con ElevenLabs API",
-      "Bot de Telegram para consultas ciudadanas"
+      "Resumen automático de planes de gobierno y hojas de vida",
+      "Procesamiento de contenido multimedia (transcripción de entrevistas)",
+      "Comparación de ideologías y propuestas políticas",
+      "Generación de contenido en audio para difusión"
+    ],
+    "architecture": [
+      "Frontend en Next.js desplegado en Vercel",
+      "API serverless con Cloudflare Workers",
+      "Scripts en Python para ingesta de datos (JNE, YouTube API)",
+      "Procesamiento de texto con modelos locales vía Ollama",
+      "Síntesis de voz con ElevenLabs",
+      "Pipeline de datos: extracción → procesamiento → resumen → visualización"
     ],
     "metrics": [
-      { "label": "Deploy", "value": "Vercel" },
-      { "label": "Edge", "value": "Cloudflare" },
-      { "label": "Voice AI", "value": "ElevenLabs" }
+      {
+        "label": "Usuarios alcanzados",
+        "value": "10,000+"
+      },
+      {
+        "label": "Fuentes integradas",
+        "value": "JNE + YouTube"
+      },
+      {
+        "label": "Tipo de contenido",
+        "value": "Texto + Audio"
+      }
     ],
-    "tags": ["AI", "Política", "Chatbot", "Voice AI", "Telegram"],
+    "tags": [
+      "AI",
+      "Civic Tech",
+      "Elections",
+      "NLP",
+      "Voice AI"
+    ],
     "techs": [
-      { "name": "React", "icon": "/icons/react.svg" },
-      { "name": "Supabase", "icon": "/icons/supabase.svg" },
-      { "name": "Cloudflare", "icon": "/icons/aws.svg" },
-      { "name": "Telegram", "icon": "/icons/bot.svg" }
+      {
+        "name": "Next.js",
+        "icon": "/icons/react.svg"
+      },
+      {
+        "name": "Cloudflare Workers",
+        "icon": "/icons/cloudflare.svg"
+      },
+      {
+        "name": "Python",
+        "icon": "/icons/python.svg"
+      },
+      {
+        "name": "Ollama",
+        "icon": "/icons/ollama.svg"
+      },
+      {
+        "name": "ElevenLabs",
+        "icon": "/icons/elevenlabs.png"
+      }
     ],
-    "images": []
+    "logo": "project-logos/capictive.png"
   },
   {
     "id": "project-connect2",
-    "title": "connect2 - v.0.1",
-    "description": "Sistema inteligente de conexión para eventos que empareja asistentes según intereses, objetivos y perfil profesional. Optimiza el networking mediante algoritmos de matching.",
-    "finishDate": "2024",
-    "status": "done",
-    "role": "Full Stack Developer",
-    "icon": "/icons/react.svg",
+    "title": "Connect2",
+    "description": "Sistema inteligente de networking para eventos que conecta asistentes en tiempo real mediante matching por intereses y generación de preguntas con IA contextual.",
+    "problem": "El networking en eventos es ineficiente, ya que los asistentes no cuentan con contexto suficiente para iniciar conversaciones relevantes, lo que limita la generación de conexiones de valor.",
+    "solution": "Desarrollé un sistema que recolecta información de asistentes y del evento, generando matches inteligentes y preguntas dinámicas mediante IA, facilitando interacciones significativas en tiempo real durante el networking.",
+    "impact": "Proyecto ganador de concurso, validando la propuesta como solución innovadora para eventos. Desarrollado como MVP funcional con arquitectura en tiempo real.",
+    "role": "Technical Lead",
+    "icon" : "project-logos/connect2.png",
+    "status": "prototype",
+    "finishDate": "2025",
     "liveUrl": "https://connect2v.vercel.app/",
     "repoUrl": "https://github.com/DiogoFabricioAG/connect2",
-    "imagesUrl": null,
+    "demoUrl": "https://youtu.be/hLlD2WKWzT0",
     "features": [
-      "Matching automático por intereses afines",
-      "Sistema de registro y perfiles de asistentes",
-      "Dashboard de conexiones recomendadas"
+      "Registro de asistentes con perfil e intereses",
+      "Matching dinámico entre participantes",
+      "Generación de preguntas contextualizadas con IA",
+      "Sistema en tiempo real para interacción durante el evento",
+      "Diseño de flujo completo desde pre-evento hasta networking"
+    ],
+    "architecture": [
+      "Aplicación móvil desarrollada en Flutter",
+      "Backend en Express.js para gestión de lógica de negocio",
+      "Base de datos PostgreSQL para persistencia de usuarios y eventos",
+      "Comunicación en tiempo real mediante WebSockets",
+      "Integración con modelo Claude para generación de preguntas",
+      "Pipeline de contexto: usuario + evento + contenido → generación IA"
     ],
     "metrics": [
-      { "label": "Deploy", "value": "Vercel" },
-      { "label": "Database", "value": "Supabase" },
-      { "label": "Stack", "value": "React" }
+      {
+        "label": "Estado",
+        "value": "MVP funcional"
+      },
+      {
+        "label": "Validación",
+        "value": "Ganador de concurso"
+      },
+      {
+        "label": "Arquitectura",
+        "value": "Real-time system"
+      }
     ],
-    "tags": ["Networking", "Eventos", "Matching", "SaaS"],
+    "tags": [
+      "AI",
+      "Networking",
+      "Eventos",
+      "Real-time",
+      "Startup"
+    ],
     "techs": [
-      { "name": "React", "icon": "/icons/react.svg" },
-      { "name": "Supabase", "icon": "/icons/supabase.svg" },
-      { "name": "Tailwind CSS", "icon": "/icons/tailwind.svg" }
+      {
+        "name": "Flutter",
+        "icon": "/icons/flutter.svg"
+      },
+      {
+        "name": "Express",
+        "icon": "/icons/expressjs.svg"
+      },
+      {
+        "name": "PostgreSQL",
+        "icon": "/icons/postgresql.svg"
+      },
+      {
+        "name": "WebSockets",
+        "icon": "/icons/websockets.png"
+      },
+      {
+        "name": "Claude",
+        "icon": "/icons/claude.svg"
+      }
     ],
-    "images": []
+    "logo": null
   }
 ]

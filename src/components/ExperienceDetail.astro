@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface ColoredPoint { text: string; color: string }
 interface Metric { label: string; value: string }
 interface Props {
@@ -46,7 +48,7 @@ const galleryImages: string[] = Array.isArray(images) && images.length ? images 
             ) : company}{" "}- {durationDate}{location ? ` · ${location}` : ''}
           </p>
         </div>
-        <img src={icon} alt={`${title} icon`} class="size-12 object-contain" />
+        <Image src={icon.startsWith('/') ? icon : `/${icon}`} alt={`${title} icon`} width={48} height={48} class="size-12 object-contain" />
       </div>
 
       <h3 class="text-lg font-bold  mb-2">Descripción del Empleo</h3>
@@ -104,7 +106,7 @@ const galleryImages: string[] = Array.isArray(images) && images.length ? images 
   <div class="relative w-full h-full flex items-center justify-center select-none">
     <button id={`${id}-gallery-close`} class="absolute top-5 right-5 text-white/90 hover:text-red-400 text-3xl w-10 h-10 flex items-center justify-center hover:bg-white/10" aria-label="Cerrar galería">×</button>
     <button id={`${id}-gallery-prev`} class="absolute left-5 md:left-10 text-white/90 hover:text-white text-3xl w-10 h-10 flex items-center justify-center hover:bg-white/10" aria-label="Anterior">‹</button>
-    <img id={`${id}-gallery-image`} src={galleryImages[0]} alt={`imagen ${title}`} class="max-w-[92vw] max-h-[82vh] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)] border border-white/10 bg-black/20" />
+    <Image id={`${id}-gallery-image`} src={galleryImages[0].startsWith('/') ? galleryImages[0] : `/${galleryImages[0]}`} alt={`imagen ${title}`} width={1280} height={720} class="max-w-[92vw] max-h-[82vh] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.6)] border border-white/10 bg-black/20" />
     <button id={`${id}-gallery-next`} class="absolute right-5 md:right-10 text-white/90 hover:text-white text-3xl w-10 h-10 flex items-center justify-center hover:bg-white/10" aria-label="Siguiente">›</button>
   </div>
  </div>

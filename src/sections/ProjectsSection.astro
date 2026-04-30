@@ -5,30 +5,101 @@ import { getAllProjects } from "../utils/dataUtils";
 const projects = getAllProjects();
 ---
 
-<section id="proyectos" class="h-auto md:min-h-screen px-4 py-8">
-    <BoxLayout>
-      <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-10">Proyectos</h2>
+<section id="proyectos" class="h-auto md:min-h-screen px-4 py-8 mb-16 flex flex-col justify-center">
+  <BoxLayout>
+    <div class="flex flex-col justify-between items-end">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-center">Proyectos</h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-5 mx-auto">
-        {projects.slice(0, 6).map((project) => (
-          <Projectsbox
-            id={project.id}
-            title={project.title}
-            description={project.description}
-            finishDate={project.finishDate}
-            status={project.status}
-            icon={project.icon}
-            techs={project.techs}
-            liveUrl={project.liveUrl}
-            repoUrl={project.repoUrl}
-            imagesUrl={project.imagesUrl}
-            features={project.features}
-            metrics={project.metrics}
-            tags={project.tags}
-            images={project.images}
-          />
+      {/* Paginador Superior (Estilo Bloques) */}
+      <div class="flex items-center mx-auto gap-3 mt-10">
+        {projects.map((_, index) => (
+          <button 
+            class={`nav-dot size-10 rounded-none transition-all duration-300 cursor-pointer border ${index === 0 ? 'bg-premium border-premium scale-110 shadow-[0_0_10px_rgba(186,154,116,0.5)]' : 'bg-transparent border-white/30 hover:border-white'}`} 
+            data-index={index} 
+            aria-label={`Ir al proyecto ${index + 1}`}
+          >{index + 1}</button>
         ))}
-
       </div>
-    </BoxLayout>
-  </section>
+    </div>
+
+    <div class="relative w-full mt-10 mx-auto project-carousel">
+      {/* Contenedor principal de las tarjetas */}
+      <div class="projects-container relative w-full h-[1050px] md:h-[650px]">
+        {projects.map((project, index) => (
+          <div 
+            class={`project-slide absolute inset-0 transition-opacity duration-500 ease-in-out ${index === 0 ? 'opacity-100 pointer-events-auto z-10' : 'opacity-0 pointer-events-none z-0'}`} 
+            data-index={index}
+          >
+            <Projectsbox
+              id={project.id}
+              title={project.title}
+              description={project.description}
+              finishDate={project.finishDate}
+              status={project.status}
+              icon={project.icon}
+              techs={project.techs}
+              liveUrl={project.liveUrl}
+              repoUrl={project.repoUrl}
+              demoUrl={project.demoUrl}
+              imagesUrl={project.imagesUrl}
+              features={project.features}
+              metrics={project.metrics}
+              tags={project.tags}
+              images={project.images}
+              problem={project.problem}
+              solution={project.solution}
+              impact={project.impact}
+              role={project.role}
+              architecture={project.architecture}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </BoxLayout>
+</section>
+
+<script>
+  function initCarousel() {
+    // Aquí cambiamos la lógica: el paginador (dots) ya no está dentro de .project-carousel, 
+    // sino en el header de la sección. Así que buscamos globalmente en la sección actual.
+    const sections = document.querySelectorAll('#proyectos');
+    
+    sections.forEach(section => {
+      const slides = section.querySelectorAll('.project-slide');
+      const dots = section.querySelectorAll('.nav-dot');
+      let currentIndex = 0;
+
+      function showSlide(index: number) {
+        slides.forEach((slide, i) => {
+          if (i === index) {
+            slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+            slide.classList.add('opacity-100', 'pointer-events-auto', 'z-10');
+            if (dots[i]) {
+              dots[i].classList.remove('bg-transparent', 'border-white/30');
+              dots[i].classList.add('bg-premium', 'border-premium', 'scale-110', 'shadow-[0_0_10px_rgba(186,154,116,0.5)]');
+            }
+          } else {
+            slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+            slide.classList.remove('opacity-100', 'pointer-events-auto', 'z-10');
+            if (dots[i]) {
+              dots[i].classList.remove('bg-premium', 'border-premium', 'scale-110', 'shadow-[0_0_10px_rgba(186,154,116,0.5)]');
+              dots[i].classList.add('bg-transparent', 'border-white/30');
+            }
+          }
+        });
+        currentIndex = index;
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => showSlide(i));
+      });
+    });
+  }
+
+  // Ejecutar script al cargar
+  document.addEventListener('DOMContentLoaded', initCarousel);
+  
+  // Soporte para Astro View Transitions (si se usa)
+  document.addEventListener('astro:page-load', initCarousel);
+</script>

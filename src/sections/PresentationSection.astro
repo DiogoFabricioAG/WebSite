@@ -1,5 +1,6 @@
 ---
 import BoxLayout from "../layouts/BoxLayout.astro";
+import { Image } from "astro:assets";
 ---
 
 <section id="inicio" class="px-4">
@@ -8,19 +9,21 @@ import BoxLayout from "../layouts/BoxLayout.astro";
       class="min-h-screen gap-6 sm:gap-10 px-4 items-center flex flex-col sm:flex-row"
     >
       <div class="relative group select-none">
-        <img
+        <Image
           id="avatar"
           src="/avatar-26-color.png"
           alt="Avatar"
+          width={384}
+          height={384}
           class="w-40 sm:w-48 md:w-80 lg:w-96 shadow-md [mask-image:radial-gradient(circle_at_center,black_45%,transparent_80%)] object-cover animate-blur-pulse cursor-pointer transition-all duration-500 ease-in-out"
         />
       </div>
       <div class="space-y-5 text-center sm:text-end flex-1">
-        <h2
+        <a href="Diogo CV.pdf" download
           class="text-2xl sm:text-4xl select-none md:text-6xl hover:text-premium duration-200 lg:text-9xl font-extrabold"
         >
           Diogo Abregu
-        </h2>
+        </a>
         <p class="text-xs sm:text-xl font-light text-white">
           <span
             class="font-bold hover:text-premium duration-200 [text-shadow:0_0_6px_rgba(255,255,255,0.35)]"

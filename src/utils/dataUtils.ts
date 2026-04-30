@@ -33,13 +33,15 @@ export interface Experience {
 interface Project {
     id: string;                    // Identificador único (kebab-case)
     title: string;                 // Título del proyecto
+    architecture: string
     description: string;           // Descripción breve
     finishDate: string;            // Formato: MM/YYYY o "ACT" si está activo
     status: 'done' | 'wip' | 'paused' | 'mvp'; // Estado del proyecto
     role: string;                  // Rol que desempeñaste
-    icon: string;                  // Logo/icono del proyecto
+    icon: string | null;                  // Logo/icono del proyecto
     liveUrl: string | null;        // URL del proyecto en vivo
     repoUrl: string | null;        // URL del repositorio
+    demoUrl: string | null;        // URL de demostración en video
     imagesUrl: string | null;      // URL externa de galería (Imgur, etc.)
     features: string[];            // Características destacadas (máx 3)
     metrics: Array<{               // Métricas/resultados (máx 3)

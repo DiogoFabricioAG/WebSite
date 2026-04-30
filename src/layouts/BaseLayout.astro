@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import "../styles/global.css";
 ---
 
@@ -107,7 +108,7 @@ import "../styles/global.css";
 				<div class="text-xs">
 					<p class="text-white/60 text-[10px] mb-0.5">Estás escuchando</p>
 					<p id="song-title" class="font-semibold text-white truncate"></p>
-					<div class="text-white/60 flex items-center gap-2 text-[10px] sm:text-[9px] mt-0.5">Powered by <img class="w-8" src="/icons/suno.svg" alt="Suno AI"></div>
+					<div class="text-white/60 flex items-center gap-2 text-[10px] sm:text-[9px] mt-0.5">Powered by <Image width={32} height={32} class="w-8" src="/icons/suno.svg" alt="Suno AI" /></div>
 				</div>
 				
 				<!-- Controls -->

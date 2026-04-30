@@ -1,5 +1,6 @@
 ---
 import BoxLayout from "../layouts/BoxLayout.astro";
+import { Image } from "astro:assets";
 ---
 
 <section id="bot" class="">
@@ -13,7 +14,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
           <div class="flex justify-between items-center gap-3">
             <div class="flex gap-3 items-center">
                 <div class="relative">
-                    <img src="/logo-portfolio.png" alt="Diogo" class="size-16" transition:name="portfolio-logo" />
+                    <Image src="/logo-portfolio.png" alt="Diogo" width={64} height={64} class="size-16 w-auto" transition:name="portfolio-logo" />
                 </div>
                 <div>
                     <h3 class="font-bold text-lg">Diogo Bot</h3>
@@ -39,7 +40,7 @@ import BoxLayout from "../layouts/BoxLayout.astro";
         <div id="chat-messages" class="h-[60vh] sm:h-[500px] overflow-y-auto p-4 sm:p-6 space-y-4">
           <!-- Welcome Message -->
           <div class="flex items-start gap-3">
-            <img src="/avatar.png" alt="Bot" class="w-8 h-8  flex-shrink-0" />
+            <Image src="/avatar.png" alt="Bot" width={32} height={32} class="w-8 h-8 flex-shrink-0" />
             <div class="bg-white/10 px-4 py-3 max-w-[85%] sm:max-w-md">
               <p class="text-sm">¡Hola! 👋 Soy un asistente virtual que responde como Diogo. Pregúntame sobre mi experiencia, proyectos, habilidades o cualquier cosa que quieras saber.</p>
             </div>
