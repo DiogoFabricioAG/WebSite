@@ -11,7 +11,7 @@ export interface Metric {
 
 export interface ColoredPoint {
     text: string;
-    color: string; // hex o css color
+    color?: string; // hex o css color
 }
 
 export interface Experience {

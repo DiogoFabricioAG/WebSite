@@ -6,131 +6,269 @@
 		"location": "Remoto",
 		"durationDate": "03/23 - ACT",
 		"icon": "/logo-portfolio.png",
-		"companyUrl": null,
-		"description": "Diseñé y desarrollé aplicaciones web modulares enfocadas en rendimiento y mantenibilidad, integrando APIs de terceros y estableciendo flujos de entrega continua simples para reducir el tiempo de salida a producción.",
+		"companyUrl": "https://www.capictive.app/",
+		"description": "Diseñé y desarrollé soluciones web enfocadas en la digitalización y automatización de procesos para pequeñas empresas, priorizando impacto inmediato en operaciones sobre complejidad innecesaria. Implementé aplicaciones desde landing pages hasta sistemas de ventas completos, integrando capacidades de inteligencia artificial para mejorar la toma de decisiones y la interacción con datos del negocio en tiempo real.",
 		"points": [
-			"Apps web rápidas y modulares",
-			"Integración con APIs externas"
+			"Desarrollo de aplicaciones web (landing pages y sistemas de ventas)",
+			"Digitalización de procesos manuales en negocios reales",
+			"Integración de IA para análisis y consultas de negocio",
+			"Despliegue rápido con arquitecturas monolíticas y serverless"
 		],
 		"pointsColored": [
-			{ "text": "Apps web rápidas y modulares" },
-			{ "text": "Integración con APIs externas" }		],
-		"techs": [
-			{ "name": "Astro", "icon": "/icons/astro.svg" },
-			{ "name": "Vue", "icon": "/icons/vue.svg" },
-			{ "name": "AWS", "icon": "/icons/aws.svg" },
-			{ "name": "C#", "icon": "/icons/csharp.svg" },
-			{ "name": "Stripe", "icon": "/icons/stripe.svg" }
+			{
+				"text": "Automatización de procesos manuales en +10 negocios"
+			},
+			{
+				"text": "Integración de IA conectada a datos reales del negocio"
+			},
+			{
+				"text": "Enfoque en impacto inmediato y entrega rápida de valor"
+			}
 		],
-		"images": [
-			"/logo-portfolio.png",
-			"/icons/astro.svg",
-			"/icons/vue.svg"
+		"techs": [
+			{
+				"name": "React",
+				"icon": "/icons/react.svg"
+			},
+			{
+				"name": "Spring Boot",
+				"icon": "/icons/spring.svg"
+			},
+			{
+				"name": "Astro",
+				"icon": "/icons/astro.svg"
+			},
+			{
+				"name": "Vercel",
+				"icon": "/icons/vercel.svg"
+			},
+			{
+				"name": "Cloudflare",
+				"icon": "/icons/cloudflare.svg"
+			},
+			{
+				"name": "Mercado Pago",
+				"icon": "/icons/mercado-pago.svg"
+			}
 		],
 		"metrics": [
-			{ "label": "Reducción de tiempos", "value": "30%" },
-			{ "label": "Mejoras Implementadas", "value": "15" },
-			{ "label": "Usuarios Activos", "value": "2000+" },
-			{ "label": "Feedback", "value": "95%" }
+			{
+				"label": "Clientes Atendidos",
+				"value": "10+"
+			},
+			{
+				"label": "Procesos Automatizados",
+				"value": "15+"
+			},
+			{
+				"label": "Reducción de tareas manuales",
+				"value": "40%"
+			},
+			{
+				"label": "Tiempo de entrega promedio",
+				"value": "-30%"
+			}
 		]
 	},
-	
 	{
 		"id": "dev-intern-peri-institute",
-		"title": "Dev Intern",
+		"title": "Automatización de Procesos",
 		"company": "Peri Institute",
 		"location": "Remoto",
 		"durationDate": "03/25 - ACT",
 		"icon": "/experience-logos/peri.jpg",
-		"companyUrl": null,
-		"description": "Apoyé tareas de desarrollo mediante scripts de soporte, automatizando rutinas y mejorando la organización de repositorios para aumentar la eficiencia del equipo.",
+		"companyUrl": "https://pericompanygroup.com",
+		"description": "Diseñé e implementé flujos de automatización para procesos de ventas y validación de pagos, transformando operaciones manuales en sistemas digitales integrados. Construí herramientas internas que conectan registro de ventas, validación de comprobantes y visualización de métricas, mejorando la eficiencia operativa y reduciendo errores humanos.",
 		"points": [
-			"Scripts de soporte",
-			"Mejor organización de repos"
+			"Automatización del registro de ventas y validación de pagos",
+			"Implementación de workflows con n8n para procesamiento automático",
+			"Desarrollo de apps internas con AppSheet y dashboards en Looker Studio",
+			"Optimización de registros mediante lógica en Google Apps Script"
 		],
 		"pointsColored": [
-			{ "text": "Scripts de soporte" },
-			{ "text": "Ecosistema Google Cloud" }
+			{
+				"text": "Eliminación de procesos manuales basados en Excel"
+			},
+			{
+				"text": "Validación automática de comprobantes mediante OCR"
+			},
+			{
+				"text": "Traducción de necesidades del negocio a soluciones técnicas"
+			}
 		],
 		"techs": [
-			{ "name": "AppSheet", "icon": "/icons/appsheet.png" },
-			{ "name": "Python", "icon": "/icons/python.svg" },
-			{ "name": "JavaScript", "icon": "/icons/javascript.svg" },
-			{ "name": "Google Cloud", "icon": "/icons/google-cloud.svg" },
-			{ "name": "n8n", "icon": "/icons/n8n.svg" }
+			{
+				"name": "AppSheet",
+				"icon": "/icons/appsheet.png"
+			},
+			{
+				"name": "n8n",
+				"icon": "/icons/n8n.svg"
+			},
+			{
+				"name": "Google Cloud",
+				"icon": "/icons/google-cloud.svg"
+			},
+			{
+				"name": "JavaScript",
+				"icon": "/icons/javascript.svg"
+			},
+			{
+				"name": "Python",
+				"icon": "/icons/python.svg"
+			}
 		],
-		"images": [
-			"/experience-logos/peri.jpg",
-			"/icons/python.svg",
-			"/icons/google-cloud.svg"
-		],
-		"metrics": []
+		"metrics": [
+			{
+				"label": "Procesos Automatizados",
+				"value": "3+"
+			},
+			{
+				"label": "Usuarios Impactados",
+				"value": "Equipo Ventas (+ 5)"
+			},
+			{
+				"label": "Reducción de errores manuales",
+				"value": "Alta"
+			},
+			{
+				"label": "Tiempo de registro",
+				"value": "-50%"
+			}
+		]
 	},
 	{
 		"id": "director-pilar-ea-lead-uni",
-		"title": "Director Pilar Excelencia Académica",
+		"title": "Director de Área - Excelencia Académica",
 		"company": "LEAD UNI",
 		"location": "Lima",
 		"durationDate": "04/25 - ACT",
 		"icon": "/experience-logos/lead.svg",
-		"companyUrl": null,
-		"description": "Dirigí iniciativas del pilar Excelencia Académica, definiendo roadmap y brindando soporte a proyectos estudiantiles, asegurando alineación con objetivos y ejecución ordenada.",
+		"companyUrl": "https://leaduni.page/",
+		"description": "Lideré el área de Excelencia Académica, definiendo y ejecutando iniciativas orientadas al desarrollo académico y profesional de estudiantes. Gestioné equipos multidisciplinarios bajo un enfoque tipo startup (Build-Measure-Learn), impulsando el desarrollo de productos digitales como la web institucional y una bolsa laboral, combinando liderazgo estratégico con ejecución técnica.",
 		"points": [
-			"Gestión de iniciativas",
-			"Soporte a proyectos estudiantiles"
+			"Definición de backlog, prioridades y dirección estratégica del área",
+			"Liderazgo de equipos cross-functional en proyectos tipo startup",
+			"Desarrollo y lanzamiento de la web institucional de LEAD UNI",
+			"Diseño e implementación de una bolsa laboral para la comunidad estudiantil"
 		],
 		"pointsColored": [
-			{ "text": "Gestión de iniciativas" },
-			{ "text": "Soporte a proyectos estudiantiles" }
+
+			{
+				"text": "Entrega de productos digitales reales (web + bolsa laboral)"
+			},
+			{
+				"text": "Gestión de proyectos bajo enfoque Build-Measure-Learn"
+			},
+			{
+				"text": "Decisiones estratégicas alineadas a posicionamiento organizacional"
+			}
 		],
 		"techs": [
-			{ "name": "TypeScript", "icon": "/icons/typescript.svg" },
-			{ "name": "PostgreSQL", "icon": "/icons/postgresql.svg" },
-			{ "name": "Railway", "icon": "/icons/railway.svg" },
-			{ "name": "GitHub Actions", "icon": "/icons/actions.png" },
-			{ "name": "Payload", "icon": "/icons/payload.svg" }
+			{
+				"name": "TypeScript",
+				"icon": "/icons/typescript.svg"
+			},
+			{
+				"name": "PostgreSQL",
+				"icon": "/icons/postgresql.svg"
+			},
+			{
+				"name": "Railway",
+				"icon": "/icons/railway.svg"
+			},
+			{
+				"name": "GitHub Actions",
+				"icon": "/icons/actions.png"
+			},
+			{
+				"name": "Payload",
+				"icon": "/icons/payload.svg"
+			}
+		],
 
-		],
-		"images": [
-			"/experience-logos/lead.svg",
-			"/icons/typescript.svg",
-			"/icons/aws.svg"
-		],
 		"metrics": [
-			{ "label": "Sistemas Soportados", "value": "5" },
-			{ "label": "Proyectos Liderados", "value": "3+" }
+			{
+				"label": "Personas Lideradas",
+				"value": "12"
+			},
+
+			{
+				"label": "Productos Lanzados",
+				"value": "2"
+			},
+			{
+				"label": "Postulantes Alcanzados",
+				"value": "200+"
+			},
+			{
+				"label": "Alcance Internacional",
+				"value": "3 países"
+			}
 		]
 	},
 	{
-		"id": "Programming Tools Intern",
-		"title": "Programming Tools Intern",
+		"id": "programming-tools-intern-growth-rockstar",
+		"title": "Ingeniero de Software Trainee",
 		"company": "Growth Rockstar",
-		"location": "Buenos Aires",
+		"location": "Remoto",
 		"durationDate": "11/25 - ACT",
 		"icon": "/experience-logos/logo-gr.png",
-		"companyUrl": null,
-		"description": "Dirigí iniciativas del pilar Excelencia Académica, definiendo roadmap y brindando soporte a proyectos estudiantiles, asegurando alineación con objetivos y ejecución ordenada.",
+		"companyUrl": "https://www.growthrockstar.com/",
+		"description": "Desarrollé sistemas internos orientados a la automatización y análisis de negocio, incluyendo dashboards ejecutivos, CRM y herramientas con inteligencia artificial para personalización de experiencia. Participé en la modernización de procesos clave, migrando operaciones basadas en Excel hacia plataformas digitales escalables con interfaces intuitivas.",
 		"points": [
-			"Automatizaciones de Procesos",
-			"Virtualización de Entornos"
+			"Desarrollo de dashboard ejecutivo para reporte diario de ingresos",
+			"Construcción de CRM para seguimiento y gestión de clientes",
+			"Implementación de herramientas con IA para personalización en cursos",
+			"Modernización de sistemas internos desde Excel a plataformas web"
 		],
 		"pointsColored": [
-			{ "text": "Automatizaciones de Procesos", "color": "#a2b13a" },
-			{ "text": "Virtualización de Entornos" }
+			{
+				"text": "Diseño de sistemas internos para automatización y análisis de negocio"
+			},
+			{
+				"text": "Integración de IA para mejorar la experiencia del usuario"
+			},
+			{
+				"text": "Migración de procesos manuales a soluciones digitales escalables"
+			}
 		],
 		"techs": [
-			{ "name": "n8n", "icon": "/icons/n8n.svg" },
-			{ "name": "Google Cloud", "icon": "/icons/google-cloud.svg" }
+			{
+				"name": "n8n",
+				"icon": "/icons/n8n.svg"
+			},
+			{
+				"name": "Google Cloud",
+				"icon": "/icons/google-cloud.svg"
+			},
+			{
+				"name": "JavaScript",
+				"icon": "/icons/javascript.svg"
+			},
+			{
+				"name": "Python",
+				"icon": "/icons/python.svg"
+			}
+		],
 
-		],
-		"images": [
-			"/experience-logos/lead.svg",
-			"/icons/typescript.svg",
-			"/icons/aws.svg"
-		],
 		"metrics": [
-			{ "label": "Sistemas Soportados", "value": "2" },
-			{ "label": "Proyectos Liderados", "value": "1" }
+			{
+				"label": "Sistemas Desarrollados",
+				"value": "3"
+			},
+			{
+				"label": "Equipo Técnico",
+				"value": "2 devs"
+			},
+			{
+				"label": "Procesos Modernizados",
+				"value": "Excel → Web Apps"
+			},
+			{
+				"label": "Áreas Impactadas",
+				"value": "Ventas y Operaciones"
+			}
 		]
 	}
 ]

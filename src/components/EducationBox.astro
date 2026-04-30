@@ -18,9 +18,9 @@ function parseDescription(desc: string): string {
 const parsedDescription = parseDescription(description);
 ---
 
-<div class="education-card hover:shadow duration-500 hover:shadow-white/50 relative flex flex-col w-full max-w-[320px] mx-auto cursor-pointer group" >
+<div class="education-card hover:shadow-[2px_2px_10px] duration-500 hover:shadow-premium/80 relative flex flex-col w-full max-w-[320px] mx-auto cursor-pointer group" >
   <!-- Contenedor principal de la tarjeta -->
-  <div class="relative bg-black/50 border-1  border-white/12 flex flex-col overflow-hidden transition-all duration-500 ease-in-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
+  <div class="relative bg-black/50 border-1  border-premium/12 flex flex-col overflow-hidden transition-all duration-500 ease-in-out  group-hover:shadow-[0_12px_24px_rgba(255,255,255,0.15)]">
     
     <!-- Etiqueta superior con los años (opcional) -->
     {years && (
@@ -43,7 +43,7 @@ const parsedDescription = parseDescription(description);
       <!-- Sección del logo y la universidad (Pegado abajo) -->
       <div class="flex flex-row items-center justify-start gap-4 mt-auto">
         <!-- Contenedor del logo sin rombo -->
-        <div class="relative flex-shrink-0 w-30 h-30 flex items-center justify-center p-1">
+        <div class="relative flex-shrink-0 size-30 flex items-center justify-center p-1">
           <img 
             src={logo} 
             alt={institution} 

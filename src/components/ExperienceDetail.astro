@@ -39,7 +39,7 @@ const galleryImages: string[] = Array.isArray(images) && images.length ? images 
     <div class="bg-black/80 text-white p-6 border border-white/20 ring-1 ring-white/10 shadow-2xl w-full max-w-3xl">
       <div class="flex justify-between items-center mb-4">
         <div>
-          <h2 class="text-2xl font-bold font-Jost">{title}</h2>
+          <h2 class="text-2xl font-bold ">{title}</h2>
           <p class="text-xs text-white/80">
             {companyUrl ? (
               <a href={companyUrl} target="_blank" rel="noopener" class="underline hover:text-white">{company}</a>
@@ -49,7 +49,7 @@ const galleryImages: string[] = Array.isArray(images) && images.length ? images 
         <img src={icon} alt={`${title} icon`} class="size-12 object-contain" />
       </div>
 
-      <h3 class="text-lg font-bold font-Jost mb-2">Descripción del Empleo</h3>
+      <h3 class="text-lg font-bold  mb-2">Descripción del Empleo</h3>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
         <div class="flex flex-col justify-center text-center gap-2 p-2">
           {pointsColored && pointsColored.length > 0 ? (

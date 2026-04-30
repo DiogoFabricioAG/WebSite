@@ -69,19 +69,7 @@ import SocialMediaSection from "../sections/SocialMediaSection.astro";
     },
   });
 
-  // Animación para cada cajita de experiencia
-  gsap.from("#experiencia .Experiencebox", {
-    opacity: 0,
-    y: 40,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#experiencia",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-  });
+ 
 
   // Animación para la sección de proyectos
   gsap.from("#proyectos", {
@@ -202,66 +190,7 @@ import SocialMediaSection from "../sections/SocialMediaSection.astro";
         if (e.key === "ArrowRight") show(current + 1);
       });
 
-      // Cargar datos desde experience.json para la demo (usamos Proyecta UNI)
-      const targetId = "web-developer-proyecta-uni";
-      fetchExperiencesFromPublic()
-        .then((list) => {
-          const exp = list.find((e) => e.id === targetId);
-          if (!exp) return;
-          // Header
-          const titleEl = document.getElementById("sim-title");
-          const subtitleEl = document.getElementById("sim-subtitle");
-          const iconEl = document.getElementById(
-            "sim-icon"
-          ) as HTMLImageElement | null;
-          if (titleEl) titleEl.textContent = exp.title;
-          if (subtitleEl)
-            subtitleEl.textContent = `${exp.company?.toUpperCase?.() || ""} - ${exp.durationDate} 🏠${exp.location ? "🏢" : ""}`;
-          if (iconEl) iconEl.src = exp.icon;
-
-          // Points colored
-          const pointsWrap = document.getElementById("sim-points");
-          if (pointsWrap) {
-            pointsWrap.innerHTML = "";
-            (exp.pointsColored || []).forEach((pc) => {
-              const div = document.createElement("div");
-              div.className =
-                "border border-white/20 text-xs p-2 select-none duration-150 rounded";
-              div.style.backgroundColor = "transparent";
-              div.style.boxShadow = `inset 0 0 0 1px ${pc.color}33`;
-              div.style.color = "#ffffff";
-              div.style.borderColor = `${pc.color}66`;
-              div.textContent = pc.text;
-              pointsWrap.appendChild(div);
-            });
-          }
-
-          // Description
-          const descEl = document.getElementById("sim-description");
-          if (descEl) descEl.textContent = exp.description || "";
-
-          // Metrics
-          const metricsWrap = document.getElementById("sim-metrics");
-          if (metricsWrap) {
-            metricsWrap.innerHTML = "";
-            (exp.metrics || []).forEach((m) => {
-              const div = document.createElement("div");
-              div.className =
-                "border border-white/20 text-xs p-2 select-none hover:bg-white/15 duration-150 rounded";
-              div.innerHTML = `${m.label}<br><span class="text-2xl font-bold">${m.value}</span>`;
-              metricsWrap.appendChild(div);
-            });
-          }
-
-          // Images for gallery
-          images =
-            Array.isArray(exp.images) && exp.images.length
-              ? exp.images
-              : [exp.icon];
-          current = 0;
-          show(current);
-        })
-        .catch((err) => console.error("Error cargando experiencias:", err));
+      
     });
   }
 </script>

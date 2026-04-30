@@ -1,5 +1,7 @@
 ---
-interface TechItem { src: string; alt?: string }
+interface TechItem { src: string; alt?: string; name?: string }
+interface PointColored { text: string }
+interface Metric { label: string; value: string }
 interface Props {
   title: string;
   description?: string; // texto libre opcional (legacy)
@@ -8,8 +10,11 @@ interface Props {
   company?: string;
   location?: string;
   companyUrl?: string;
-  techs?: Array<string | TechItem>;
+  techs?: Array<string | any>;
   points?: string[]; // bullet points cortos (máx 3 recomendados)
+  pointsColored?: PointColored[];
+  metrics?: Metric[];
+  images?: string[];
   modalId?: string; // id del modal a abrir con "Ver Detalles"
 }
 
@@ -23,42 +28,111 @@ const {
   companyUrl,
   techs = [],
   points = [],
-  modalId,
+  pointsColored = [],
+  metrics = [],
+  images = [],
+  modalId = '',
 } = Astro.props as Props;
 
-const resolvedTechs: TechItem[] = techs.map(t => typeof t === 'string' ? ({ src: t, alt: `${title} tech` }) : ({ src: t.src, alt: t.alt ?? `${title} tech` }));
+const resolvedTechs: TechItem[] = techs.map(t => {
+  if (typeof t === 'string') return { src: t, alt: `${title} tech` };
+  if ('icon' in t && t.icon) return { src: t.icon, alt: t.name || `${title} tech`, name: t.name };
+  return { src: t.src, alt: t.alt ?? `${title} tech`, name: t.name };
+});
 ---
 
-<div class="Experiencebox flex flex-col">
-  <div class="bg-white border-2 px-2 border-white w-fit text-[10px] text-black ">{durationDate}</div>
-  <div class="border border-white/12 font-medium px-3 bg-black/50 py-2 space-y-2">
-    <div class="flex justify-between w-full gap-4">
-      <div class="space-y-0.5">
-        <h3 class="text-xl font-Jost font-bold leading-tight">{title}</h3>
+<div class="Experiencebox flex  flex-col grayscale hover:grayscale-0 transition duration-300 " data-modal-target={`${modalId}-modal`} data-modal-toggle={`${modalId}-modal`}>
+  <div class="bg-white border-2 px-2 border-white w-fit text-sm text-black ">{durationDate}</div>
+  <div class="border hover:shadow-[2px_2px_10px]  hover:shadow-premium/80 duration-300 border-white/12 font-medium p-7 bg-black/50 space-y-3">
+    <div class="flex justify-between items-center w-full gap-4 pb-2">
+      <div class="space-y-1">
+        <h3 class="text-3xl font-bold leading-tight">{title}</h3>
         {(company || location) && (
-          <p class="text-[10px] uppercase tracking-wide text-white/70">
+          <p class="text-[11px] uppercase tracking-wide text-white/70">
             {companyUrl ? <a href={companyUrl} target="_blank" rel="noopener" class="underline hover:text-white">{company}</a> : company}{company && location ? ' · ' : ''}{location}
           </p>
         )}
       </div>
-      {icon && <img src={icon} alt={`${title} icon`} class="h-10 w-10 self-start" />}
+      {icon && <img src={icon} alt={`${title} icon`} class="size-16 object-contain self-start  p-1 rounded" />}
     </div>
-    {points.length > 0 ? (
-      <ul class="list-disc pl-4 space-y-1 marker:text-white/60 text-[11px] leading-snug">
-        {points.slice(0,3).map(p => <li>{p}</li>)}
-      </ul>
-    ) : description && (
-      <p class="text-[11px] font-light leading-snug">{description}</p>
-    )}
-    <p class="text-[11px]  font-[400px] leading-snug">Tecnologías</p>
-    {resolvedTechs.length > 0 && (
-      <div class="flex flex-wrap gap-2 pt-1">
-        
-        {resolvedTechs.map(t => <img src={t.src} alt={t.alt} class="h-7 w-7 hover:scale-105 duration-150" />)}
+
+    {/* Descripciones o Puntos */}
+    <div class="space-y-3">
+      {pointsColored.length > 0 ? (
+        <ul class="space-y-2 text-[12px] leading-snug">
+          {pointsColored.map((p) => (
+            <li class="flex items-start gap-2">
+              <span class="text-premium text-sm leading-none mt-0.5">✦</span>
+              <span class="text-white/90 font-light">{p.text}</span>
+            </li>
+          ))}
+        </ul>
+      ) : description ? (
+        <p class="text-[12px] font-light leading-snug text-white/90">{description}</p>
+      ) : null}
+
+      {/* Toggle de Responsabilidades (points) */}
+      {points.length > 0 && pointsColored.length > 0 && (
+        <details class="group/details mt-2">
+          <summary class="list-none flex items-center cursor-pointer text-[10px] uppercase tracking-widest text-white/50 hover:text-white/90 transition-colors w-fit select-none">
+            <span class="group-open/details:hidden">Ver tareas y responsabilidades</span>
+            <span class="hidden group-open/details:inline">Ocultar tareas</span>
+            <svg class="w-3 h-3 ml-2 opacity-70 transition-transform duration-300 group-open/details:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="overflow-hidden mt-2">
+            <ul class="list-disc pl-4 space-y-1.5 marker:text-white/30 text-[11px] font-light leading-snug text-white/70">
+              {points.map(p => <li>{p}</li>)}
+            </ul>
+          </div>
+        </details>
+      )}
+
+      {/* Si solo hay points normales y no hay pointsColored */}
+      {points.length > 0 && pointsColored.length === 0 && (
+        <ul class="list-disc pl-4 space-y-1.5 marker:text-white/60 text-[12px] font-light leading-snug">
+          {points.slice(0,3).map(p => <li>{p}</li>)}
+        </ul>
+      )}
+    </div>
+
+    {/* Tecnologías */}
+    <div class="pt-2">
+      <p class="text-[10px] uppercase tracking-widest text-white/50 mb-2">Tecnologías</p>
+      {resolvedTechs.length > 0 && (
+        <div class="flex flex-wrap gap-3">
+          {resolvedTechs.map(t => (
+            <div class="group/tech relative flex items-center justify-center">
+              <img src={t.src} alt={t.alt} class="h-6 w-auto object-contain hover:scale-110 transition-transform duration-300 filter grayscale-0" />
+              {t.name && (
+                <span class="absolute -top-7 opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300 bg-black/90 border border-white/20 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap z-10 pointer-events-none">
+                  {t.name}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+
+    {/* Métricas */}
+    {metrics.length > 0 && (
+      <div class="grid grid-cols-2 gap-4 pt-4 mt-2 border-t border-white/10">
+        {metrics.map((m) => (
+          <div class="flex flex-col">
+            <span class="text-premium font-bold text-xl">{m.value}</span>
+            <span class="text-[10px] uppercase tracking-wider text-white/60 font-medium">{m.label}</span>
+          </div>
+        ))}
       </div>
     )}
-  </div>
-  <div class="px-1.5 py-3 bg-white w-full flex flex-wrap justify-end gap-2 text-[10px]">
 
+    {/* Imágenes (opcional) */}
+    {images.length > 0 && (
+      <div class="flex gap-3 pt-4 mt-2 border-t border-white/10 overflow-x-auto">
+         {images.map(img => <img src={img} alt="Experience image" class="h-10 w-auto object-contain opacity-60 hover:opacity-100 duration-300" />)}
+      </div>
+    )}
   </div>
 </div>

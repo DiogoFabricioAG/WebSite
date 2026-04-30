@@ -1,59 +1,90 @@
 ---
+import BoxLayout from "../layouts/BoxLayout.astro";
 ---
 
-<section id="inicio" class="min-h-screen  justify-center w-3/4 mx-auto gap-6 sm:gap-10 px-4 items-center flex flex-col sm:flex-row">
-  <div class="relative group select-none">
-    <img 
-      id="avatar"
-      src="/avatar-26-color.png" 
-      alt="Avatar" 
-      class="w-40 sm:w-48 md:w-80 lg:w-96 shadow-md [mask-image:radial-gradient(circle_at_center,black_45%,transparent_80%)] object-cover animate-blur-pulse cursor-pointer  transition-all duration-500 ease-in-out"
+<section id="inicio" class="px-4">
+  <BoxLayout>
+    <div
+      class="min-h-screen gap-6 sm:gap-10 px-4 items-center flex flex-col sm:flex-row"
     >
-  </div>
-  <div class="space-y-5 text-center sm:text-end flex-1">
-    <h2 class="text-2xl sm:text-4xl select-none md:text-6xl hover:text-premium duration-200 lg:text-9xl font-extrabold">
-      Diogo Abregu 
-    </h2>
-    <p class="text-xs sm:text-xl font-light text-white">
-      <span class="font-bold hover:text-premium duration-200 [text-shadow:0_0_6px_rgba(255,255,255,0.35)]">
-        System Engineer
-      </span>
-      & Founder of
-      <a href="https://capictive.app" target="_blank" rel="noopener" class="font-bold [text-shadow:0_0_6px_rgba(255,255,255,0.35)] hover:text-premium duration-200">
-        Capictive
-      </a>
-    </p>
-    <div class="flex gap-4 justify-end">
-        <a href="https://github.com/DiogoFabricioAG" target="_blank" rel="noopener">
-          <div
-            title="GitHub"
-            class="size-7 bg-white hover:bg-premium transition-all duration-300"
-            style="-webkit-mask-image: url('/icons/github.svg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; mask-image: url('/icons/github.svg'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;"
-          ></div>
-        </a>
-        <a href="https://www.linkedin.com/in/diogo-abregu-g/" target="_blank" rel="noopener">
-          <div
-            title="LinkedIn"
-            class="size-7 bg-white hover:bg-premium transition-all duration-300"
-            style="-webkit-mask-image: url('/icons/linkedin.svg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; mask-image: url('/icons/linkedin.svg'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;"
-          ></div>
-        </a>
-        
-        <a href="https://www.instagram.com/dio.abg/" target="_blank" rel="noopener">
-          <div
-            title="Instagram"
-            class="size-7 bg-white hover:bg-premium transition-all duration-300"
-            style="-webkit-mask-image: url('/icons/instagram.svg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; mask-image: url('/icons/instagram.svg'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;"
-          ></div>
-        </a>
-        
+      <div class="relative group select-none">
+        <img
+          id="avatar"
+          src="/avatar-26-color.png"
+          alt="Avatar"
+          class="w-40 sm:w-48 md:w-80 lg:w-96 shadow-md [mask-image:radial-gradient(circle_at_center,black_45%,transparent_80%)] object-cover animate-blur-pulse cursor-pointer transition-all duration-500 ease-in-out"
+        />
       </div>
-    <div class=" justify-center sm:justify-end hidden items-center flex-wrap gap-2">
+      <div class="space-y-5 text-center sm:text-end flex-1">
+        <h2
+          class="text-2xl sm:text-4xl select-none md:text-6xl hover:text-premium duration-200 lg:text-9xl font-extrabold"
+        >
+          Diogo Abregu
+        </h2>
+        <p class="text-xs sm:text-xl font-light text-white">
+          <span
+            class="font-bold hover:text-premium duration-200 [text-shadow:0_0_6px_rgba(255,255,255,0.35)]"
+          >
+            System Engineer
+          </span>
+          & Founder of
+          <a
+            href="https://capictive.app"
+            target="_blank"
+            rel="noopener"
+            class="font-bold [text-shadow:0_0_6px_rgba(255,255,255,0.35)] hover:text-premium duration-200"
+          >
+            Capictive
+          </a>
+        </p>
+        <div class="flex gap-4 justify-center sm:justify-end ">
+          <a
+            href="https://github.com/DiogoFabricioAG"
+            target="_blank"
+            rel="noopener"
+          >
+            <div
+              title="GitHub"
+              class="size-7 bg-white hover:bg-premium transition-all duration-300"
+              style="-webkit-mask-image: url('/icons/github.svg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; mask-image: url('/icons/github.svg'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;"
+            >
+            </div>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/diogo-abregu-g/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div
+              title="LinkedIn"
+              class="size-7 bg-white hover:bg-premium transition-all duration-300"
+              style="-webkit-mask-image: url('/icons/linkedin.svg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; mask-image: url('/icons/linkedin.svg'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;"
+            >
+            </div>
+          </a>
 
-      <a href="/Diogo CV.pdf" class="relative inline-block group" download>
-        <button class="button-clean">CV</button>
-        <span class="shadow-box"></span>
-      </a>
+          <a
+            href="https://www.instagram.com/dio.abg/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div
+              title="Instagram"
+              class="size-7 bg-white hover:bg-premium transition-all duration-300"
+              style="-webkit-mask-image: url('/icons/instagram.svg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; mask-image: url('/icons/instagram.svg'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;"
+            >
+            </div>
+          </a>
+        </div>
+        <div
+          class="justify-center sm:justify-end hidden items-center flex-wrap gap-2"
+        >
+          <a href="/Diogo CV.pdf" class="relative inline-block group" download>
+            <button class="button-clean">CV</button>
+            <span class="shadow-box"></span>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
+  </BoxLayout>
 </section>
