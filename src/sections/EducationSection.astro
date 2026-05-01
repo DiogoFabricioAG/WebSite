@@ -4,9 +4,9 @@ import BoxLayout from "../layouts/BoxLayout.astro";
 import educationData from "../data/education.json";
 ---
 
-<section id="educacion" class=" min-h-screen px-4 py-8">
+<section id="educacion" class=" min-h-screen px-4 py-8 ">
   <BoxLayout>
-    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8">Educación</h2>
+    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8 mt-10">Educación</h2>
     <div id="education-grid" class="flex flex-col lg:flex-row justify-center items-center gap-8  lg:h-[500px]">
       
       {educationData.map((edu, index) => {
@@ -40,40 +40,32 @@ import educationData from "../data/education.json";
     window.addEventListener("DOMContentLoaded", () => {
       const wraps = document.querySelectorAll(".edu-wrap");
       
-      // La tarjeta inicial en el centro es la que empezó con order 2
       let centerCard = document.querySelector(".is-center-card");
       
       wraps.forEach((card) => {
         card.addEventListener("click", () => {
           
-          // Lógica para Mobile (ancho de pantalla menor a 1024px)
           if (window.innerWidth < 1024) {
-            // Toglea la clase para expandir
             card.classList.toggle("is-expanded");
             return;
           }
 
-          // Lógica para Desktop (ancho >= 1024px)
           if (card === centerCard) {
-            // Si clickeo la que ya está al centro, no hago nada
             return;
           }
 
-          // 1. Intercambio el número de 'order'
           const currentCenterOrder = window.getComputedStyle(centerCard as Element).order;
           const clickedCardOrder = window.getComputedStyle(card).order;
           
           (centerCard as HTMLElement).style.order = clickedCardOrder;
           (card as HTMLElement).style.order = currentCenterOrder;
 
-          // 2. Intercambio las clases de la tarjeta central (escala y elevación)
           centerCard?.classList.remove("is-center-card", "lg:scale-[1.15]", "lg:translate-y-4", "z-10");
           centerCard?.classList.add("lg:scale-[0.85]", "lg:-translate-y-16", "opacity-80", "hover:opacity-100");
 
           card.classList.remove("lg:scale-[0.85]", "lg:-translate-y-16", "opacity-80", "hover:opacity-100");
           card.classList.add("is-center-card", "lg:scale-[1.15]", "lg:translate-y-4", "z-10");
 
-          // 3. Establezco la nueva tarjeta central
           centerCard = card;
         });
       });
