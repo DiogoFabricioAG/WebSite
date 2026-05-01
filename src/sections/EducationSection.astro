@@ -7,7 +7,7 @@ import educationData from "../data/education.json";
 <section id="educacion" class=" md:min-h-[75vh] px-4 py-8">
   <BoxLayout>
     <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8">Educación</h2>
-    <div id="education-grid" class="flex flex-col lg:flex-row justify-center items-center gap-8 mx-auto lg:h-[500px]">
+    <div id="education-grid" class="flex flex-col lg:flex-row justify-center items-center gap-8  lg:h-[500px]">
       
       {educationData.map((edu, index) => {
         const isCenter = index === 1;
@@ -45,6 +45,15 @@ import educationData from "../data/education.json";
       
       wraps.forEach((card) => {
         card.addEventListener("click", () => {
+          
+          // Lógica para Mobile (ancho de pantalla menor a 1024px)
+          if (window.innerWidth < 1024) {
+            // Toglea la clase para expandir
+            card.classList.toggle("is-expanded");
+            return;
+          }
+
+          // Lógica para Desktop (ancho >= 1024px)
           if (card === centerCard) {
             // Si clickeo la que ya está al centro, no hago nada
             return;

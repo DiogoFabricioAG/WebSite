@@ -391,6 +391,48 @@ import "../styles/global.css";
 				if (cleanupCursor) cleanupCursor();
 				cleanupCursor = initCursor();
 			});
+
+			// Intersection Observer para dar color a los bloques en móvil cuando están en el centro de la pantalla
+			function initMobileAutoColor() {
+				// Solo ejecutar en móvil (menor a 768px)
+				if (window.innerWidth >= 768) return;
+
+				const observerOptions = {
+					root: null,
+					rootMargin: '-35% 0px -35% 0px', // Activa cuando el elemento está en el 30% central de la pantalla
+					threshold: 0
+				};
+
+				const colorObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('in-view');
+						} else {
+							entry.target.classList.remove('in-view');
+						}
+					});
+				}, observerOptions);
+
+				const boxes = document.querySelectorAll('.mobile-auto-color, .mobile-auto-color-group');
+				boxes.forEach(box => colorObserver.observe(box));
+
+				return () => {
+					boxes.forEach(box => colorObserver.unobserve(box));
+					colorObserver.disconnect();
+				};
+			}
+
+			let cleanupMobileColor = initMobileAutoColor();
+
+			document.addEventListener('astro:after-swap', () => {
+				if (cleanupMobileColor) cleanupMobileColor();
+				cleanupMobileColor = initMobileAutoColor();
+			});
+			// Re-evaluar en resize de ventana
+			window.addEventListener('resize', () => {
+				if (cleanupMobileColor) cleanupMobileColor();
+				cleanupMobileColor = initMobileAutoColor();
+			});
 		</script>
 	</body>
 </html>
