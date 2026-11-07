@@ -1,0 +1,51 @@
+---
+const nodes = [
+  { x: 40, y: 60, title: 'Administrator', detail: 'Commercial management', tag: 'User account', type: 'external' },
+  { x: 350, y: 60, title: 'Google Sheets', detail: 'REST API · service account', tag: 'Secondary synchronization', type: 'external' },
+  { x: 660, y: 60, title: 'Production team', detail: 'Lead · printing · pressing', tag: 'Stages with author & date', type: 'external' },
+  { x: 970, y: 60, title: 'Job System', detail: 'Work System · React + Vite', tag: 'Workers Assets · TypeScript', type: 'worker' },
+  { x: 40, y: 258, title: 'Print System', detail: 'Astro · React · TypeScript', tag: 'Vercel · Tailwind CSS', type: 'worker' },
+  { x: 350, y: 258, title: 'Commercial API', detail: 'Hono · Zod · TypeScript', tag: 'Workers · session or API key', type: 'runtime' },
+  { x: 660, y: 258, title: 'Cloudflare D1', detail: 'gamarra_db · SQLite', tag: 'Shared users & data', type: 'storage' },
+  { x: 970, y: 258, title: 'Jobs API', detail: 'Hono · Zod · role permissions', tag: 'Workers: gestion-trabajos', type: 'runtime' },
+  { x: 40, y: 456, title: 'Local PNG files', detail: 'Watched folder on Windows', tag: 'Web-origin filter', type: 'external' },
+  { x: 350, y: 456, title: 'Windows listener', detail: 'Python · watchdog · Tkinter', tag: 'PyInstaller · executable', type: 'runtime' },
+  { x: 660, y: 456, title: 'Listener state', detail: 'Local SQLite · state.db', tag: 'Processed · pending · retries', type: 'storage' },
+];
+const edges = [
+  { path: 'M150 146 V258', x: 150, y: 200, text: 'uses', kind: 'support' },
+  { path: 'M260 301 H350', x: 305, y: 291, text: 'HTTPS', kind: 'flow' },
+  { path: 'M570 301 H660', x: 615, y: 291, text: 'SQL', kind: 'flow' },
+  { path: 'M1080 146 V258', x: 1080, y: 200, text: 'REST', kind: 'flow' },
+  { path: 'M970 301 H880', x: 925, y: 291, text: 'SQL', kind: 'flow' },
+  { path: 'M880 103 H970', x: 925, y: 93, text: 'operates', kind: 'support' },
+  { path: 'M460 258 V146', x: 460, y: 215, text: 'REST · JWT', kind: 'support' },
+  { path: 'M260 499 H350', x: 305, y: 489, text: 'watchdog', kind: 'secure' },
+  { path: 'M460 456 V344', x: 460, y: 410, text: 'POST · API key', kind: 'support' },
+  { path: 'M570 499 H660', x: 615, y: 489, text: 'SQLite', kind: 'support' },
+];
+---
+<figure class="architecture" aria-labelledby="kromata-architecture-title">
+  <figcaption class="architecture-header"><div><p class="eyebrow">System diagram / 03</p><h4 id="kromata-architecture-title">Kromata System · architecture</h4></div><span>System overview</span></figcaption>
+  <p class="architecture-intro">Commercial management, production workflows and local capture share a data layer.</p>
+  <div class="architecture-canvas" role="region" aria-label="Kromata architecture diagram. Scroll horizontally to view the complete diagram." tabindex="0">
+    <svg class="architecture-svg" viewBox="0 0 1230 600" role="img" aria-labelledby="kromata-svg-title kromata-svg-description">
+      <title id="kromata-svg-title">Kromata System architecture</title>
+      <desc id="kromata-svg-description">Print System connects to a commercial API and Cloudflare D1. Job System connects to a jobs API and the same D1 database, with separate sessions. The commercial API synchronizes to Google Sheets. A Windows listener monitors local PNG files, keeps local SQLite state and sends data to the commercial API.</desc>
+      <defs>
+        <pattern id="kromata-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="currentColor" stroke-opacity=".09" stroke-width="1" /></pattern>
+        <marker id="kromata-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L8 4 L0 8 Z" fill="context-stroke" /></marker>
+      </defs>
+      <rect x="0" y="0" width="1230" height="600" fill="url(#kromata-grid)" />
+      {edges.map(edge => <g class:list={['architecture-edge', `edge-${edge.kind}`]}><path d={edge.path} marker-end="url(#kromata-arrow)" /><text x={edge.x} y={edge.y} text-anchor="middle">{edge.text}</text></g>)}
+      {nodes.map(node => <g class:list={['architecture-node', `node-${node.type}`]} transform={`translate(${node.x} ${node.y})`}>
+        <rect width="220" height="86" rx="4" />
+        <text x="110" y="29" class="architecture-node-title" text-anchor="middle">{node.title}</text>
+        <text x="110" y="48" class="architecture-node-detail" text-anchor="middle">{node.detail}</text>
+        <text x="110" y="67" class="architecture-node-detail" text-anchor="middle">{node.tag}</text>
+      </g>)}
+    </svg>
+  </div>
+  <p class="architecture-scroll-hint">Scroll sideways to view the full diagram <span aria-hidden="true">↔</span></p>
+  <p class="architecture-note">Print System handles commercial operations; Job System supports production tasks and stages. They share D1 and users, while maintaining separate sessions. The Windows listener keeps local processing state and sends data through the commercial API.</p>
+</figure>

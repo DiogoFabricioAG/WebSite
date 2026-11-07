@@ -8,8 +8,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: Replace with your production URL for correct absolute links
-  site: 'https://example.com',
+  // Existing production domain; the apex redirects to www.
+  site: 'https://www.diogoabregu.tech',
   output: 'static',
   
   vite: {

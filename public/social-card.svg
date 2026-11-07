@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <style>
+    @font-face { font-family: Archivo; src: url('/fonts/archivo-latin.woff2') format('woff2'); font-weight: 100 900; font-stretch: 62.5% 125%; }
+    @font-face { font-family: Plex; src: url('/fonts/ibm-plex-mono-latin.woff2') format('woff2'); }
+    text { font-family: Archivo, Arial, sans-serif; }
+    .label { font-family: Plex, Consolas, monospace; font-size: 13px; letter-spacing: 1px; }
+  </style>
+  <rect width="1200" height="630" fill="#102a2c"/>
+  <g fill="#e7ece2">
+    <text x="62" y="79" font-size="36" font-weight="650" letter-spacing="-3">da<tspan fill="#f1aa78">.</tspan></text>
+    <text class="label" x="1138" y="72" text-anchor="end" fill="#aabbb5">PERSONAL ARCHIVE / SOFTWARE &amp; AI</text>
+    <text x="54" y="278" font-size="180" font-weight="650" font-stretch="75%" letter-spacing="-12" textLength="1080" lengthAdjust="spacingAndGlyphs">DIOGO ABREGU<tspan fill="#f1aa78">.</tspan></text>
+    <text x="64" y="375" font-size="34" font-stretch="90%" letter-spacing="-1">Building intelligent systems</text>
+    <text x="64" y="420" fill="#aabbb5" font-size="34" font-stretch="90%" letter-spacing="-1">for real-world problems.</text>
+    <path d="M64 472H1136M64 550H1136M422 472V550M780 472V550" fill="none" stroke="#3c5655"/>
+    <g class="label">
+      <text x="64" y="517" fill="#f1aa78">01</text><text x="110" y="517">Meowlab</text>
+      <text x="446" y="517" fill="#f1aa78">02</text><text x="492" y="517">Capictive</text>
+      <text x="804" y="517" fill="#f1aa78">03</text><text x="850" y="517">Kromata System</text>
+      <text x="64" y="596" fill="#aabbb5">DIOGOABREGU.TECH</text>
+      <text x="1136" y="596" text-anchor="end" fill="#aabbb5">SOFTWARE ENGINEERING / APPLIED INTELLIGENCE</text>
+    </g>
+  </g>
+</svg>

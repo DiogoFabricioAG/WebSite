@@ -1,74 +1,13 @@
 ---
-import EducationBox from "../components/EducationBox.astro";
-import BoxLayout from "../layouts/BoxLayout.astro";
-import educationData from "../data/education.json";
+import { Image } from 'astro:assets';
+import { education } from '../data/portfolio';
 ---
-
-<section id="educacion" class=" min-h-screen px-4 py-8 ">
-  <BoxLayout>
-    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8 mt-10">Educación</h2>
-    <div id="education-grid" class="flex flex-col lg:flex-row justify-center items-center gap-8  lg:h-[500px]">
-      
-      {educationData.map((edu, index) => {
-        const isCenter = index === 1;
-        const classes = isCenter
-          ? "is-center-card transform lg:scale-[1.15] lg:translate-y-4 z-10"
-          : "transform lg:scale-[0.85] lg:-translate-y-16 opacity-80 hover:opacity-100";
-
-        return (
-          <div 
-            class={`edu-wrap group/edu transition-all duration-700 ease-in-out cursor-pointer lg:w-[320px] ${classes}`} 
-            style={`order: ${index + 1}`}
-          >
-            <EducationBox
-              institution={edu.institution}
-              program={edu.program}
-              logo={edu.logo}
-              years={edu.years}
-              description={edu.description}
-            />
-          </div>
-        );
-      })}
-      
-    </div>
-  </BoxLayout>
-</section>
-
-<script>
-  if (typeof window !== "undefined") {
-    window.addEventListener("DOMContentLoaded", () => {
-      const wraps = document.querySelectorAll(".edu-wrap");
-      
-      let centerCard = document.querySelector(".is-center-card");
-      
-      wraps.forEach((card) => {
-        card.addEventListener("click", () => {
-          
-          if (window.innerWidth < 1024) {
-            card.classList.toggle("is-expanded");
-            return;
-          }
-
-          if (card === centerCard) {
-            return;
-          }
-
-          const currentCenterOrder = window.getComputedStyle(centerCard as Element).order;
-          const clickedCardOrder = window.getComputedStyle(card).order;
-          
-          (centerCard as HTMLElement).style.order = clickedCardOrder;
-          (card as HTMLElement).style.order = currentCenterOrder;
-
-          centerCard?.classList.remove("is-center-card", "lg:scale-[1.15]", "lg:translate-y-4", "z-10");
-          centerCard?.classList.add("lg:scale-[0.85]", "lg:-translate-y-16", "opacity-80", "hover:opacity-100");
-
-          card.classList.remove("lg:scale-[0.85]", "lg:-translate-y-16", "opacity-80", "hover:opacity-100");
-          card.classList.add("is-center-card", "lg:scale-[1.15]", "lg:translate-y-4", "z-10");
-
-          centerCard = card;
-        });
-      });
-    });
-  }
-</script>
+<div id="educacion" class="education" aria-labelledby="education-heading">
+  <h3 id="education-heading" class="eyebrow">Education & learning</h3>
+  {education.map(item => (
+    <article class="education-item">
+      <Image src={item.logo} width={72} height={72} densities={[1, 2]} format="webp" fit="contain" alt="" loading="lazy" />
+      <div><h4>{item.institution}</h4><p class="education-program">{item.program}</p><p class="small-text">{item.period}</p><p>{item.detail}</p>{item.note && <p class="education-note">{item.note}</p>}</div>
+    </article>
+  ))}
+</div>

@@ -1,5 +1,11 @@
-<section id="redes-sociales">
-    <div class="text-center mb-10 text-sm ">
-      <span id="copyright-btn">@ Diogo Abregu 2026 - Desarrollado con ♥️</>
-    </div>
-  </section>
+---
+import { profile } from '../data/portfolio';
+const year = new Date().getFullYear();
+---
+<footer id="redes-sociales" class="site-footer container">
+  <p>© {year} {profile.name}</p>
+  <div class="text-links"><a href={profile.resume} download>Résumé / CV</a><a href="#inicio">Back to top <span aria-hidden="true">↑</span></a></div>
+  <p class="sound-credit">Keyboard sound: OEM from <a href="https://github.com/crafter-station/kliq">Kliq</a> by Crafter Station · Sound design by Cris · <a href="/sounds/kliq-oem/LICENSE.txt">MIT license</a></p>
+  <p class="sound-credit">Pen click: <a href="https://opengameart.org/content/pen-click-sfx-sound-effect">Nicole Marie T</a> · Adapted under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+  <p class="sound-credit">Architecture diagram based on a design created with <a href="https://github.com/tt-a1i/archify">Archify</a> by tt-a1i.</p>
+</footer>

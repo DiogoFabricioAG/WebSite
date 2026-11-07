@@ -1,0 +1,55 @@
+---
+const nodes = [
+  { x: 30, y: 120, w: 178, title: 'User', detail: 'Text · photos · documents', type: 'external' },
+  { x: 311, y: 120, w: 185, title: 'WhatsApp Cloud API', detail: 'Meta · inbound & replies', type: 'external' },
+  { x: 599, y: 120, w: 185, title: 'Cloudflare Worker', detail: 'Webhook · Meta signature', type: 'worker' },
+  { x: 903, y: 120, w: 185, title: 'Durable Object', detail: 'Groups text + images · 3 s', type: 'queue' },
+  { x: 903, y: 300, w: 200, title: 'Manolo orchestrator', detail: 'Intent · roles · confirmation', type: 'runtime' },
+  { x: 599, y: 300, w: 200, title: 'Node bridge + Caddy', detail: 'Company & operation authorization', type: 'security' },
+  { x: 311, y: 300, w: 185, title: 'FacturaYa API', detail: 'Drafts · issuance · PDF/CDR', type: 'external' },
+  { x: 30, y: 300, w: 178, title: 'SUNAT', detail: 'Fiscal validation via FacturaYa', type: 'external' },
+  { x: 1169, y: 300, w: 192, title: 'AI · Luna / Decisions API', detail: 'Visual context & intent', type: 'external' },
+  { x: 903, y: 500, w: 200, title: 'Cloudflare D1', detail: 'History · checkpoint · dedup', type: 'storage' },
+  { x: 599, y: 500, w: 200, title: 'Private PostgreSQL', detail: 'Roles · permissions · multi-tenant', type: 'storage' },
+  { x: 599, y: 0, w: 185, h: 70, title: 'Cloudflare R2', detail: 'Temporary media', type: 'storage' },
+];
+const edges = [
+  { path: 'M208 160 H311', x: 259, y: 150, text: 'Messages', kind: 'flow' },
+  { path: 'M496 160 H599', x: 547, y: 150, text: 'HTTPS webhook', kind: 'flow' },
+  { path: 'M784 160 H903', x: 843, y: 150, text: 'Queue by contact', kind: 'flow' },
+  { path: 'M996 200 V240 Q996 250 1003 250 V300', x: 1003, y: 225, text: 'One consolidated turn', kind: 'flow' },
+  { path: 'M903 340 H799', x: 851, y: 397, text: 'HMAC + timestamp + ID', kind: 'secure' },
+  { path: 'M599 340 H496', x: 547, y: 330, text: 'Authorized API', kind: 'flow' },
+  { path: 'M311 340 H208', x: 259, y: 397, text: 'Electronic invoice', kind: 'flow' },
+  { path: 'M1103 340 H1169', x: 1136, y: 330, text: 'Inference', kind: 'support' },
+  { path: 'M1003 380 V500', x: 1003, y: 445, text: 'Read / save state', kind: 'support' },
+  { path: 'M699 380 V500', x: 699, y: 445, text: 'Private SQL', kind: 'support' },
+  { path: 'M692 120 V70', x: 692, y: 105, text: 'Temporary media', kind: 'support' },
+];
+---
+<figure class="architecture" aria-labelledby="manolo-architecture-title">
+  <figcaption class="architecture-header">
+    <div><p class="eyebrow">System diagram / 01</p><h4 id="manolo-architecture-title">Manolo · invoicing architecture</h4></div>
+    <span>Architecture snapshot / 06 Nov 2026</span>
+  </figcaption>
+  <p class="architecture-intro">From a WhatsApp message to an authorized fiscal operation.</p>
+  <div class="architecture-canvas" role="region" aria-label="Manolo architecture diagram. Scroll horizontally to view the complete diagram." tabindex="0">
+    <svg class="architecture-svg" viewBox="0 -15 1390 630" role="img" aria-labelledby="manolo-svg-title manolo-svg-description">
+      <title id="manolo-svg-title">Manolo invoicing architecture</title>
+      <desc id="manolo-svg-description">Messages flow from the user through WhatsApp, a Cloudflare Worker and a Durable Object to the Manolo orchestrator. It calls an authorized Node bridge and FacturaYa, which communicates with SUNAT. R2 stores temporary media, D1 holds conversation state, PostgreSQL supports authorization, and Luna and Decisions API provide AI inference.</desc>
+      <defs>
+        <pattern id="architecture-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="currentColor" stroke-opacity=".09" stroke-width="1" /></pattern>
+        <marker id="architecture-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L8 4 L0 8 Z" fill="context-stroke" /></marker>
+      </defs>
+      <rect x="0" y="-15" width="1390" height="630" fill="url(#architecture-grid)" />
+      {edges.map(edge => <g class:list={['architecture-edge', `edge-${edge.kind}`]}><path d={edge.path} marker-end="url(#architecture-arrow)" /><text x={edge.x} y={edge.y} text-anchor="middle">{edge.text}</text></g>)}
+      {nodes.map(node => <g class:list={['architecture-node', `node-${node.type}`]} transform={`translate(${node.x} ${node.y})`}>
+        <rect width={node.w} height={node.h ?? 80} rx="4" />
+        <text x={node.w / 2} y={(node.h ?? 80) / 2 - 2} class="architecture-node-title" text-anchor="middle">{node.title}</text>
+        <text x={node.w / 2} y={(node.h ?? 80) / 2 + 16} class="architecture-node-detail" text-anchor="middle">{node.detail}</text>
+      </g>)}
+    </svg>
+  </div>
+  <p class="architecture-scroll-hint">Scroll sideways to view the full diagram <span aria-hidden="true">↔</span></p>
+  <p class="architecture-note">The orchestrator runs inside the Worker. Responses and documents return through Meta Graph API; SUNAT is reached via FacturaYa. D1 remains the conversation runtime while PostgreSQL receives shadow messages.</p>
+</figure>

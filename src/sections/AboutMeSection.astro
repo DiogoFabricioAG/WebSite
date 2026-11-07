@@ -1,49 +1,26 @@
 ---
-import BoxLayout from "../layouts/BoxLayout.astro";
+import { profile, communities, certifications } from '../data/portfolio';
+import EducationSection from './EducationSection.astro';
 ---
-
-<section id="sobre-mi" class="h-auto md:h-[80vh] mb-10 px-4">
-    <BoxLayout>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
-        <div class="space-y-2">
-          <h2 class="text-3xl md:text-5xl font-extrabold mb-6 md:mb-10">Sobre mí</h2>
-
-          <p class="text-base md:text-lg leading-relaxed">
-            Enfocado en crear soluciones web rápidas, accesibles y mantenibles.
-            Me gusta trabajar cerca del negocio para alinear la tecnología con
-            objetivos reales.
-          </p>
-          <p class="text-white/80 text-sm">
-            Implemento la tecnología adecuada para resolver problemas,
-            priorizando la arquitectura y la calidad de la solución, entre ellas
-            destaco: <br />
-            <b>Web Development</b>, <b>Cloud Computing</b> y <b
-              >AI Integration</b
-            >
-          </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">Frontend</h3>
-            <p class="text-sm text-white/80">Astro, React, TypeScript</p>
-          </div>
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">Backend</h3>
-            <p class="text-sm text-white/80">Node.js, Python, Java</p>
-          </div>
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">Bases de datos</h3>
-            <p class="text-sm text-white/80">PostgreSQL, MongoDB</p>
-          </div>
-          <div class="about-card border border-white/60 p-4">
-            <h3 class="font-semibold mb-1">DevOps</h3>
-            <p class="text-sm text-white/80">Docker, CI/CD, AWS</p>
-          </div>
-          <div class="about-card border sm:col-span-2 border-white/60 p-4">
-            <h3 class="font-semibold mb-1">AI Integration</h3>
-            <p class="text-sm text-white/80">OpenAI, Claude, n8n</p>
-          </div>
-        </div>
+<section id="sobre-mi" class="section" aria-labelledby="about-heading">
+  <div class="section-heading"><div><p class="eyebrow">About</p><h2 id="about-heading">Curiosity, with a practical purpose.</h2></div></div>
+  <div class="about-grid">
+    <div class="about-copy">
+      <p>{profile.about}</p><p>{profile.context}</p>
+      <section class="certifications" aria-labelledby="certifications-heading">
+        <h3 id="certifications-heading" class="eyebrow">Certifications</h3>
+        {certifications.map(item => <article class="certification-item"><p class="small-text">{item.issuer} / {item.date}</p><h4>{item.title}</h4><a class="certification-link" href={item.url}>View credential <span aria-hidden="true">↗</span></a></article>)}
+      </section>
+      <div class="community-block">
+        <h3 class="eyebrow">Community</h3>
+        {communities.map(community => <article class="community-note">
+          <h4>{community.organization}</h4><p class="community-role">{community.role}</p>
+          {community.period && <p class="small-text">{community.period}</p>}
+          <p>{community.description}</p>
+        </article>)}
       </div>
-    </BoxLayout>
-  </section>
+      <div class="languages"><h3 class="eyebrow">Languages</h3><dl>{profile.languages.map(item => <div><dt>{item.language}</dt><dd>{item.level}</dd></div>)}</dl></div>
+    </div>
+    <EducationSection />
+  </div>
+</section>

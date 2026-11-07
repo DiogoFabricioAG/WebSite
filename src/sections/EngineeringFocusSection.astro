@@ -1,0 +1,11 @@
+---
+import { engineeringFocus } from '../data/portfolio';
+---
+<section id="engineering-focus" class="section" aria-labelledby="focus-heading">
+  <div class="section-heading">
+    <div><p class="eyebrow">Engineering focus</p><h2 id="focus-heading">Thinking beyond the interface.</h2></div>
+  </div>
+  <div class="focus-grid">
+    {engineeringFocus.map(area => <article class="focus-area"><h3>{area.title}</h3><p>{area.description}</p><p class="focus-detail">{area.detail}</p></article>)}
+  </div>
+</section>

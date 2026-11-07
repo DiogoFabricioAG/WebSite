@@ -1,105 +1,168 @@
 ---
-import Projectsbox from "../components/Projectsbox.astro";
-import BoxLayout from "../layouts/BoxLayout.astro";
-import { getAllProjects } from "../utils/dataUtils";
-const projects = getAllProjects();
+import Projectsbox from '../components/Projectsbox.astro';
+import { projects, relatedWork } from '../data/portfolio';
+const featured = projects.filter(project => project.featured).sort((a, b) => a.order - b.order);
 ---
-
-<section id="proyectos" class="h-auto md:min-h-screen px-4 py-8 mb-16 flex flex-col justify-center">
-  <BoxLayout>
-    <div class="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 sm:gap-0">
-      <h2 class="text-3xl md:text-5xl font-extrabold  sm:text-left w-full sm:w-auto">Proyectos</h2>
-
-      {/* Paginador Superior (Estilo Bloques) */}
-      <div class="flex items-center gap-3 sm:mt-10">
-        {projects.map((_, index) => (
-          <button 
-            class={`nav-dot size-10 rounded-none transition-all duration-300 cursor-pointer border ${index === 0 ? 'bg-premium border-premium scale-110 shadow-[0_0_10px_rgba(186,154,116,0.5)]' : 'bg-transparent border-white/30 hover:border-white'}`} 
-            data-index={index} 
-            aria-label={`Ir al proyecto ${index + 1}`}
-          >{index + 1}</button>
-        ))}
+<section id="proyectos" class="section work-section" aria-labelledby="work-heading">
+  <div class="work-stage" data-work-stage>
+    <div class="work-layout">
+      <div class="section-heading work-heading">
+        <div><p class="eyebrow">Index / Selected work</p><h2 id="work-heading">Inside the archive<span>.</span></h2></div>
+        <p>Real problems. Code to explore.<br />Follow the thinking behind each system.</p>
       </div>
+      <div class="projects-grid">{featured.map(project => <Projectsbox project={project} />)}</div>
     </div>
-
-    <div class="relative w-full mt-10 max-w-[900px] mx-auto project-carousel">
-      {/* Contenedor principal de las tarjetas */}
-      <div class="projects-container relative w-full h-[950px] md:h-[550px]">
-        {projects.map((project, index) => (
-          <div 
-            class={`project-slide absolute inset-0 transition-opacity duration-500 ease-in-out ${index === 0 ? 'opacity-100 pointer-events-auto z-10' : 'opacity-0 pointer-events-none z-0'}`} 
-            data-index={index}
-          >
-            <Projectsbox
-              id={project.id}
-              title={project.title}
-              description={project.description}
-              finishDate={project.finishDate}
-              status={project.status}
-              icon={project.icon}
-              techs={project.techs}
-              liveUrl={project.liveUrl}
-              repoUrl={project.repoUrl}
-              demoUrl={project.demoUrl}
-              imagesUrl={project.imagesUrl}
-              features={project.features}
-              metrics={project.metrics}
-              tags={project.tags}
-              images={project.images}
-              problem={project.problem}
-              solution={project.solution}
-              impact={project.impact}
-              role={project.role}
-              architecture={project.architecture}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  </BoxLayout>
+  </div>
+  <section class="related-work" aria-labelledby="related-work-heading">
+    <div class="related-heading"><p class="eyebrow">Further work / Research</p><h3 id="related-work-heading">More systems, different contexts.</h3></div>
+    <div class="related-grid">{relatedWork.map(work => <article class="related-record">
+      <p class="eyebrow">{work.category}</p><h4>{work.title}</h4><p class="related-subtitle">{work.subtitle}</p>
+      <p>{work.summary}</p><p class="related-detail">{work.detail}</p>
+      <ul class="tags" aria-label={`${work.title} technologies`}>{work.tags.map(tag => <li>{tag}</li>)}</ul>
+      <a class="related-link" href={work.link.href}>{work.link.label} <span aria-hidden="true">↗</span></a>
+    </article>)}</div>
+  </section>
 </section>
 
 <script>
-  function initCarousel() {
-    // Aquí cambiamos la lógica: el paginador (dots) ya no está dentro de .project-carousel, 
-    // sino en el header de la sección. Así que buscamos globalmente en la sección actual.
-    const sections = document.querySelectorAll('#proyectos');
-    
-    sections.forEach(section => {
-      const slides = section.querySelectorAll('.project-slide');
-      const dots = section.querySelectorAll('.nav-dot');
-      let currentIndex = 0;
-
-      function showSlide(index: number) {
-        slides.forEach((slide, i) => {
-          if (i === index) {
-            slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
-            slide.classList.add('opacity-100', 'pointer-events-auto', 'z-10');
-            if (dots[i]) {
-              dots[i].classList.remove('bg-transparent', 'border-white/30');
-              dots[i].classList.add('bg-premium', 'border-premium', 'scale-110', 'shadow-[0_0_10px_rgba(186,154,116,0.5)]');
-            }
-          } else {
-            slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
-            slide.classList.remove('opacity-100', 'pointer-events-auto', 'z-10');
-            if (dots[i]) {
-              dots[i].classList.remove('bg-premium', 'border-premium', 'scale-110', 'shadow-[0_0_10px_rgba(186,154,116,0.5)]');
-              dots[i].classList.add('bg-transparent', 'border-white/30');
-            }
-          }
+  const stage = document.querySelector<HTMLElement>('[data-work-stage]');
+  const media = matchMedia('(prefers-reduced-motion: no-preference) and (min-height: 580px)');
+  if (stage) {
+    Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
+      gsap.registerPlugin(ScrollTrigger);
+      function setup(progress?: number, navigateToHash = false) {
+      if (!media.matches || !stage) return;
+      const events = new AbortController();
+      const grid = stage.querySelector<HTMLElement>('.projects-grid');
+      const layout = stage.querySelector<HTMLElement>('.work-layout');
+      const heading = stage.querySelector<HTMLElement>('.work-heading');
+      const cards = [...stage.querySelectorAll<HTMLElement>('.project-card')];
+      if (!grid || !layout || !heading || !cards.length) return;
+      stage.classList.add('work-stage-active');
+      const stacked = matchMedia('(max-width: 800px)').matches;
+      if (stacked) layout.style.setProperty('--work-heading-space', `${heading.offsetHeight + 24}px`);
+      const initialGridTop = grid.getBoundingClientRect().top - stage.getBoundingClientRect().top;
+      layout.classList.add('work-layout-measure');
+      const panels = cards.map(card => card.querySelector<HTMLElement>('.record-reveal')!);
+      const heights = panels.map(panel => panel.offsetHeight);
+      const headers = cards.map(card => card.querySelector<HTMLElement>('.record-tab')!);
+      const headerHeights = headers.map(header => header.offsetHeight);
+      const headerHeight = headerHeights.reduce((sum, height) => sum + height, 0);
+      const gap = parseFloat(getComputedStyle(grid).rowGap) || 0;
+      const gridTop = grid.getBoundingClientRect().top - stage.getBoundingClientRect().top;
+      const viewport = stage.clientHeight - gridTop;
+      const indexHeight = headerHeight + gap * (cards.length - 1);
+      const initialOffset = Math.max(0, (viewport - indexHeight) / 2);
+      const startingOffset = Math.max(0, (stage.clientHeight - initialGridTop - indexHeight) / 2);
+      layout.classList.remove('work-layout-measure');
+      gsap.set(panels, { height: 0, overflow: 'hidden' });
+      gsap.set(grid, { y: startingOffset });
+      let previousY = initialOffset;
+      let precedingHeight = 0;
+      const bottomLimit = viewport - (headerHeights[1] ?? headerHeights[0]) - gap - 24;
+      const destinations: number[] = [];
+      const timeline = gsap.timeline({ onUpdate: updateCards, scrollTrigger: { trigger: stage, start: () => `top ${document.querySelector<HTMLElement>('.site-header')?.offsetHeight ?? 0}px`, end: () => `+=${heights.reduce((a, b) => a + b, 0) + innerHeight}`, pin: true, scrub: .35, invalidateOnRefresh: false } });
+      function updateCards() {
+        const time = timeline.time();
+        let active = -1;
+        cards.forEach((_, index) => { if (time > timeline.labels[`record-${index}`]) active = index; });
+        const top = stage.getBoundingClientRect().top + gridTop;
+        cards.forEach((card, index) => {
+          const hidden = active !== -1 && index !== active;
+          card.classList.toggle('record-away', hidden);
+          card.inert = hidden;
+          const header = headers[index];
+          if (index !== active) { header.style.transform = ''; return; }
+          const distance = Math.max(0, Math.min(top - card.getBoundingClientRect().top, card.offsetHeight - header.offsetHeight));
+          header.style.transform = `translateY(${distance}px)`;
         });
-        currentIndex = index;
       }
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => showSlide(i));
+      timeline.to(heading, { y: -90, opacity: 0, duration: 300, ease: 'none' });
+      timeline.to(layout, stacked ? { '--work-heading-space': '0px', duration: 300, ease: 'none' } : { '--work-left': '0%', '--work-gap': '0px', duration: 300, ease: 'none' }, '<');
+      timeline.to(grid, { y: initialOffset, duration: 300, ease: 'none' }, '<');
+      panels.forEach((panel, index) => {
+        timeline.addLabel(`record-${index}`);
+        let currentBottom = previousY + precedingHeight + headerHeights[index];
+        const handoff = Math.max(0, currentBottom - bottomLimit);
+        if (handoff > 0) {
+          previousY -= handoff;
+          currentBottom -= handoff;
+          timeline.to(grid, { y: previousY, duration: handoff, ease: 'none' });
+        }
+        const freeSpace = Math.min(heights[index], Math.max(0, bottomLimit - currentBottom));
+        const headerTop = previousY + precedingHeight;
+        const visibleAmount = Math.min(heights[index], freeSpace + Math.max(0, headerTop));
+        destinations.push(timeline.labels[`record-${index}`] + handoff + visibleAmount);
+        const target = previousY - (heights[index] - freeSpace);
+        if (freeSpace > 0) timeline.to(panel, { height: freeSpace, duration: freeSpace, ease: 'none' });
+        const remaining = heights[index] - freeSpace;
+        if (remaining > 0) {
+          timeline.to(panel, { height: heights[index], duration: remaining, ease: 'none' });
+          timeline.to(grid, { y: target, duration: remaining, ease: 'none' }, '<');
+        }
+        previousY = target;
+        precedingHeight += headerHeights[index] + heights[index] + gap;
+        timeline.to({}, { duration: 140 });
       });
-    });
+      let cleared = false;
+      function restore() {
+        if (cleared) return;
+        cleared = true;
+        events.abort();
+        timeline.scrollTrigger?.kill(); timeline.kill();
+        gsap.set([...panels, grid, heading, layout], { clearProps: 'all' });
+        cards.forEach(card => { card.classList.remove('record-away'); card.inert = false; });
+        headers.forEach(header => { header.style.transform = ''; });
+        stage.classList.remove('work-stage-active');
+        ScrollTrigger.refresh();
+      }
+      function scrollToRecord(index: number, behavior: ScrollBehavior) {
+        const trigger = timeline.scrollTrigger;
+        if (index < 0 || !trigger || cleared) return false;
+        const progress = destinations[index] / timeline.duration();
+        window.scrollTo({ top: trigger.start + progress * (trigger.end - trigger.start), behavior });
+        return true;
+      }
+      document.addEventListener('click', event => {
+        const link = (event.target as Element).closest<HTMLAnchorElement>('a[href*="#"]');
+        if (!link || link.origin !== location.origin || link.pathname !== location.pathname) return;
+        const index = cards.findIndex(card => `#${card.id}` === link.hash);
+        if (index < 0 || !timeline.scrollTrigger || cleared) return;
+        event.preventDefault();
+        history.pushState(null, '', link.hash);
+        scrollToRecord(index, 'smooth');
+      }, { signal: events.signal });
+      window.addEventListener('hashchange', () => {
+        const index = cards.findIndex(card => `#${card.id}` === location.hash);
+        if (index >= 0) requestAnimationFrame(() => scrollToRecord(index, 'smooth'));
+      }, { signal: events.signal });
+      stage.addEventListener('focusin', event => { const target = event.target as Element; if (target.matches(':focus-visible') && target.closest('.record-reveal')) restore(); }, { signal: events.signal });
+      ScrollTrigger.refresh();
+      const trigger = timeline.scrollTrigger;
+      if (trigger) {
+        const index = navigateToHash ? cards.findIndex(card => `#${card.id}` === location.hash) : -1;
+        const targetProgress = index >= 0 ? destinations[index] / timeline.duration() : progress;
+        if (targetProgress !== undefined) window.scrollTo({ top: trigger.start + targetProgress * (trigger.end - trigger.start), behavior: 'instant' });
+      }
+      return { restore, timeline };
+      }
+      let instance = setup(undefined, true);
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let resizeTimer: number | undefined;
+      function rebuild() {
+        const trigger = instance?.timeline.scrollTrigger;
+        const progress = trigger?.isActive ? trigger.progress : undefined;
+        instance?.restore();
+        instance = setup(progress);
+      }
+      window.addEventListener('resize', () => {
+        if (window.innerWidth === width && Math.abs(window.innerHeight - height) < 80) return;
+        width = window.innerWidth; height = window.innerHeight;
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(rebuild, 180);
+      });
+      media.addEventListener('change', rebuild);
+    }).catch(() => {});
   }
-
-  // Ejecutar script al cargar
-  document.addEventListener('DOMContentLoaded', initCarousel);
-  
-  // Soporte para Astro View Transitions (si se usa)
-  document.addEventListener('astro:page-load', initCarousel);
 </script>

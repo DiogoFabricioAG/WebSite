@@ -1,0 +1,50 @@
+---
+const nodes = [
+  { x: 50, y: 110, w: 170, title: 'Editorial team', detail: 'Reviews and publishes', type: 'external' },
+  { x: 330, y: 110, w: 190, title: 'Editorial panel', detail: 'Next.js + TypeScript', type: 'worker', tag: 'PROPOSED' },
+  { x: 650, y: 110, w: 180, title: 'Contributors', detail: 'Evidence-based input', type: 'external' },
+  { x: 50, y: 340, w: 170, title: 'Citizens', detail: 'Browse by district', type: 'external' },
+  { x: 330, y: 340, w: 190, title: 'Public portal', detail: 'Next.js + TypeScript', type: 'worker', tag: 'PROPOSED' },
+  { x: 650, y: 340, w: 180, title: 'Domain API', detail: 'FastAPI · Python', type: 'runtime', tag: 'PROPOSED' },
+  { x: 1030, y: 340, w: 200, title: 'Civic data', detail: 'PostgreSQL + PostGIS', type: 'storage', tag: 'PROPOSED' },
+  { x: 50, y: 590, w: 170, title: 'Public sources', detail: 'Plans & official data', type: 'external' },
+  { x: 330, y: 590, w: 190, title: 'Ingestion & extraction', detail: 'Workers · Python', type: 'runtime', tag: 'PHASED' },
+  { x: 1030, y: 590, w: 200, title: 'Evidence storage', detail: 'S3 or Cloudflare R2', type: 'queue', tag: 'PROPOSED' },
+];
+const edges = [
+  { path: 'M220 145 H330', x: 275, y: 135, text: 'reviews', kind: 'support' },
+  { path: 'M520 145 H545 Q555 145 555 155 V305 Q555 315 565 315 H730 Q740 315 740 325 V340', x: 575, y: 227, text: 'submits changes', kind: 'support' },
+  { path: 'M740 180 V340', x: 740, y: 210, text: 'proposes drafts', kind: 'secure' },
+  { path: 'M220 375 H330', x: 275, y: 365, text: 'explores', kind: 'flow' },
+  { path: 'M520 375 H650', x: 585, y: 365, text: 'requests data', kind: 'flow' },
+  { path: 'M830 375 H1030', x: 930, y: 365, text: 'reads & records', kind: 'flow' },
+  { path: 'M220 625 H330', x: 275, y: 615, text: 'downloads', kind: 'support' },
+  { path: 'M520 635 H1030', x: 785, y: 655, text: 'preserves originals', kind: 'support' },
+  { path: 'M520 615 H730 Q740 615 740 605 V410', x: 740, y: 510, text: 'loads drafts', kind: 'secure' },
+  { path: 'M830 385 H925 Q935 385 935 395 V605 Q935 615 945 615 H1030', x: 935, y: 495, text: 'links evidence', kind: 'secure' },
+];
+---
+<figure class="architecture" aria-labelledby="capictive-architecture-title">
+  <figcaption class="architecture-header"><div><p class="eyebrow">System diagram / 02 · Proposed</p><h4 id="capictive-architecture-title">Capictive Lima · target architecture</h4></div><span>Architecture direction</span></figcaption>
+  <p class="architecture-intro">A proposed civic-information workflow, from public sources and editorial review to district-level exploration.</p>
+  <div class="architecture-canvas" role="region" aria-label="Capictive architecture diagram. Scroll horizontally to view the complete diagram." tabindex="0">
+    <svg class="architecture-svg" viewBox="0 50 1350 670" role="img" aria-labelledby="capictive-svg-title capictive-svg-description">
+      <title id="capictive-svg-title">Capictive Lima proposed architecture</title>
+      <desc id="capictive-svg-description">Citizens access the public portal, which requests civic data through a domain API. Editorial staff and contributors submit changes through editorial workflows. Public sources feed ingestion, which preserves evidence and submits drafts. The portal, API, civic database, editorial panel and evidence storage are proposed; ingestion is phased.</desc>
+      <defs>
+        <pattern id="capictive-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="currentColor" stroke-opacity=".09" stroke-width="1" /></pattern>
+        <marker id="capictive-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L8 4 L0 8 Z" fill="context-stroke" /></marker>
+      </defs>
+      <rect x="0" y="50" width="1350" height="670" fill="url(#capictive-grid)" />
+      {edges.map(edge => <g class:list={['architecture-edge', `edge-${edge.kind}`]}><path d={edge.path} marker-end="url(#capictive-arrow)" /><text x={edge.x} y={edge.y} text-anchor="middle">{edge.text}</text></g>)}
+      {nodes.map(node => <g class:list={['architecture-node', `node-${node.type}`]} transform={`translate(${node.x} ${node.y})`}>
+        <rect width={node.w} height="70" rx="4" />
+        {node.tag && <text x="8" y="13" class="architecture-node-tag">{node.tag}</text>}
+        <text x={node.w / 2} y="37" class="architecture-node-title" text-anchor="middle">{node.title}</text>
+        <text x={node.w / 2} y="54" class="architecture-node-detail" text-anchor="middle">{node.detail}</text>
+      </g>)}
+    </svg>
+  </div>
+  <p class="architecture-scroll-hint">Scroll sideways to view the full diagram <span aria-hidden="true">↔</span></p>
+  <p class="architecture-note">This diagram describes a proposed direction, not a completed deployment. The observed starting point is a minimal Astro landing; manual curation comes first, with automated ingestion planned in stages. The earlier electoral product used Next.js, Cloudflare D1, Python and Gemini.</p>
+</figure>

@@ -56,7 +56,6 @@
         "name": "LangChain",
         "icon": "/icons/langchain.png"
       },
-
       {
         "name": "Cloudflare Workers",
         "icon": "/icons/cloudflare.svg"
@@ -144,79 +143,5 @@
       }
     ],
     "logo": "project-logos/capictive.png"
-  },
-  {
-    "id": "project-connect2",
-    "title": "Connect2",
-    "description": "Sistema inteligente de networking para eventos que conecta asistentes en tiempo real mediante matching por intereses y generación de preguntas con IA contextual.",
-    "problem": "El networking en eventos es ineficiente, ya que los asistentes no cuentan con contexto suficiente para iniciar conversaciones relevantes, lo que limita la generación de conexiones de valor.",
-    "solution": "Desarrollé un sistema que recolecta información de asistentes y del evento, generando matches inteligentes y preguntas dinámicas mediante IA, facilitando interacciones significativas en tiempo real durante el networking.",
-    "impact": "Proyecto ganador de concurso, validando la propuesta como solución innovadora para eventos. Desarrollado como MVP funcional con arquitectura en tiempo real.",
-    "role": "Technical Lead",
-    "icon" : "project-logos/connect2.png",
-    "status": "prototype",
-    "finishDate": "2025",
-    "liveUrl": "https://connect2v.vercel.app/",
-    "repoUrl": "https://github.com/DiogoFabricioAG/connect2",
-    "demoUrl": "https://youtu.be/nK0hpveQL7E",
-    "features": [
-      "Registro de asistentes con perfil e intereses",
-      "Matching dinámico entre participantes",
-      "Generación de preguntas contextualizadas con IA",
-      "Sistema en tiempo real para interacción durante el evento",
-      "Diseño de flujo completo desde pre-evento hasta networking"
-    ],
-    "architecture": [
-      "Aplicación móvil desarrollada en Flutter",
-      "Backend en Express.js para gestión de lógica de negocio",
-      "Base de datos PostgreSQL para persistencia de usuarios y eventos",
-      "Comunicación en tiempo real mediante WebSockets",
-      "Integración con modelo Claude para generación de preguntas",
-      "Pipeline de contexto: usuario + evento + contenido → generación IA"
-    ],
-    "metrics": [
-      {
-        "label": "Estado",
-        "value": "MVP funcional"
-      },
-      {
-        "label": "Validación",
-        "value": "Ganador de concurso"
-      },
-      {
-        "label": "Arquitectura",
-        "value": "Real-time system"
-      }
-    ],
-    "tags": [
-      "AI",
-      "Networking",
-      "Eventos",
-      "Real-time",
-      "Startup"
-    ],
-    "techs": [
-      {
-        "name": "Flutter",
-        "icon": "/icons/flutter.svg"
-      },
-      {
-        "name": "Express",
-        "icon": "/icons/expressjs.svg"
-      },
-      {
-        "name": "PostgreSQL",
-        "icon": "/icons/postgresql.svg"
-      },
-      {
-        "name": "WebSockets",
-        "icon": "/icons/websockets.png"
-      },
-      {
-        "name": "Claude",
-        "icon": "/icons/claude.svg"
-      }
-    ],
-    "logo": null
   }
 ]

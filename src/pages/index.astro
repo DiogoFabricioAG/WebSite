@@ -1,195 +1,24 @@
 ---
-import "../styles/global.css";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Navbar from "../components/Navbar.astro";
-import PresentationSection from "../sections/PresentationSection.astro";
-import EducationSection from "../sections/EducationSection.astro";
-import ExperienceSection from "../sections/ExperienceSection.astro";
-import ProjectsSection from "../sections/ProjectsSection.astro";
-import ContactSection from "../sections/ContactSection.astro";
-import SocialMediaSection from "../sections/SocialMediaSection.astro";
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import PresentationSection from '../sections/PresentationSection.astro';
+import ProjectsSection from '../sections/ProjectsSection.astro';
+import EngineeringFocusSection from '../sections/EngineeringFocusSection.astro';
+import ExperienceSection from '../sections/ExperienceSection.astro';
+import AboutMeSection from '../sections/AboutMeSection.astro';
+import ContactSection from '../sections/ContactSection.astro';
+import SocialMediaSection from '../sections/SocialMediaSection.astro';
 ---
 
-<BaseLayout>
-  <PresentationSection />
-  <ExperienceSection />
-  <ProjectsSection />
-  <EducationSection />
+<PortfolioLayout>
+  <Navbar />
+  <main id="main" class="container" tabindex="-1">
+    <PresentationSection />
+    <ProjectsSection />
+    <EngineeringFocusSection />
+    <ExperienceSection />
+    <AboutMeSection />
+    <ContactSection />
+  </main>
   <SocialMediaSection />
-</BaseLayout>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-
-  // tl.to("#navbar", {
-  // 	scale: 0
-  // });
-
-  // Animación para el avatar
-  gsap.from("#avatar", {
-    opacity: 0,
-    y: 50,
-    duration: 1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#avatar",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-  });
-
-  // Animación para la sección de experiencia
-  gsap.from("#experiencia", {
-    opacity: 0,
-    y: 80,
-    duration: 1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#experiencia",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-  });
-
-  // Animación para la sección Sobre mí
-  gsap.from("#sobre-mi", {
-    opacity: 0,
-    y: 80,
-    duration: 1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#sobre-mi",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-  });
-
- 
-
-  // Animación para la sección de proyectos
-  gsap.from("#proyectos", {
-    opacity: 0,
-    y: 80,
-    duration: 1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#proyectos",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-  });
-
-  // Animación para cada cajita de proyecto
-  gsap.from("#proyectos .Projectsbox", {
-    opacity: 0,
-    y: 40,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#proyectos",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-  });
-  import { fetchExperiencesFromPublic } from "../utils/dataUtils";
-
-  // Bootstrap global modal opener (fallback if component script hasn't registered yet)
-  (() => {
-    const w = window as any;
-    w.__experienceModals = w.__experienceModals || {};
-    if (!w.openExperienceModal) {
-      w.openExperienceModal = (id: string) => {
-        const api = w.__experienceModals && w.__experienceModals[id];
-        if (api && typeof api.open === "function") return api.open();
-        const el = document.getElementById(`${id}-modal`);
-        if (el) {
-          el.classList.remove("hidden");
-          el.setAttribute("aria-hidden", "false");
-        }
-      };
-    }
-  })();
-
-  if (typeof window !== "undefined") {
-    window.addEventListener("DOMContentLoaded", () => {
-      /** @type {HTMLElement|null} */ const simModal =
-        document.getElementById("sim-modal");
-      /** @type {HTMLButtonElement|null} */ const simClose =
-        document.getElementById("sim-close") as HTMLButtonElement | null;
-      /** @type {HTMLButtonElement|null} */ const simOpenGallery =
-        document.getElementById("sim-open-gallery") as HTMLButtonElement | null;
-      /** @type {HTMLElement|null} */ const simGallery =
-        document.getElementById("sim-gallery");
-      /** @type {HTMLElement|null} */ const simGalleryOverlay =
-        document.getElementById("sim-gallery-overlay");
-      /** @type {HTMLButtonElement|null} */ const simGalleryClose =
-        document.getElementById(
-          "sim-gallery-close"
-        ) as HTMLButtonElement | null;
-      /** @type {HTMLButtonElement|null} */ const simGalleryPrev =
-        document.getElementById("sim-gallery-prev") as HTMLButtonElement | null;
-      /** @type {HTMLButtonElement|null} */ const simGalleryNext =
-        document.getElementById("sim-gallery-next") as HTMLButtonElement | null;
-      /** @type {HTMLImageElement|null} */ const simGalleryImg =
-        document.getElementById("sim-gallery-image") as HTMLImageElement | null;
-
-      /** @type {string[]} */
-      let images = ["/experience-logos/proy-uni.png"];
-      let current = 0;
-
-      /**
-       * @param {number} idx
-       */
-      function show(idx: number) {
-        if (!simGalleryImg) return;
-        current = (idx + images.length) % images.length;
-        simGalleryImg.setAttribute("src", images[current]);
-      }
-
-      function openGallery() {
-        if (!simGallery) return;
-        simGallery.classList.remove("hidden");
-        simGallery.classList.add("flex");
-        show(current);
-      }
-
-      function closeGallery() {
-        if (!simGallery) return;
-        simGallery.classList.add("hidden");
-        simGallery.classList.remove("flex");
-      }
-
-      // Cerrar modal simulado (solo oculta para la demo)
-      if (simClose && simModal) {
-        simClose.addEventListener("click", () => {
-          simModal.setAttribute("aria-hidden", "true");
-          simModal.classList.add("hidden");
-        });
-      }
-
-      if (simOpenGallery) simOpenGallery.addEventListener("click", openGallery);
-      if (simGalleryOverlay)
-        simGalleryOverlay.addEventListener("click", closeGallery);
-      if (simGalleryClose)
-        simGalleryClose.addEventListener("click", closeGallery);
-      if (simGalleryPrev)
-        simGalleryPrev.addEventListener("click", () => show(current - 1));
-      if (simGalleryNext)
-        simGalleryNext.addEventListener("click", () => show(current + 1));
-
-      document.addEventListener("keydown", (e) => {
-        if (!simGallery || simGallery.classList.contains("hidden")) return;
-        if (e.key === "Escape") closeGallery();
-        if (e.key === "ArrowLeft") show(current - 1);
-        if (e.key === "ArrowRight") show(current + 1);
-      });
-
-      
-    });
-  }
-</script>
+</PortfolioLayout>
