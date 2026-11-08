@@ -41,7 +41,18 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 0; }
+body {
+  margin: 0;
+  min-width: 0;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 55% 70% at 80% 27%, #7aa49418, transparent 72%),
+    radial-gradient(ellipse 48% 60% at 6% 70%, #d29a6a0b, transparent 72%),
+    linear-gradient(#bdd1bf09 1px, transparent 1px),
+    linear-gradient(90deg, #bdd1bf09 1px, transparent 1px);
+  background-size: 100% 1050px, 100% 1050px, 96px 96px, 96px 96px;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+}
 img { display: block; max-width: 100%; height: auto; }
 p, h1, h2, h3, h4, ul, ol, figure { margin: 0; }
 h1, h2, h3, h4 { font-weight: 500; line-height: 1.1; }
@@ -189,8 +200,10 @@ section, article[id], #educacion, #main { scroll-margin-top: 100px; }
 .work-stage-active .work-layout { height: 100%; grid-template-columns: minmax(0, var(--work-left)) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); column-gap: var(--work-gap); row-gap: 0; overflow: hidden; }
 .work-stage-active .work-heading { align-self: center; }
 .project-card { --surface: #e2e7dc; --text: #173c3b; --muted: #425d55; --border: #a9b9aa; --accent: #8b4825; position: relative; border: 1px solid var(--border); border-top: 0; background: var(--surface); color: var(--text); box-shadow: 0 12px 28px #06181820; }
-.work-stage-active .project-card { transition: opacity 220ms ease; }
-.work-stage-active .project-card.record-away { opacity: 0; pointer-events: none; }
+.work-stage-active .project-card { transition: transform 650ms cubic-bezier(.22, 1, .36, 1), visibility 0s; }
+.work-stage-active .project-card.record-away { visibility: hidden; pointer-events: none; transition: transform 650ms cubic-bezier(.22, 1, .36, 1), visibility 0s 650ms; }
+.work-stage-active .project-card.record-away-up { transform: translateY(calc(-100svh - 120px)); }
+.work-stage-active .project-card.record-away-down { transform: translateY(calc(100svh + 120px)); }
 .record-tab { position: relative; z-index: 3; display: flex; align-items: center; min-height: 40px; text-transform: uppercase; letter-spacing: 1px; border-block: 1px solid var(--border); background: var(--surface); }
 .record-reference { display: inline-flex; justify-content: center; align-items: center; align-self: stretch; min-width: 48px; color: #fff7ec; background: var(--accent); margin-right: 16px; }
 .record-tab-end { margin-left: auto; color: var(--muted); padding-right: 24px; font-size: 9px; letter-spacing: .5px; }
@@ -582,4 +595,11 @@ section, article[id], #educacion, #main { scroll-margin-top: 100px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
+/* Native cursor assets preserve the browser's text and form cursors. */
+@media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+  html, body { cursor: url('/cursors/archive-arrow.svg') 4 3, auto; }
+  html :is(a[href], button:not(:disabled), summary, [role='button'], select) { cursor: url('/cursors/archive-link.svg') 13 4, pointer; }
+  html :is(input, textarea, [contenteditable='true']) { cursor: text; }
 }

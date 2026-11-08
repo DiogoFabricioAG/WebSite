@@ -70,10 +70,14 @@ const featured = projects.filter(project => project.featured).sort((a, b) => a.o
         cards.forEach((card, index) => {
           const hidden = active !== -1 && index !== active;
           card.classList.toggle('record-away', hidden);
+          card.classList.toggle('record-away-up', hidden && index < active);
+          card.classList.toggle('record-away-down', hidden && index > active);
           card.inert = hidden;
           const header = headers[index];
-          if (index !== active) { header.style.transform = ''; return; }
-          const distance = Math.max(0, Math.min(top - card.getBoundingClientRect().top, card.offsetHeight - header.offsetHeight));
+          if (index !== active) { if (active === -1) header.style.transform = ''; return; }
+          const transform = getComputedStyle(card).transform;
+          const cardTop = card.getBoundingClientRect().top - (transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m42);
+          const distance = Math.max(0, Math.min(top - cardTop, card.offsetHeight - header.offsetHeight));
           header.style.transform = `translateY(${distance}px)`;
         });
       }
@@ -111,7 +115,7 @@ const featured = projects.filter(project => project.featured).sort((a, b) => a.o
         events.abort();
         timeline.scrollTrigger?.kill(); timeline.kill();
         gsap.set([...panels, grid, heading, layout], { clearProps: 'all' });
-        cards.forEach(card => { card.classList.remove('record-away'); card.inert = false; });
+        cards.forEach(card => { card.classList.remove('record-away', 'record-away-up', 'record-away-down'); card.inert = false; });
         headers.forEach(header => { header.style.transform = ''; });
         stage.classList.remove('work-stage-active');
         ScrollTrigger.refresh();
