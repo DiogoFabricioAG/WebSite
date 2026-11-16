@@ -5,7 +5,7 @@ const selected = projects.filter(project => project.featured).sort((a, b) => a.o
 const llmPrompt = [
   'Who is Diogo Abregu? Based only on the portfolio context below, summarize his background, technical strengths, notable work, and the kinds of software engineering roles that fit his experience. Distinguish ongoing work from completed work and do not invent details.',
   '',
-  `Portfolio: ${Astro.site ? new URL('/', Astro.site).href : 'https://www.diogoabregu.tech/'}`,
+  `Portfolio: ${Astro.site ? new URL('/', Astro.site).href : 'https://diogoabregu.com/'}`,
   `Profile: ${profile.introduction} ${profile.about}`,
   '',
   'Selected projects:',

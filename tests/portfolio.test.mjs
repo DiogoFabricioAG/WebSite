@@ -4,7 +4,7 @@ import { readFile, access, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 
 const root = resolve('dist');
-const origin = 'https://www.diogoabregu.tech';
+const origin = 'https://diogoabregu.com';
 const home = await readFile(join(root, 'index.html'), 'utf8');
 
 test('homepage metadata is complete and the removed bot is absent from the build', async () => {

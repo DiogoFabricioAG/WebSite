@@ -41,7 +41,7 @@ The type scale follows the hero container, including when zoomed. Focus styles, 
 
 The custom cursor, scroll-reveal effects and external contact form are absent. Contact uses the email already present in the public CV.
 
-The production canonical is `https://www.diogoabregu.tech`, matching the observed apex redirect. This only changes generated metadata and discovery files. No hosting, DNS, account settings or production deployment was changed. The old manually copied sitemap was removed to avoid competing with generated output.
+The production canonical is `https://diogoabregu.com`. Astro generates the sitemap and canonical metadata from this address.
 
 The owner-provided redesign MD and current CV are primary editorial sources. Roles, supplied metrics, AWS certification, community membership and professional experience are displayed from those sources. A partial public repository does not replace the owner's description of the wider project. Kromata System is the public project name; Print System remains its codebase name. Implementation references and design directions are labeled separately. Missing URLs and illustrative implementation examples are not invented. See [content restoration](docs/PORTFOLIO_CONTENT_RESTORATION.md) for the source-to-section mapping.
 
