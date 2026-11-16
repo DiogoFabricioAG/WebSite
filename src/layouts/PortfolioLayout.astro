@@ -23,10 +23,21 @@ const person = {
     <meta name="google-site-verification" content="9kPvdhpn-6LIdnMmFriTqAbL78ntBuwZukZDCppsQMw" />
     <title>{profile.title}</title>
     <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <style is:inline>
+      html[data-archive-opening="pending"], html[data-archive-opening="staged"], html[data-archive-opening="full"] { overflow: hidden; }
+      html[data-archive-opening="pending"] body { visibility: hidden; }
+      html[data-archive-opening="pending"] .archive-welcome[open] { visibility: visible; }
+    </style>
     <script is:inline>
       (() => {
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches || location.hash) return;
-        document.documentElement.dataset.archiveOpening = 'full';
+        if (location.hash) return;
+        try { if (sessionStorage.getItem('diogo-archive-opening-v1')) return; } catch {}
+        document.documentElement.dataset.archiveOpening = 'pending';
+        setTimeout(() => {
+          if (document.documentElement.dataset.archiveOpening === 'pending' && !document.querySelector('[data-archive-welcome][open]')) {
+            delete document.documentElement.dataset.archiveOpening;
+          }
+        }, 5000);
       })();
     </script>
     <link rel="canonical" href={canonical} />
