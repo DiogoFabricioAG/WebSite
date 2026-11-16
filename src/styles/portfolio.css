@@ -605,7 +605,7 @@ section, article[id], #educacion, #main { scroll-margin-top: 100px; }
 }
 
 /* A physical folder introduces the archive and its sound choice. */
-.archive-welcome { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0; color: var(--text); background: var(--bg); overflow: auto; }
+.archive-welcome { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0; color: var(--text); background: var(--bg); overflow: auto; overflow-x: hidden; }
 .archive-welcome::backdrop { background: var(--bg); }
 .hero-name-display:focus { outline: none; }
 html[data-archive-opening="staged"] .hero > :not(.archive-welcome) { visibility: hidden; }
@@ -613,12 +613,13 @@ html[data-archive-opening="staged"] .hero > :not(.archive-welcome) { visibility:
 .welcome-register, .welcome-footer { display: flex; justify-content: space-between; gap: 20px; font: 10px/1.5 var(--font-mono); text-transform: uppercase; letter-spacing: .1em; }
 .welcome-register { color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 18px; }
 .welcome-register span:last-child, .welcome-footer { color: var(--muted); }
-.welcome-file { width: min(100%, 620px); margin: auto; padding-block: 64px; text-align: center; }
+.welcome-file { width: min(100%, 620px); margin: auto; padding-block: 64px; text-align: center; perspective: 1100px; }
 .welcome-folder { position: relative; padding-top: 30px; perspective: 1200px; filter: drop-shadow(0 22px 30px #071a1a88); }
 .welcome-folder-back { position: absolute; inset: 17px 0 0; border: 1px solid #93aaa0; border-radius: 3px; background: #274846; transform: rotate(3deg); }
 .welcome-folder-back::before { content: ''; position: absolute; bottom: 100%; left: 0; width: 39%; height: 26px; background: #274846; border: 1px solid #93aaa0; border-bottom: 0; border-radius: 4px 8px 0 0; }
 .welcome-folder-back span { position: absolute; right: 24px; top: 12px; font: 9px var(--font-mono); color: #b1c3b9; }
-.welcome-sheet { position: absolute; inset: 36px 18px 8px; padding: 24px; display: flex; flex-direction: column; gap: 12px; text-align: left; background: #f3f0e5; color: #3d5a52; font: 9px var(--font-mono); transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
+.welcome-foreground { position: relative; }
+.welcome-sheet { position: absolute; inset: 6px 18px 8px; padding: 24px; display: flex; flex-direction: column; gap: 12px; text-align: left; background: #f3f0e5; color: #3d5a52; font: 9px var(--font-mono); transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
 .welcome-sheet i { display: block; height: 1px; background: #adbbb0; }
 .welcome-folder-cover { position: relative; width: 100%; min-height: 300px; display: flex; flex-direction: column; text-align: left; padding: clamp(24px, 5vw, 40px); color: #173c3b; background: #e2e7dc; border: 1px solid #bdcdbb; border-radius: 3px; font-family: var(--font-mono); cursor: pointer; transform-origin: 50% 100%; transition: transform 650ms cubic-bezier(.2,.7,.2,1), background 200ms ease; }
 .welcome-folder-cover::before { content: ''; position: absolute; bottom: 100%; left: -1px; width: 40%; height: 23px; background: #e2e7dc; border: 1px solid #bdcdbb; border-bottom: 0; border-radius: 4px 8px 0 0; }
@@ -640,6 +641,28 @@ html[data-archive-opening="staged"] .hero > :not(.archive-welcome) { visibility:
 .welcome-footer { padding-top: 18px; border-top: 1px solid var(--border); }
 .is-opening .welcome-folder-cover { transform: translateY(65px) rotateX(-55deg); }
 .is-opening .welcome-sheet { transform: translateY(-80px); }
+@media (prefers-reduced-motion: no-preference) {
+  .archive-welcome[open] .welcome-folder-back { animation: folder-back-arrive 950ms both; }
+  .archive-welcome[open] .welcome-foreground { animation: folder-arrive 650ms 950ms both; }
+  @keyframes folder-arrive {
+    0% { opacity: 0; transform: translateY(-28px) translateZ(220px) rotateX(14deg) scale(1.08); filter: drop-shadow(0 56px 38px #071a1a45); animation-timing-function: cubic-bezier(.55, 0, 1, .55); }
+    12% { opacity: 1; }
+    55% { transform: translateY(0) translateZ(0) rotateX(0) scale(1); filter: drop-shadow(0 10px 12px #071a1aa0); animation-timing-function: cubic-bezier(0, 0, .35, 1); }
+    72% { transform: translateY(-5px) translateZ(28px) rotateX(2deg) scale(1.01); filter: drop-shadow(0 26px 22px #071a1a70); animation-timing-function: cubic-bezier(.55, 0, 1, .55); }
+    88% { transform: translateY(0) translateZ(0) rotateX(0) scale(1); animation-timing-function: ease-out; }
+    94% { transform: translateY(-1px) translateZ(4px) rotateX(.3deg); animation-timing-function: ease-in; }
+    100% { opacity: 1; transform: translateY(0) translateZ(0) rotateX(0) scale(1); filter: drop-shadow(0 22px 30px #071a1a88); }
+  }
+  @keyframes folder-back-arrive {
+    0% { opacity: 0; transform: translateY(-28px) translateZ(220px) rotateX(14deg) rotate(3deg) scale(1.08); filter: drop-shadow(0 56px 38px #071a1a45); animation-timing-function: cubic-bezier(.55, 0, 1, .55); }
+    12% { opacity: 1; }
+    55% { transform: translateY(0) translateZ(0) rotateX(0) rotate(3deg) scale(1); filter: drop-shadow(0 10px 12px #071a1aa0); animation-timing-function: cubic-bezier(0, 0, .35, 1); }
+    72% { transform: translateY(-5px) translateZ(28px) rotateX(2deg) rotate(3deg) scale(1.01); filter: drop-shadow(0 26px 22px #071a1a70); animation-timing-function: cubic-bezier(.55, 0, 1, .55); }
+    88% { transform: translateY(0) translateZ(0) rotateX(0) rotate(3deg) scale(1); animation-timing-function: ease-out; }
+    94% { transform: translateY(-1px) translateZ(4px) rotateX(.3deg) rotate(3deg); animation-timing-function: ease-in; }
+    100% { opacity: 1; transform: rotate(3deg); filter: none; }
+  }
+}
 html.archive-handoff::view-transition-old(root) { animation: archive-handoff-out 380ms ease-in both; }
 html.archive-handoff::view-transition-new(root) { animation: archive-handoff-in 500ms ease-out both; }
 @keyframes archive-handoff-out { to { opacity: 0; transform: translateY(-30px) scale(1.02); } }

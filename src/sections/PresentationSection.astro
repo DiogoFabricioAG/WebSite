@@ -30,12 +30,14 @@ const llmPrompt = [
       <div class="welcome-file">
         <div class="welcome-folder">
           <div class="welcome-folder-back" aria-hidden="true"><span>001 / PERSONAL ARCHIVE</span></div>
-          <div class="welcome-sheet" aria-hidden="true"><span>PERSONAL ARCHIVE</span><span>SOFTWARE / AI SYSTEMS</span><i></i><i></i><i></i></div>
-          <button type="button" class="welcome-folder-cover" data-enter-sound aria-describedby="welcome-description">
-            <span class="welcome-cover-top"><span>PERSONAL ARCHIVE</span><span>DA / 001</span></span>
-            <span class="welcome-cover-label"><span>FILE UNDER</span><strong id="welcome-title">Diogo Abregu<span>.</span></strong><span>SOFTWARE ENGINEERING / APPLIED INTELLIGENCE</span></span>
-            <span class="welcome-cover-bottom"><span>OPEN THE ARCHIVE <span aria-hidden="true">↗</span></span><span>SOUND ON</span></span>
-          </button>
+          <div class="welcome-foreground">
+            <div class="welcome-sheet" aria-hidden="true"><span>PERSONAL ARCHIVE</span><span>SOFTWARE / AI SYSTEMS</span><i></i><i></i><i></i></div>
+            <button type="button" class="welcome-folder-cover" data-enter-sound aria-describedby="welcome-description">
+              <span class="welcome-cover-top"><span>PERSONAL ARCHIVE</span><span>DA / 001</span></span>
+              <span class="welcome-cover-label"><span>FILE UNDER</span><strong id="welcome-title">Diogo Abregu<span>.</span></strong><span>SOFTWARE ENGINEERING / APPLIED INTELLIGENCE</span></span>
+              <span class="welcome-cover-bottom"><span>OPEN THE ARCHIVE <span aria-hidden="true">↗</span></span><span>SOUND ON</span></span>
+            </button>
+          </div>
         </div>
         <p id="welcome-description" class="welcome-description">Open the folder to begin with sound.</p>
         <div class="welcome-actions">
@@ -272,6 +274,7 @@ const llmPrompt = [
       soundEnabled = withSound;
       welcome.querySelectorAll('button').forEach(button => { button.disabled = true; });
       const audioReady = withSound ? Promise.race([enableKeyboardAudio(), new Promise(resolve => setTimeout(resolve, 2000))]) : Promise.resolve();
+      if (withSound) void prepareFolderAudio().then(() => { if (welcome.open) playFolderTurn(); });
       welcome.classList.add('is-opening');
       await Promise.all([audioReady, new Promise(resolve => setTimeout(resolve, reducedMotion.matches ? 0 : 700))]);
       try { sessionStorage.setItem('diogo-archive-opening-v1', '1'); sessionStorage.setItem('diogo-archive-sound', withSound ? 'on' : 'off'); } catch {}
