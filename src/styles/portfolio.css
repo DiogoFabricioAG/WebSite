@@ -82,7 +82,6 @@ section, article[id], #educacion, #main { scroll-margin-top: 100px; }
 .header-inner { display: flex; align-items: center; min-height: 80px; gap: 32px; }
 .wordmark { display: inline-flex; align-items: center; font-size: 34px; font-weight: 650; letter-spacing: -3px; min-height: 44px; }
 .wordmark > span:first-child { color: var(--accent); }
-.wordmark-rule { width: 28px; height: 1px; background: var(--accent); margin: 9px 0 0 16px; }
 .header-caption { color: var(--muted); line-height: 1.4; font-size: 10px; }
 .header-inner nav { margin-left: auto; }
 .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; padding: 0; list-style: none; }
@@ -452,7 +451,6 @@ section, article[id], #educacion, #main { scroll-margin-top: 100px; }
   .work-intro-detail span { padding-bottom: 12px; }
   .header-inner { gap: 16px; min-height: 68px; }
   .wordmark { font-size: 30px; }
-  .wordmark-rule { display: none; }
   .nav-links { gap: 16px; }
   .nav-links a { font-size: 11px; }
   .hero { padding-top: 24px; }
