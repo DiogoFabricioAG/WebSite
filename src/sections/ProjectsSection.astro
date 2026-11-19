@@ -6,11 +6,14 @@ const featured = projects.filter(project => project.featured).sort((a, b) => a.o
 <section id="proyectos" class="section work-section" aria-labelledby="work-heading">
   <div class="work-stage" data-work-stage>
     <div class="work-layout">
+      <p class="eyebrow work-index-caption" aria-hidden="true">Selected work</p>
       <div class="section-heading work-heading">
         <div><p class="eyebrow">Index / Selected work</p><h2 id="work-heading">Inside the archive<span>.</span></h2></div>
         <p>Real problems. Code to explore.<br />Follow the thinking behind each system.</p>
       </div>
-      <div class="projects-grid">{featured.map(project => <Projectsbox project={project} />)}</div>
+      <div class="work-records">
+        <div class="projects-grid">{featured.map(project => <Projectsbox project={project} />)}</div>
+      </div>
     </div>
   </div>
   <section class="related-work" aria-labelledby="related-work-heading">
@@ -36,11 +39,14 @@ const featured = projects.filter(project => project.featured).sort((a, b) => a.o
       const grid = stage.querySelector<HTMLElement>('.projects-grid');
       const layout = stage.querySelector<HTMLElement>('.work-layout');
       const heading = stage.querySelector<HTMLElement>('.work-heading');
+      const caption = stage.querySelector<HTMLElement>('.work-index-caption');
       const cards = [...stage.querySelectorAll<HTMLElement>('.project-card')];
-      if (!grid || !layout || !heading || !cards.length) return;
+      if (!grid || !layout || !heading || !caption || !cards.length) return;
       stage.classList.add('work-stage-active');
       const stacked = matchMedia('(max-width: 800px)').matches;
       if (stacked) layout.style.setProperty('--work-heading-space', `${heading.offsetHeight + 24}px`);
+      gsap.set(heading, { width: heading.offsetWidth });
+      const headingExit = layout.getBoundingClientRect().top - heading.getBoundingClientRect().bottom - 12;
       const initialGridTop = grid.getBoundingClientRect().top - stage.getBoundingClientRect().top;
       layout.classList.add('work-layout-measure');
       const panels = cards.map(card => card.querySelector<HTMLElement>('.record-reveal')!);
@@ -81,9 +87,11 @@ const featured = projects.filter(project => project.featured).sort((a, b) => a.o
           header.style.transform = `translateY(${distance}px)`;
         });
       }
-      timeline.to(heading, { y: -90, opacity: 0, duration: 300, ease: 'none' });
-      timeline.to(layout, stacked ? { '--work-heading-space': '0px', duration: 300, ease: 'none' } : { '--work-left': '0%', '--work-gap': '0px', duration: 300, ease: 'none' }, '<');
-      timeline.to(grid, { y: initialOffset, duration: 300, ease: 'none' }, '<');
+      timeline.to(heading, { y: headingExit, duration: 200, ease: 'power2.inOut' });
+      timeline.fromTo(caption, { y: 8, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 150, ease: 'power2.out' });
+      timeline.to(layout, stacked ? { '--work-heading-space': '0px', duration: 240, ease: 'power2.inOut' } : { '--work-left': '0%', '--work-gap': '0px', duration: 240, ease: 'power2.inOut' }, '<');
+      timeline.to(grid, { y: initialOffset, duration: 240, ease: 'power2.inOut' }, '<');
+      timeline.to({}, { duration: 120 });
       panels.forEach((panel, index) => {
         timeline.addLabel(`record-${index}`);
         let currentBottom = previousY + precedingHeight + headerHeights[index];
@@ -114,7 +122,7 @@ const featured = projects.filter(project => project.featured).sort((a, b) => a.o
         cleared = true;
         events.abort();
         timeline.scrollTrigger?.kill(); timeline.kill();
-        gsap.set([...panels, grid, heading, layout], { clearProps: 'all' });
+        gsap.set([...panels, grid, heading, caption, layout], { clearProps: 'all' });
         cards.forEach(card => { card.classList.remove('record-away', 'record-away-up', 'record-away-down'); card.inert = false; });
         headers.forEach(header => { header.style.transform = ''; });
         stage.classList.remove('work-stage-active');
