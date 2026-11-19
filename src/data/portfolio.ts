@@ -209,7 +209,7 @@ export const education = [
 ];
 
 export const certifications = [
-  { title: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'Sep 2026', url: 'https://www.credly.com/earner/earned/badge/9b20d431-9f23-47d9-9cc0-fa25dde8552c' },
+  { title: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', date: 'Sep 2026', url: 'https://www.credly.com/badges/9b20d431-9f23-47d9-9cc0-fa25dde8552c/public_url' },
 ];
 
 export const communities = [
